@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Investment Consulting USA — Confidential M&A Advisory for Business Owners</title>
+<title>Investment Consulting USA — Seller-Side M&A Advisors | Business Assessments & Opinions of Value</title>
 <meta name="description" content="A confidential, seller-first M&A advisory firm with over $108M in transaction value across 11 years. IBBA and BBF member, BBB A+ rated. Based in downtown Miami, serving business owners nationwide. Request a private business valuation.">
 <style>
   :root{
@@ -256,6 +256,62 @@
       transition-delay:var(--rvd,0ms);will-change:opacity,filter,transform}
   .rv.in{opacity:1;filter:blur(0);transform:none}
   @media (prefers-reduced-motion: reduce){.rv{opacity:1;filter:none;transform:none;transition:none}}
+
+  /* ===== v5 additions ===== */
+  .hero .eyebrow{background:rgba(255,255,255,.08);border-color:rgba(216,190,115,.35);color:var(--gold-soft)}
+  nav.links .nav-phone{color:var(--gold-soft);font-weight:600;letter-spacing:.01em}
+  nav.links .nav-phone:hover{color:var(--white)}
+  .services{background:var(--paper)}
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .svc{background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);padding:34px 32px 30px;position:relative;box-shadow:var(--shadow-sm);transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s cubic-bezier(.2,.7,.2,1), border-color .45s;overflow:hidden}
+  .svc:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+  .svc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--navy)}
+  .svc:hover::before{background:var(--gold)}
+  .svc-ic{width:46px;height:46px;border-radius:11px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-size:1.15rem;margin-bottom:18px;border:1px solid rgba(201,168,76,.45);font-family:"Helvetica Neue",Arial,sans-serif}
+  .svc-num{position:absolute;right:28px;top:26px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.7rem;letter-spacing:.2em;color:var(--gold);font-weight:700}
+  .svc h3{font-size:1.28rem;color:var(--navy);margin-bottom:12px;font-weight:700;line-height:1.28}
+  .svc p{font-size:.98rem;color:var(--ink-soft);line-height:1.64;font-family:"Georgia",serif}
+  .svc-for{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-family:"Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--navy);font-weight:600;line-height:1.5}
+  .about{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:64px;align-items:start}
+  .portrait{aspect-ratio:4/5;border-radius:var(--radius);background:linear-gradient(160deg,var(--navy) 0%,var(--navy-900) 100%);border:1px solid rgba(201,168,76,.35);box-shadow:var(--shadow-lg);display:grid;place-items:center;position:relative;overflow:hidden}
+  .portrait::after{content:"";position:absolute;inset:10px;border:1px solid rgba(255,255,255,.08);border-radius:10px}
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+  .portrait-mono{font-family:"Georgia",serif;font-size:5.4rem;color:var(--gold);letter-spacing:.04em;opacity:.9}
+  .about-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .badge{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:var(--white);border:1px solid var(--line-2);border-radius:100px;padding:8px 14px}
+  .about-title{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:-8px 0 22px}
+  .about-copy p{font-size:1.06rem;color:var(--ink-soft);line-height:1.74;font-family:"Georgia",serif;margin-bottom:18px}
+  .about-quote{margin:26px 0 30px;padding:22px 26px;border-left:3px solid var(--red);background:rgba(255,255,255,.55);border-radius:0 10px 10px 0}
+  .about-quote p{font-style:italic;font-size:1.12rem;color:var(--navy);margin:0;line-height:1.6}
+  .about-quote .hl{color:var(--red)}
+  .global-list.light{margin-top:26px}
+  .global-list.light li{color:var(--ink);border-top:1px solid var(--line)}
+  .map-card{background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);padding:26px 26px 18px;box-shadow:var(--shadow-lg)}
+  .map-card img{width:100%;height:auto;display:block}
+  .map-cap{margin-top:14px;text-align:center;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);font-weight:700}
+  .faq{background:var(--paper-2);border-top:1px solid var(--line)}
+  .faq-list{max-width:860px;margin:0 auto}
+  .faq-list details{background:var(--white);border:1px solid var(--line-2);border-radius:12px;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:border-color .3s, box-shadow .3s}
+  .faq-list details[open]{border-color:var(--gold);box-shadow:var(--shadow)}
+  .faq-list summary{list-style:none;cursor:pointer;padding:20px 58px 20px 24px;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:1.02rem;color:var(--navy);position:relative;line-height:1.4}
+  .faq-list summary::-webkit-details-marker{display:none}
+  .faq-list summary::after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--gold);font-weight:700;font-size:1.1rem;transition:transform .3s, background .3s}
+  .faq-list details[open] summary::after{transform:translateY(-50%) rotate(45deg);background:var(--navy);color:var(--gold);border-color:var(--navy)}
+  .faq-a{padding:0 24px 22px;font-family:"Georgia",serif;font-size:.98rem;color:var(--ink-soft);line-height:1.68;max-width:760px}
+  .val-phone{margin-top:22px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.92rem;color:#C8D3DD}
+  .val-phone a{color:var(--gold-soft);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(216,190,115,.4)}
+  .val-phone a:hover{color:var(--white)}
+  @media (max-width:940px){.about-grid{grid-template-columns:1fr;gap:38px}.about-photo{max-width:340px}.svc-grid{grid-template-columns:1fr}}
+  @media (max-width:680px){.svc{padding:28px 22px 24px}.about-quote p{font-size:1.02rem}nav.links .nav-phone{font-size:1rem}}
+
+  /* ===== v6: two advisors ===== */
+  .about-person{margin-top:64px}
+  .about-person + .about-person{margin-top:88px;padding-top:80px;border-top:1px solid var(--line)}
+  .about-name{font-size:2rem;line-height:1.15;font-weight:700;color:var(--navy);letter-spacing:-.015em;margin-bottom:14px}
+  .about-creds{font-family:"Helvetica Neue",Arial,sans-serif !important;font-size:.84rem !important;color:var(--ink-mute) !important;line-height:1.6 !important;margin-top:4px}
+  .about-cta{text-align:center;margin-top:72px}
+  @media (max-width:680px){.about-person + .about-person{margin-top:64px;padding-top:56px}.about-name{font-size:1.6rem}.about-cta{margin-top:52px}}
 </style>
 </head>
 <body>
@@ -273,9 +329,12 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="links" id="navLinks">
+      <a href="#services">Services</a>
       <a href="#approach">Our Approach</a>
       <a href="#process">The Process</a>
-      <a href="#global">Cross-Border</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="tel:+15617652303" class="nav-phone">+1 (561) 765-2303</a>
       <a href="#valuation" class="btn btn-gold btn-nav">Request a Valuation</a>
     </nav>
   </div>
@@ -284,31 +343,31 @@
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow">Confidential M&amp;A Advisory</div>
+      <div class="eyebrow">Seller-Side M&amp;A Advisory &middot; Miami &middot; Nationwide</div>
       <h1>The right buyer matters.<br>So does selling at <span class="accent">the right time.</span></h1>
-      <p class="lede">Investment Consulting USA is a seller-first advisory firm. We will not bring your business to market until it is genuinely prepared — because the distance between selling today and selling well is often measured in millions, for you and for everyone who depends on you.</p>
+      <p class="lede">Investment Consulting USA is an advisory firm, not a listing service. We represent owners, we will not bring your business to market until it is genuinely prepared, and you work directly with a senior advisor from the first conversation to closing &mdash; because the distance between selling today and selling well is often measured in millions.</p>
       <div class="hero-cta">
         <a href="#valuation" class="btn btn-red">Request a Confidential Valuation</a>
-        <a href="#approach" class="btn btn-ghost">How We Work</a>
+        <a href="#services" class="btn btn-ghost">What We Do</a>
       </div>
-      <p class="hero-note"><span class="lock">&#9679;</span> Every conversation is private — no public listing, no obligation.</p>
+      <p class="hero-note"><span class="lock">&#9679;</span> Every conversation is private &mdash; no public listing, no obligation.</p>
     </div>
 
     <aside class="hero-card">
       <div class="hero-card-inner">
         <div class="ttl">Why owners choose us</div>
-        <p class="sub">Eleven years of results built almost entirely on referral — because discretion and outcomes travel by reputation.</p>
+        <p class="sub">Eleven years of results built almost entirely on referral &mdash; because discretion and outcomes travel by reputation.</p>
         <div class="mini-row">
           <span class="ic">1</span>
           <span class="tx"><b>Off-market and confidential.</b> Your employees, clients, and competitors are never made aware.</span>
         </div>
         <div class="mini-row">
           <span class="ic">2</span>
-          <span class="tx"><b>Selective by principle.</b> We accept only the engagements where we can add real value — and decline the rest.</span>
+          <span class="tx"><b>Selective by principle.</b> We accept only the engagements where we can add real value &mdash; and decline the rest.</span>
         </div>
         <div class="mini-row">
           <span class="ic">3</span>
-          <span class="tx"><b>Aligned with your outcome.</b> The right successor, maximum value, on a timeline that protects your interests.</span>
+          <span class="tx"><b>Direct senior involvement.</b> No hand-offs to a junior team. The advisors you meet are the advisors who close.</span>
         </div>
       </div>
     </aside>
@@ -332,56 +391,146 @@
   </div>
 </div>
 
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow center">What We Do</div>
+      <div class="rule-accent gold center"></div>
+      <h2>Clear answers first. A sale only when it is right.</h2>
+      <p>Every engagement begins with understanding where your business truly stands. From there, we help you decide &mdash; and, when the time is right, we represent you through the entire sale.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <div class="svc-ic">&#9776;</div>
+        <div class="svc-num">01</div>
+        <h3>Business Assessment</h3>
+        <p>A candid, senior-level read of your business as a buyer would see it: financial performance, transferability, concentration risks, and the specific factors that would move value before a sale. The foundation of every engagement.</p>
+        <div class="svc-for">For owners who want to know where they stand &mdash; whether a sale is one year out or five.</div>
+      </div>
+      <div class="svc">
+        <div class="svc-ic">&#9878;</div>
+        <div class="svc-num">02</div>
+        <h3>Broker&rsquo;s Opinion of Value</h3>
+        <p>A market-based opinion of what your business would likely command from qualified buyers today, prepared by an advisor who negotiates with those buyers every week. Grounded in real transactions, not theory.</p>
+        <div class="svc-for">For planning, partner discussions, lender conversations, and deciding whether now is the time.</div>
+      </div>
+      <div class="svc">
+        <div class="svc-ic">&#9670;</div>
+        <div class="svc-num">03</div>
+        <h3>Sell-Side Representation</h3>
+        <p>Full representation from preparation through closing: positioning, a discreet buyer process, firm negotiation, and hands-on transaction management &mdash; with the same senior advisor involved at every stage.</p>
+        <div class="svc-for">For owners ready to sell, who want maximum value and complete confidentiality.</div>
+      </div>
+      <div class="svc">
+        <div class="svc-ic">&#9650;</div>
+        <div class="svc-num">04</div>
+        <h3>Exit Planning</h3>
+        <p>For owners one to three years from a sale: a practical plan to strengthen the business, clean up the financials, and remove the issues that cost sellers the most at the negotiating table.</p>
+        <div class="svc-for">For owners who would rather sell from strength than urgency.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="approach" id="approach">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow dark">Our Approach</div>
       <div class="rule-accent"></div>
-      <h2>Counsel you can rely on — even when it is not what you hoped to hear.</h2>
-      <p>Most firms are compensated to bring you to market today. We have built our reputation on a different discipline: giving owners an honest assessment of their business, their timing, and their value — and proceeding only when it genuinely serves their interests.</p>
+      <h2>Counsel you can rely on &mdash; even when it is not what you hoped to hear.</h2>
+      <p>Most firms are compensated to bring you to market today. We have built our reputation on a different discipline: giving owners an honest assessment of their business, their timing, and their value &mdash; and proceeding only when it genuinely serves their interests.</p>
     </div>
     <div class="why-grid">
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top">
-          <span class="knum">01 — INTEGRITY</span>
+          <span class="knum">01 &mdash; INTEGRITY</span>
           <span class="kicon">&#9878;</span>
         </div>
         <div class="card-body">
           <h3>We decline more than we accept</h3>
-          <p>We take on only the clients we are confident we can serve well. If your business is not yet ready, or we are not the right fit, we will tell you directly and point you toward a better path — with no engagement and no pressure.</p>
+          <p>We take on only the clients we are confident we can serve well. If your business is not yet ready, or we are not the right fit, we will tell you directly and point you toward a better path &mdash; with no engagement and no pressure.</p>
         </div>
       </div>
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top">
-          <span class="knum">02 — DISCRETION</span>
+          <span class="knum">02 &mdash; DISCRETION</span>
           <span class="kicon">&#9679;</span>
         </div>
         <div class="card-body">
           <h3>A private process, end to end</h3>
-          <p>The sale of a business is a confidential matter. Our off-market approach ensures your staff, customers, and competitors remain unaware until you decide otherwise — protecting both your operations and your negotiating position.</p>
+          <p>The sale of a business is a confidential matter. Our off-market approach ensures your staff, customers, and competitors remain unaware until you decide otherwise &mdash; protecting both your operations and your negotiating position.</p>
         </div>
       </div>
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top">
-          <span class="knum">03 — VALUE</span>
+          <span class="knum">03 &mdash; VALUE</span>
           <span class="kicon">&#9650;</span>
         </div>
         <div class="card-body">
           <h3>Prepared sellers command more</h3>
-          <p>A period of preparation — clean financials, precise positioning, a stronger pool of buyers — can change your outcome by seven figures. We help you sell from a position of strength rather than urgency.</p>
+          <p>A period of preparation &mdash; clean financials, precise positioning, a stronger pool of buyers &mdash; can change your outcome by seven figures. We help you sell from a position of strength rather than urgency.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="philosophy">
+<section class="about" id="about">
   <div class="wrap">
-    <blockquote>
-      <div class="qbar"></div>
-      <p>"I would rather turn down a client than take on one I cannot help. But when I know I can make a difference — <span class="hl">you can bet the house I am going to make it happen.</span>"</p>
-      <cite>Alfonso E. Moncada<span>Senior M&amp;A Advisor &amp; Executive Director</span></cite>
-    </blockquote>
+    <div class="section-head center">
+      <div class="eyebrow center">Meet Your Advisors</div>
+      <div class="rule-accent gold center"></div>
+      <h2>Two advisors. One standard.</h2>
+      <p>Institutional discipline, owner-level attention, and the same two people from the first conversation to the closing table.</p>
+    </div>
+
+    <div class="about-grid about-person">
+      <div class="about-photo">
+        <!-- Replace this monogram block with a portrait: <img src="alejandra.jpg" alt="Alejandra B. Barrera"> -->
+        <div class="portrait"><span class="portrait-mono">AB</span></div>
+        <div class="about-badges">
+          <span class="badge">MBA, FIU</span>
+          <span class="badge">MS Int&rsquo;l Real Estate</span>
+          <span class="badge">BBF Member since 2015</span>
+          <span class="badge">Bilingual EN / ES</span>
+        </div>
+      </div>
+      <div class="about-copy">
+        <h3 class="about-name">Alejandra B. Barrera</h3>
+        <div class="about-title">Founding Partner &amp; Senior M&amp;A Advisor</div>
+        <p>A founding partner of Investment Consulting USA, Alejandra has been part of the firm since 2015 and brings institutional M&amp;A discipline to owner-operated businesses. Alongside her role at the firm, she spent two years as an M&amp;A consultant on Deloitte&rsquo;s Integration &amp; Divestiture team, working on multinational projects for healthcare institutions and multinational investment banks.</p>
+        <p>Her transaction work spans the acquisition and sale of privately held companies from the low six figures to $50 million and beyond &mdash; across hospitality, distribution and manufacturing, services, wholesale and retail, franchises, technology, and financial services, including a federally chartered bank. She leads valuation and deal structuring, negotiates terms on the owner&rsquo;s behalf, and directs lenders, CPAs, and attorneys through diligence to closing.</p>
+        <p class="about-creds">Master of Business Administration and Master of Science in International Real Estate, Florida International University &middot; Licensed real estate sales associate &middot; Member, Business Brokers of Florida, since 2015.</p>
+      </div>
+    </div>
+
+    <div class="about-grid about-person">
+      <div class="about-photo">
+        <!-- Replace this monogram block with a portrait: <img src="alfonso.jpg" alt="Alfonso E. Moncada"> -->
+        <div class="portrait"><span class="portrait-mono">AM</span></div>
+        <div class="about-badges">
+          <span class="badge">Economist</span>
+          <span class="badge">Accounting, BA</span>
+          <span class="badge">NMLS Licensed</span>
+          <span class="badge">Bilingual EN / ES</span>
+        </div>
+      </div>
+      <div class="about-copy">
+        <h3 class="about-name">Alfonso E. Moncada</h3>
+        <div class="about-title">Managing Partner &amp; Senior M&amp;A Advisor</div>
+        <p>For eleven years Alfonso has advised owners of privately held businesses on when to sell, what their company is truly worth, and how to reach the right buyer without the world knowing. More than $108 million in closed transactions later, nearly all of his work still arrives the same way: by referral from a client he told the truth to.</p>
+        <p>An economist by training with a second degree in accounting, Alfonso came to private-company M&amp;A from the institutional side: cross-border transactions in infrastructure and corporate development, and time inside a regional bank learning its underwriting and customer-vetting processes first-hand. He earned his NMLS mortgage loan originator license while completing his accounting degree, then his ABA Universal Banking credential during his years in banking. It is why he reads a business the way a lender and a buyer will, before either of them does.</p>
+        <p>Based in downtown Miami and fluent in both markets, he brings qualified buyers from across the United States and Latin America to the table &mdash; and stays directly involved from the first conversation to the closing table. There is no hand-off.</p>
+        <p class="about-creds">BA, International Development Economics (Canada) &middot; BA, Accounting, Miami Dade College &middot; ABA Universal Banking credential &middot; NMLS-licensed mortgage loan originator.</p>
+        <blockquote class="about-quote">
+          <p>&ldquo;I would rather turn down a client than take on one I cannot help. But when I know I can make a difference &mdash; <span class="hl">you can bet the house I am going to make it happen.</span>&rdquo;</p>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="about-cta">
+      <a href="#valuation" class="btn btn-red">Start a Confidential Conversation</a>
+    </div>
   </div>
 </section>
 
@@ -394,29 +543,29 @@
       <p>Deliberate, discreet, and structured around your objectives at every stage.</p>
     </div>
     <div class="steps">
-      <div class="step reveal">
+      <div class="step">
         <div class="dot">1</div>
         <div class="stp-label">Step One</div>
-        <h3>Confidential Valuation</h3>
-        <p>We assess what your business is realistically worth today — and what could move that figure before you sell.</p>
+        <h3>Confidential Assessment</h3>
+        <p>We assess what your business is realistically worth today &mdash; and what could move that figure before you sell.</p>
       </div>
-      <div class="step reveal">
+      <div class="step">
         <div class="dot">2</div>
         <div class="stp-label">Step Two</div>
         <h3>Readiness &amp; Strategy</h3>
         <p>Together we determine whether to proceed now or prepare first, and we build the plan that maximizes your outcome.</p>
       </div>
-      <div class="step reveal">
+      <div class="step">
         <div class="dot">3</div>
         <div class="stp-label">Step Three</div>
         <h3>Discreet Buyer Process</h3>
-        <p>We introduce your business to a vetted, qualified pool of buyers — privately, never through a public listing.</p>
+        <p>Every buyer signs a confidentiality agreement before your company is identified. We introduce your business to a vetted, qualified pool &mdash; never through a public listing.</p>
       </div>
-      <div class="step reveal">
+      <div class="step">
         <div class="dot">4</div>
         <div class="stp-label">Step Four</div>
         <h3>Negotiation &amp; Close</h3>
-        <p>We negotiate firmly on your behalf and manage the transaction through to a clean, successful close.</p>
+        <p>We negotiate firmly on your behalf, coordinate lenders and due diligence, and manage the transaction through to a clean, successful close.</p>
       </div>
     </div>
   </div>
@@ -428,24 +577,21 @@
       <div class="eyebrow dark">Nationwide &amp; Cross-Border</div>
       <div class="rule-accent"></div>
       <h2>Based in Miami. Working across the country.</h2>
-      <p style="font-size:1.08rem;color:var(--ink-soft);font-family:Georgia,serif">The strongest buyer for your business is rarely the one next door. From our office in downtown Miami we run a national practice — with recent transactions closed in Texas, Florida, Colorado, and beyond — backed by the cross-border reach to bring qualified buyers from across the U.S. and Latin America to the table.</p>
+      <p style="font-size:1.08rem;color:var(--ink-soft);font-family:Georgia,serif">The strongest buyer for your business is rarely the one next door. From our office in downtown Miami we run a national practice &mdash; with recent transactions closed in Texas, Florida, Colorado, and beyond &mdash; backed by the cross-border reach to bring qualified buyers from across the U.S. and Latin America to the table.</p>
       <div class="mini-stats">
         <div><span class="ms-num">$20M<span class="pl">+</span></span><span class="ms-lbl">Under contract</span></div>
         <div><span class="ms-num">12<span class="pl">+</span></span><span class="ms-lbl">Off-market deals</span></div>
         <div><span class="ms-num">18 mo</span><span class="ms-lbl">Recent activity</span></div>
       </div>
+      <ul class="global-list light">
+        <li>Qualified buyers sourced nationally and across Latin America</li>
+        <li>Fluent, bilingual cross-border representation</li>
+        <li>Discretion maintained across every market and jurisdiction</li>
+      </ul>
     </div>
-    <div class="global-card">
-      <div class="global-card-inner">
-        <h3>Where local advisors stop, we continue</h3>
-        <p class="gc-sub">The right buyer can be in another state or another country. We find them — and manage the added complexity those deals require.</p>
-        <ul class="global-list">
-          <li>Recent closings in TX, FL, CO, and other states</li>
-          <li>Qualified buyers sourced nationally and across Latin America</li>
-          <li>Fluent, bilingual cross-border representation</li>
-          <li>Discretion maintained across every market and jurisdiction</li>
-        </ul>
-      </div>
+    <div class="map-card">
+      <img src="data:image/png;base64,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" alt="Map of the United States highlighting the 19 states where Investment Consulting USA has closed transactions, with Florida marked as home base" loading="lazy">
+      <div class="map-cap">States with closed transactions &middot; Home base: Miami, FL</div>
     </div>
   </div>
 </section>
@@ -455,32 +601,32 @@
     <div class="section-head center">
       <div class="eyebrow center">Credentials &amp; Affiliations</div>
       <div class="rule-accent gold center"></div>
-      <h2>Held to the standards of the industry's governing bodies.</h2>
-      <p>We hold active membership in the professional associations that set the standard for ethics and competence in business brokerage — at home in Florida and internationally.</p>
+      <h2>Held to the standards of the industry&rsquo;s governing bodies.</h2>
+      <p>We hold active membership in the professional associations that set the standard for ethics and competence in our profession &mdash; at home in Florida and internationally.</p>
     </div>
     <div class="creds-grid">
-      <div class="cred reveal">
+      <div class="cred">
         <div class="seal"><b>IBBA</b></div>
         <div class="cd-body">
           <div class="cd-org">International Business Brokers Association</div>
           <h3>Member</h3>
-          <p>The global standard for professionalism and ethics in business brokerage — reflected in every valuation we deliver.</p>
+          <p>The global standard for professionalism and ethics in the sale of privately held businesses &mdash; reflected in every opinion of value we deliver.</p>
         </div>
       </div>
-      <div class="cred reveal">
+      <div class="cred">
         <div class="seal"><b>BBF</b></div>
         <div class="cd-body">
           <div class="cd-org">Business Brokers of Florida</div>
           <h3>Member</h3>
-          <p>Florida's principal network for connecting qualified buyers and sellers — privately, never through a public listing.</p>
+          <p>Florida&rsquo;s principal network for connecting qualified buyers and sellers &mdash; privately, never through a public listing.</p>
         </div>
       </div>
-      <div class="cred reveal">
+      <div class="cred">
         <div class="seal"><b>BBB</b></div>
         <div class="cd-body">
           <div class="cd-org">Better Business Bureau</div>
           <h3>A+ Rated</h3>
-          <p>The BBB's highest rating — earned through a record of trust, transparency, and doing right by every client.</p>
+          <p>The BBB&rsquo;s highest rating &mdash; earned through a record of trust, transparency, and doing right by every client.</p>
         </div>
       </div>
     </div>
@@ -497,17 +643,58 @@
   </div>
 </section>
 
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow center">Questions Owners Ask</div>
+      <div class="rule-accent gold center"></div>
+      <h2>Straight answers before you pick up the phone.</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>Will anyone find out my business is for sale?</summary>
+        <div class="faq-a">No. We never list your business publicly. Every prospective buyer signs a confidentiality agreement before your company is identified, and your employees, customers, and competitors remain unaware until you decide otherwise.</div>
+      </details>
+      <details>
+        <summary>What is a Broker&rsquo;s Opinion of Value, and how is it different from an appraisal?</summary>
+        <div class="faq-a">A Broker&rsquo;s Opinion of Value is a market-based view of what your business would likely command from qualified buyers today, prepared by an advisor who negotiates with those buyers regularly. A certified appraisal is a formal valuation used for legal, tax, or lending purposes. If your situation requires one, we will tell you so and point you to the right resource.</div>
+      </details>
+      <details>
+        <summary>Do I need to be ready to sell before contacting you?</summary>
+        <div class="faq-a">Not at all. Many of the owners we work with are one to three years away from a sale. A business assessment tells you where you stand today and what would move value &mdash; and often the best advice is to prepare first.</div>
+      </details>
+      <details>
+        <summary>What kinds of businesses do you work with?</summary>
+        <div class="faq-a">Owner-operated, privately held businesses across trades and services, healthcare, technology, real estate, retail, and e-commerce. We work nationwide from Miami and bring qualified buyers from across the U.S. and Latin America.</div>
+      </details>
+      <details>
+        <summary>Do you also represent buyers?</summary>
+        <div class="faq-a">We represent owners. Working exclusively on the sell side means our only obligation in a transaction is to you, and our buyer relationships exist to serve your sale, not the other way around.</div>
+      </details>
+      <details>
+        <summary>How do fees work?</summary>
+        <div class="faq-a">Plainly and up front. We discuss fees in our first conversation, and there is no obligation of any kind until you decide to engage us.</div>
+      </details>
+      <details>
+        <summary>How quickly will I hear back?</summary>
+        <div class="faq-a">A senior advisor will contact you privately, typically within one business day.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="valuation" id="valuation">
   <div class="wrap val-grid">
     <div class="val-copy">
       <div class="tag">Start Here</div>
       <h2>Request a confidential business valuation.</h2>
-      <p>Wondering what your business is worth today — and what it could be worth fully prepared? Begin with a private, no-obligation valuation. You will receive an honest, experienced assessment, not a sales pitch.</p>
+      <p>Wondering what your business is worth today &mdash; and what it could be worth fully prepared? Begin with a private, no-obligation assessment and opinion of value. You will receive an honest, experienced answer, not a sales pitch.</p>
       <ul class="val-assure">
-        <li><span class="ck">&#10003;</span> Strictly confidential — your information remains between us</li>
+        <li><span class="ck">&#10003;</span> Strictly confidential &mdash; your information remains between us</li>
         <li><span class="ck">&#10003;</span> No obligation, and no public listing of your business</li>
         <li><span class="ck">&#10003;</span> A direct conversation with a senior advisor</li>
       </ul>
+      <p class="val-phone">Prefer to talk? <a href="tel:+15617652303">+1 (561) 765-2303</a></p>
     </div>
 
     <div class="form-card">
@@ -590,7 +777,7 @@
 
         <div class="form-success" id="formSuccess">
           <div class="big">&#10003;</div>
-          <h3>Thank you — your request has been received.</h3>
+          <h3>Thank you &mdash; your request has been received.</h3>
           <p>A senior advisor will contact you privately, typically within one business day, to begin your confidential valuation.</p>
         </div>
       </div>
@@ -609,13 +796,15 @@
             <span class="t2">M&amp;A Advisory</span>
           </span>
         </a>
-        <p>A confidential, seller-first M&amp;A advisory firm helping business owners exit on their own terms — with discretion, integrity, and results built over eleven years.</p>
+        <p>A confidential, seller-first M&amp;A advisory firm helping business owners exit on their own terms &mdash; with discretion, integrity, and results built over eleven years.</p>
       </div>
       <div class="foot-col">
         <h4>Firm</h4>
+        <a href="#services">Services</a>
         <a href="#approach">Our Approach</a>
         <a href="#process">The Process</a>
-        <a href="#global">Cross-Border &amp; LatAm</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
         <a href="#valuation">Request a Valuation</a>
       </div>
       <div class="foot-col">
@@ -742,9 +931,9 @@
 
 <script>
 (function(){
-  var singles = document.querySelectorAll('.section-head, .philosophy blockquote, .global-card, .val-copy, .form-card, .sectors, .hero h1, .hero p.lede, .hero-cta, .hero-note, .hero-card');
+  var singles = document.querySelectorAll('.section-head, .about-photo, .about-copy, .map-card, .val-copy, .form-card, .sectors, .hero h1, .hero p.lede, .hero-cta, .hero-note, .hero-card');
   singles.forEach(function(el){ el.classList.add('rv'); });
-  ['.why-grid','.steps','.creds-grid','.stats','.global-list','.val-assure','.mini-stats','.chips'].forEach(function(sel){
+  ['.why-grid','.svc-grid','.steps','.creds-grid','.stats','.global-list','.val-assure','.mini-stats','.chips','.faq-list','.about-badges'].forEach(function(sel){
     document.querySelectorAll(sel).forEach(function(grid){
       Array.prototype.forEach.call(grid.children, function(child, i){
         child.classList.add('rv');
