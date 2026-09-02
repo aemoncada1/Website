@@ -481,7 +481,7 @@
       <div class="eyebrow center">Meet Your Advisors</div>
       <div class="rule-accent gold center"></div>
       <h2>Two advisors. One standard.</h2>
-      <p>Institutional discipline, owner-level attention, and the same two people from the first conversation to the closing table.</p>
+      <p>Together the firm has closed more than $108 million in transactions, and before Investment Consulting USA both partners worked on institutional deals in the hundreds of millions. Owner-level attention, the same two people from the first conversation to the closing table.</p>
     </div>
 
     <div class="about-grid about-person">
@@ -498,7 +498,7 @@
       <div class="about-copy">
         <h3 class="about-name">Alejandra B. Barrera</h3>
         <div class="about-title">Founding Partner &amp; Senior M&amp;A Advisor</div>
-        <p>A founding partner of Investment Consulting USA, Alejandra has been part of the firm since 2015 and brings institutional M&amp;A discipline to owner-operated businesses. Alongside her role at the firm, she spent two years as an M&amp;A consultant on Deloitte&rsquo;s Integration &amp; Divestiture team, working on multinational projects for healthcare institutions and multinational investment banks.</p>
+        <p>A founding partner of Investment Consulting USA, Alejandra has been part of the firm since 2015 and brings institutional M&amp;A discipline to owner-operated businesses. Alongside her role at the firm, she spent two years as an M&amp;A consultant on Deloitte&rsquo;s Integration &amp; Divestiture team, working on multinational projects for healthcare institutions and multinational investment banks, transactions measured in the hundreds of millions of dollars.</p>
         <p>Her transaction work spans the acquisition and sale of privately held companies from the low six figures to $50 million and beyond &mdash; across hospitality, distribution and manufacturing, services, wholesale and retail, franchises, technology, and financial services, including a federally chartered bank. She leads valuation and deal structuring, negotiates terms on the owner&rsquo;s behalf, and directs lenders, CPAs, and attorneys through diligence to closing.</p>
         <p class="about-creds">Master of Business Administration and Master of Science in International Real Estate, Florida International University &middot; Licensed real estate sales associate &middot; Member, Business Brokers of Florida, since 2015.</p>
       </div>
@@ -518,8 +518,8 @@
       <div class="about-copy">
         <h3 class="about-name">Alfonso E. Moncada</h3>
         <div class="about-title">Managing Partner &amp; Senior M&amp;A Advisor</div>
-        <p>For eleven years Alfonso has advised owners of privately held businesses on when to sell, what their company is truly worth, and how to reach the right buyer without the world knowing. More than $108 million in closed transactions later, nearly all of his work still arrives the same way: by referral from a client he told the truth to.</p>
-        <p>An economist by training with a second degree in accounting, Alfonso came to private-company M&amp;A from the institutional side: cross-border transactions in infrastructure and corporate development, and time inside a regional bank learning its underwriting and customer-vetting processes first-hand. He earned his NMLS mortgage loan originator license while completing his accounting degree, then his ABA Universal Banking credential during his years in banking. It is why he reads a business the way a lender and a buyer will, before either of them does.</p>
+        <p>For eleven years Alfonso has advised owners of privately held businesses on when to sell, what their company is truly worth, and how to reach the right buyer without the world knowing. The firm has closed more than $108 million in transactions in that time, and nearly all of that work still arrives the same way: by referral from a client he told the truth to.</p>
+        <p>An economist by training with a second degree in accounting, Alfonso came to private-company M&amp;A from the institutional side: involvement in cross-border institutional transactions in infrastructure and corporate development, several in the hundreds of millions of dollars, and time inside a regional bank learning its underwriting and customer-vetting processes first-hand. He earned his NMLS mortgage loan originator license while completing his accounting degree, then his ABA Universal Banking credential during his years in banking. It is why he reads a business the way a lender and a buyer will, before either of them does.</p>
         <p>Based in downtown Miami and fluent in both markets, he brings qualified buyers from across the United States and Latin America to the table &mdash; and stays directly involved from the first conversation to the closing table. There is no hand-off.</p>
         <p class="about-creds">BA, International Development Economics (Canada) &middot; BA, Accounting, Miami Dade College &middot; ABA Universal Banking credential &middot; NMLS-licensed mortgage loan originator.</p>
         <blockquote class="about-quote">
@@ -770,6 +770,7 @@
             <label for="notes">Anything you would like us to know? <span class="hint">(optional)</span></label>
             <textarea id="notes" name="notes" placeholder="A few words about your business or your goals."></textarea>
           </div>
+          <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label for="company">Company</label><input type="text" id="company" name="company" tabindex="-1" autocomplete="off"></div>
           <button type="submit" class="btn btn-red">Request My Confidential Valuation</button>
           <p class="form-note"><span class="lock">&#9679;</span> Your details are kept strictly confidential and are never shared or listed publicly.</p>
           <div class="form-error" id="formError" role="alert"></div>
@@ -868,7 +869,7 @@
      Leave FORM_ENDPOINT as "" to run in DEMO mode (shows the thank-you
      message without sending or storing anything).
   ------------------------------------------------------------------ */
-  var FORM_ENDPOINT = ""; // <-- paste your Worker URL here to go live
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbyR2e2i1GXhVdU1MzIz0_JJ9NqSiJRLPzrAGQLVnhzJOuA-xe90eyaGLal75wUzVNXarg/exec"; // Google Apps Script bridge -> Airtable (ICUSA CRM > Valuation Requests)
 
   var form = document.getElementById('valForm');
   var success = document.getElementById('formSuccess');
@@ -908,12 +909,15 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending\u2026';
 
+    var payload = {};
+    new FormData(form).forEach(function(v, k){ payload[k] = v; });
+    payload.source = 'Website';
     fetch(FORM_ENDPOINT, {
       method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
-    }).then(function(res){
-      if(res.ok){
+      body: JSON.stringify(payload)
+    }).then(function(res){ return res.json().catch(function(){ return {ok: res.ok}; }); })
+    .then(function(out){
+      if(out && out.ok){
         form.style.display = 'none';
         success.classList.add('show');
       } else {
