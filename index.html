@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Consulting USA — Confidential M&A Advisory for Business Owners</title>
+<meta name="description" content="A confidential, seller-first M&A advisory firm with over $108M in transaction value across 11 years. IBBA and BBF member, BBB A+ rated. Based in downtown Miami, serving business owners nationwide. Request a private business valuation.">
+<style>
+  :root{
+    --navy:#1E3A5F;
+    --navy-deep:#14293F;
+    --navy-900:#0C1B2B;
+    --gold:#C9A84C;
+    --gold-soft:#D8BE73;
+    --red:#9B2226;
+    --red-deep:#7F1A1D;
+    --paper:#FBFAF7;
+    --paper-2:#EFEBE2;
+    --ink:#1B2430;
+    --ink-soft:#4C5969;
+    --ink-mute:#6B7888;
+    --line:#E0DACE;
+    --line-2:#D2CBBC;
+    --white:#FFFFFF;
+    --shadow-lg:0 30px 70px -32px rgba(12,27,43,.5);
+    --shadow:0 18px 44px -22px rgba(12,27,43,.42);
+    --shadow-sm:0 10px 26px -16px rgba(12,27,43,.4);
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Georgia","Times New Roman",serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4,.sans,nav,.btn,.eyebrow,.stat-num,.stat-label,label,input,select,textarea,.form-note,.tag,.foot-col h4,.brand-txt,.knum,.stp-label,.card-top .knum{font-family:"Helvetica Neue",Arial,sans-serif}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 30px}
+  .eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:24px;display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border:1px solid var(--line-2);border-radius:100px;background:rgba(255,255,255,.65);box-shadow:0 6px 18px -12px rgba(12,27,43,.35)}
+  .eyebrow::before{content:"";width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+  .eyebrow.center{justify-content:center}
+  .eyebrow.dark{color:var(--red)}
+  .eyebrow.dark::before{background:var(--red)}
+  .tag{display:inline-block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--gold);padding:7px 14px;border:1px solid rgba(201,168,76,.4);border-radius:100px;margin-bottom:22px;background:rgba(201,168,76,.06)}
+
+  header.topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .35s ease, box-shadow .35s, padding .35s;padding:20px 0;border-bottom:1px solid transparent}
+  header.topbar.scrolled{background:rgba(12,27,43,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 30px -14px rgba(0,0,0,.7);padding:12px 0;border-bottom:1px solid rgba(201,168,76,.18)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+  .brand .mark{width:44px;height:44px;flex:0 0 44px;position:relative;border:2px solid var(--gold);border-radius:4px;display:grid;place-items:center;background:var(--navy-900)}
+  .brand .mark span{font-weight:700;color:var(--gold);font-size:1.05rem;letter-spacing:.02em}
+  .brand .mark::after{content:"";position:absolute;left:7px;right:7px;bottom:6px;height:2px;background:var(--red)}
+  .brand-txt{display:flex;flex-direction:column;line-height:1.18}
+  .brand-txt .t1{color:var(--white);font-weight:700;font-size:1.02rem;letter-spacing:.01em}
+  .brand-txt .t2{color:var(--gold-soft);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;margin-top:1px}
+  nav.links{display:flex;align-items:center;gap:32px}
+  nav.links a{color:#D7DEE6;text-decoration:none;font-size:.84rem;font-weight:500;letter-spacing:.02em;transition:color .2s}
+  nav.links a:hover{color:var(--white)}
+  .btn{display:inline-block;cursor:pointer;border:none;text-decoration:none;font-weight:600;letter-spacing:.04em;font-size:.85rem;padding:14px 26px;border-radius:4px;transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .35s, background .25s;text-align:center}
+  .btn-red{background:var(--red);color:var(--white);box-shadow:0 12px 26px -12px rgba(155,34,38,.85)}
+  .btn-red:hover{background:var(--red-deep);transform:translateY(-2px);box-shadow:0 18px 38px -14px rgba(155,34,38,.9)}
+  .btn-gold{background:var(--gold);color:var(--navy-900)}
+  .btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(216,190,115,.5)}
+  .btn-ghost:hover{border-color:var(--gold);background:rgba(201,168,76,.1)}
+  nav.links .btn-nav{padding:11px 20px}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+  .menu-toggle span{display:block;width:24px;height:2px;background:var(--white);transition:.3s}
+
+  .hero{position:relative;background:var(--navy-deep);color:var(--white);padding:188px 0 110px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1000px 480px at 82% -10%, rgba(201,168,76,.18), transparent 58%),radial-gradient(800px 500px at 10% 110%, rgba(155,34,38,.14), transparent 60%),linear-gradient(165deg, var(--navy) 0%, var(--navy-900) 100%)}
+  .hero::after{content:"";position:absolute;inset:0;opacity:.4;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%);mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%)}
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.3fr .92fr;gap:56px;align-items:center}
+  .hero h1{font-size:3.4rem;line-height:1.09;font-weight:700;letter-spacing:-.015em;margin-bottom:26px;color:var(--white)}
+  .hero h1 .accent{color:var(--gold-soft);font-style:italic;font-family:"Georgia",serif;font-weight:400}
+  .hero p.lede{font-size:1.15rem;line-height:1.72;color:#CFD9E3;max-width:560px;margin-bottom:36px;font-family:"Georgia",serif}
+  .hero-cta{display:flex;gap:15px;flex-wrap:wrap;align-items:center}
+  .hero-note{font-size:.8rem;color:#9DB0C2;letter-spacing:.02em;margin-top:24px;display:flex;align-items:center;gap:9px}
+  .hero-note .lock{color:var(--gold);font-size:.7rem}
+  .hero-card{background:linear-gradient(168deg, rgba(255,255,255,.09), rgba(255,255,255,.03));border:1px solid rgba(216,190,115,.32);border-radius:var(--radius);padding:8px;backdrop-filter:blur(8px);box-shadow:var(--shadow-lg)}
+  .hero-card-inner{border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:28px 28px 24px}
+  .hero-card .ttl{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:7px;font-family:"Helvetica Neue",Arial,sans-serif}
+  .hero-card .sub{font-size:.94rem;color:#C7D2DC;margin-bottom:8px;font-family:"Georgia",serif;line-height:1.55}
+  .mini-row{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.1)}
+  .mini-row .ic{width:36px;height:36px;flex:0 0 36px;border-radius:8px;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-weight:700;font-size:.92rem;font-family:"Helvetica Neue",Arial,sans-serif}
+  .mini-row .tx{font-size:.9rem;color:#DCE4EC;line-height:1.45;font-family:"Helvetica Neue",Arial,sans-serif}
+  .mini-row .tx b{color:var(--white);font-weight:600}
+
+  .stats-wrap{position:relative;z-index:5;margin-top:-58px}
+  .stats{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-lg);display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden}
+  .stat{padding:40px 30px;text-align:center;position:relative}
+  .stat:not(:last-child){border-right:1px solid var(--line)}
+  .stat-num{font-size:2.7rem;font-weight:700;color:var(--navy);line-height:1;letter-spacing:-.02em}
+  .stat-num .gold{color:var(--gold)}
+  .stat-num .plus{color:var(--red);font-size:1.6rem;vertical-align:top;margin-left:2px}
+  .stat-label{margin-top:11px;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-mute);font-weight:600}
+
+  section{padding:150px 0;position:relative}
+  .section-head{max-width:730px;margin-bottom:56px}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  h2{font-size:2.35rem;line-height:1.18;font-weight:700;color:var(--navy);letter-spacing:-.015em;margin-bottom:18px}
+  .section-head p{font-size:1.1rem;color:var(--ink-soft);line-height:1.72}
+  .rule-accent{width:54px;height:3px;background:var(--red);margin-bottom:24px;border-radius:2px}
+  .rule-accent.gold{background:var(--gold)}
+  .rule-accent.center{margin-left:auto;margin-right:auto}
+
+  .approach{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .card{background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s cubic-bezier(.2,.7,.2,1), border-color .45s;overflow:hidden;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+  .card-top{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--gold)}
+  .card-top .knum{font-size:.74rem;font-weight:700;color:var(--gold);letter-spacing:.16em}
+  .card-top .kicon{width:40px;height:40px;border-radius:9px;background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.5);display:grid;place-items:center;color:var(--gold);font-size:1.05rem}
+  .card-body{padding:28px;flex:1}
+  .card h3{font-size:1.28rem;color:var(--navy);margin-bottom:12px;font-weight:700;line-height:1.3}
+  .card p{font-size:.98rem;color:var(--ink-soft);line-height:1.64;font-family:"Georgia",serif}
+
+  .philosophy{background:var(--navy-900);color:var(--white);position:relative;overflow:hidden;border-top:4px solid var(--gold)}
+  .philosophy::before{content:"\201C";position:absolute;top:-30px;left:4%;font-size:17rem;color:rgba(201,168,76,.12);font-family:Georgia,serif;line-height:1}
+  .philosophy::after{content:"";position:absolute;inset:0;opacity:.5;background-image:radial-gradient(700px 360px at 85% 110%, rgba(155,34,38,.18), transparent 60%)}
+  .philosophy .wrap{position:relative;z-index:2}
+  .philosophy blockquote{max-width:880px;margin:0 auto;text-align:center}
+  .philosophy blockquote p{font-size:1.9rem;line-height:1.5;font-style:italic;color:#EDF2F6;margin-bottom:30px;font-family:"Georgia",serif}
+  .philosophy blockquote p .hl{color:var(--gold-soft)}
+  .qbar{width:48px;height:3px;background:var(--red);margin:0 auto 26px;border-radius:2px}
+  .philosophy cite{font-style:normal;font-size:.86rem;letter-spacing:.04em;color:var(--gold);font-weight:600;font-family:"Helvetica Neue",Arial,sans-serif}
+  .philosophy cite span{display:block;color:#9FB1C3;font-weight:400;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+
+  .process{background:var(--paper)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:10px}
+  .step{background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);padding:30px 26px;position:relative;box-shadow:var(--shadow-sm);transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s cubic-bezier(.2,.7,.2,1)}
+  .step:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .step .dot{width:52px;height:52px;border-radius:12px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700;font-size:1.2rem;margin-bottom:20px;border:1px solid rgba(201,168,76,.5);box-shadow:0 8px 18px -10px rgba(12,27,43,.7);font-family:"Helvetica Neue",Arial,sans-serif}
+  .step .stp-label{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+  .step h3{font-size:1.12rem;color:var(--navy);margin-bottom:10px;font-weight:700}
+  .step p{font-size:.92rem;color:var(--ink-soft);line-height:1.58;font-family:"Georgia",serif}
+
+  .global{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .global-grid{display:grid;grid-template-columns:1fr 1.04fr;gap:56px;align-items:center}
+  .global-card{background:linear-gradient(158deg,var(--navy) 0%,var(--navy-900) 100%);border-radius:var(--radius);padding:8px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .global-card-inner{border:1px solid rgba(201,168,76,.22);border-radius:7px;padding:38px 36px;position:relative;overflow:hidden}
+  .global-card-inner::after{content:"";position:absolute;right:-36px;bottom:-36px;width:150px;height:150px;border:2px solid rgba(201,168,76,.22);border-radius:50%}
+  .global-card-inner::before{content:"";position:absolute;right:6px;bottom:6px;width:78px;height:78px;border:2px solid rgba(155,34,38,.4);border-radius:50%}
+  .global-card h3{color:var(--white);font-size:1.45rem;margin-bottom:14px;position:relative;z-index:2}
+  .global-card .gc-sub{color:#CCD7E0;font-size:.98rem;position:relative;z-index:2;font-family:"Georgia",serif}
+  .global-list{list-style:none;margin-top:24px;position:relative;z-index:2}
+  .global-list li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;color:#E1E8EF;font-size:.94rem;border-top:1px solid rgba(255,255,255,.08);font-family:"Helvetica Neue",Arial,sans-serif}
+  .global-list li:first-child{border-top:none}
+  .global-list li::before{content:"";flex:0 0 9px;width:9px;height:9px;margin-top:6px;background:var(--gold);transform:rotate(45deg)}
+  .mini-stats{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap}
+  .mini-stats > div{display:flex;flex-direction:column}
+  .ms-num{font-family:"Helvetica Neue",Arial,sans-serif;font-size:1.78rem;font-weight:700;color:var(--navy);line-height:1;letter-spacing:-.01em}
+  .ms-num .pl{color:var(--gold)}
+  .ms-lbl{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;margin-top:9px}
+
+  .creds{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .creds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+  .cred{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:36px 28px;transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s cubic-bezier(.2,.7,.2,1), border-color .45s}
+  .cred:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+  .cred .seal{flex:0 0 76px;width:76px;height:76px;border-radius:14px;background:var(--navy-900);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);position:relative;margin-bottom:22px}
+  .cred .seal b{font-size:1.18rem;font-weight:700;letter-spacing:.04em;line-height:1;font-family:"Helvetica Neue",Arial,sans-serif}
+  .cred .seal::after{content:"";position:absolute;left:15px;right:15px;bottom:13px;height:2px;background:var(--red)}
+  .cred .cd-org{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px;font-family:"Helvetica Neue",Arial,sans-serif;line-height:1.45}
+  .cred .cd-body h3{font-size:1.22rem;color:var(--navy);margin-bottom:11px;font-weight:700;line-height:1.22}
+  .cred .cd-body p{font-size:.92rem;color:var(--ink-soft);line-height:1.6;font-family:"Georgia",serif}
+  .sectors{margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+  .sec-label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;font-family:"Helvetica Neue",Arial,sans-serif;margin-bottom:18px;text-align:center}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .chip{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.85rem;font-weight:600;color:var(--navy);background:var(--white);border:1px solid var(--line-2);border-radius:100px;padding:9px 20px;box-shadow:var(--shadow-sm)}
+  .chip .dotmark{display:inline-block;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);margin-right:9px;vertical-align:middle}
+
+  .valuation{background:var(--navy-deep);color:var(--white);position:relative;overflow:hidden;border-top:4px solid var(--red)}
+  .valuation::before{content:"";position:absolute;inset:0;background:radial-gradient(840px 460px at 16% 0%, rgba(201,168,76,.16), transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-900) 100%)}
+  .val-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.04fr;gap:58px;align-items:center}
+  .val-copy h2{color:var(--white)}
+  .val-copy p{color:#C8D3DD;font-size:1.08rem;margin-bottom:22px;font-family:"Georgia",serif}
+  .val-assure{list-style:none;margin-top:28px}
+  .val-assure li{display:flex;align-items:center;gap:14px;padding:11px 0;font-size:.95rem;color:#DDE5EC;font-family:"Helvetica Neue",Arial,sans-serif}
+  .val-assure li .ck{width:28px;height:28px;flex:0 0 28px;border-radius:8px;background:rgba(201,168,76,.15);border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:.8rem;font-weight:700}
+  .form-card{background:var(--white);border-radius:var(--radius);padding:8px;box-shadow:0 44px 90px -34px rgba(0,0,0,.7)}
+  .form-card-inner{border:1px solid var(--line);border-top:4px solid var(--red);border-radius:7px;padding:34px 32px;color:var(--ink)}
+  .form-card h3{font-size:1.42rem;color:var(--navy);margin-bottom:6px}
+  .form-card .fc-sub{font-size:.92rem;color:var(--ink-soft);margin-bottom:26px}
+  .field{margin-bottom:18px}
+  .field.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label{display:block;font-size:.77rem;font-weight:600;color:var(--navy);margin-bottom:7px;letter-spacing:.03em}
+  label .req{color:var(--red)}
+  label .hint{font-weight:400;color:var(--ink-soft);letter-spacing:0}
+  input,select,textarea{width:100%;padding:13px 14px;border:1.5px solid var(--line-2);border-radius:5px;font-size:.95rem;color:var(--ink);background:var(--paper);transition:border .2s, box-shadow .2s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(30,58,95,.13);background:var(--white)}
+  textarea{resize:vertical;min-height:82px}
+  .form-card .btn{width:100%;margin-top:8px;padding:16px;font-size:.95rem}
+  .form-note{font-size:.76rem;color:var(--ink-soft);text-align:center;margin-top:14px;line-height:1.5}
+  .form-note .lock{color:var(--gold)}
+  .form-success{display:none;text-align:center;padding:34px 12px}
+  .form-success.show{display:block}
+  .form-success .big{width:64px;height:64px;border-radius:14px;background:rgba(201,168,76,.15);border:2px solid var(--gold);color:var(--gold);display:grid;place-items:center;margin:0 auto 18px;font-size:1.8rem}
+  .form-success h3{color:var(--navy);margin-bottom:10px}
+  .form-success p{color:var(--ink-soft);font-size:.95rem}
+  .form-error{display:none;background:rgba(155,34,38,.07);border:1px solid rgba(155,34,38,.3);border-radius:6px;padding:13px 15px;margin-top:14px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.84rem;color:var(--red-deep);line-height:1.5}
+  .form-error.show{display:block}
+  .form-error a{color:var(--red-deep);font-weight:700}
+  .form-card .btn[disabled]{opacity:.62;cursor:default;transform:none}
+
+  footer.site{background:var(--navy-900);color:#AFC0D0;padding:66px 0 30px;border-top:4px solid var(--gold)}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:42px;padding-bottom:42px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .foot-brand .brand{margin-bottom:20px}
+  .foot-brand p{font-size:.92rem;line-height:1.72;color:#9FB1C3;max-width:340px;font-family:"Georgia",serif}
+  .foot-col h4{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .foot-col a,.foot-col p{display:block;color:#AFC0D0;text-decoration:none;font-size:.92rem;margin-bottom:11px;transition:color .2s;font-family:"Helvetica Neue",Arial,sans-serif}
+  .foot-col p.nationwide{color:var(--gold-soft);font-size:.82rem;font-weight:600;margin-top:-3px;letter-spacing:.02em}
+  .foot-col a:hover{color:var(--white)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:12px}
+  .foot-bottom p{font-size:.8rem;color:#7E92A6;font-family:"Helvetica Neue",Arial,sans-serif}
+  .foot-bottom .disc{max-width:660px;line-height:1.5}
+
+  @media (max-width:940px){
+    .hero-grid{grid-template-columns:1fr;gap:42px}
+    .hero-card{max-width:470px}
+    .val-grid{grid-template-columns:1fr;gap:42px}
+    .global-grid{grid-template-columns:1fr;gap:38px}
+    .steps{grid-template-columns:repeat(2,1fr);gap:22px}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+  }
+  @media (max-width:680px){
+    nav.links{position:fixed;top:0;right:-100%;height:100vh;width:80%;max-width:330px;background:var(--navy-900);flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:98px 32px 32px;gap:22px;transition:right .35s ease;box-shadow:-20px 0 50px -20px rgba(0,0,0,.7)}
+    nav.links.open{right:0}
+    nav.links a{font-size:1rem}
+    nav.links .btn-nav{width:100%}
+    .menu-toggle{display:flex}
+    .menu-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-toggle.active span:nth-child(2){opacity:0}
+    .menu-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .wrap{padding:0 22px}
+    .hero{padding-top:142px}
+    .hero h1{font-size:2.45rem}
+    .stats-wrap{margin-top:-30px}
+    .stats{grid-template-columns:1fr}
+    .stat:not(:last-child){border-right:none;border-bottom:1px solid var(--line)}
+    h2{font-size:1.82rem}
+    .why-grid{grid-template-columns:1fr}
+    .creds-grid{grid-template-columns:1fr}
+    .philosophy blockquote p{font-size:1.42rem}
+    .steps{grid-template-columns:1fr}
+    .field.row{grid-template-columns:1fr}
+    section{padding:74px 0}
+    .foot-grid{grid-template-columns:1fr}
+  }
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn:hover,.card:hover,.step:hover{transform:none}
+  }
+
+  /* --- scroll reveal (Close-AI-style blur-fade-rise) --- */
+  .rv{opacity:0;filter:blur(10px);transform:translateY(26px);
+      transition:opacity .9s cubic-bezier(.2,.65,.2,1), filter .9s cubic-bezier(.2,.65,.2,1), transform .9s cubic-bezier(.2,.65,.2,1);
+      transition-delay:var(--rvd,0ms);will-change:opacity,filter,transform}
+  .rv.in{opacity:1;filter:blur(0);transform:none}
+  @media (prefers-reduced-motion: reduce){.rv{opacity:1;filter:none;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="Investment Consulting USA home">
+      <span class="mark"><span>IC</span></span>
+      <span class="brand-txt">
+        <span class="t1">Investment Consulting USA</span>
+        <span class="t2">M&amp;A Advisory</span>
+      </span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="navLinks">
+      <a href="#approach">Our Approach</a>
+      <a href="#process">The Process</a>
+      <a href="#global">Cross-Border</a>
+      <a href="#valuation" class="btn btn-gold btn-nav">Request a Valuation</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Confidential M&amp;A Advisory</div>
+      <h1>The right buyer matters.<br>So does selling at <span class="accent">the right time.</span></h1>
+      <p class="lede">Investment Consulting USA is a seller-first advisory firm. We will not bring your business to market until it is genuinely prepared — because the distance between selling today and selling well is often measured in millions, for you and for everyone who depends on you.</p>
+      <div class="hero-cta">
+        <a href="#valuation" class="btn btn-red">Request a Confidential Valuation</a>
+        <a href="#approach" class="btn btn-ghost">How We Work</a>
+      </div>
+      <p class="hero-note"><span class="lock">&#9679;</span> Every conversation is private — no public listing, no obligation.</p>
+    </div>
+
+    <aside class="hero-card">
+      <div class="hero-card-inner">
+        <div class="ttl">Why owners choose us</div>
+        <p class="sub">Eleven years of results built almost entirely on referral — because discretion and outcomes travel by reputation.</p>
+        <div class="mini-row">
+          <span class="ic">1</span>
+          <span class="tx"><b>Off-market and confidential.</b> Your employees, clients, and competitors are never made aware.</span>
+        </div>
+        <div class="mini-row">
+          <span class="ic">2</span>
+          <span class="tx"><b>Selective by principle.</b> We accept only the engagements where we can add real value — and decline the rest.</span>
+        </div>
+        <div class="mini-row">
+          <span class="ic">3</span>
+          <span class="tx"><b>Aligned with your outcome.</b> The right successor, maximum value, on a timeline that protects your interests.</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="wrap stats-wrap">
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num"><span class="gold">$108M</span><span class="plus">+</span></div>
+      <div class="stat-label">In Transaction Value</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">11 <span style="font-size:1.4rem;font-weight:600">Years</span></div>
+      <div class="stat-label">Advising Business Owners</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100<span class="plus">%</span></div>
+      <div class="stat-label">Confidential, Off-Market</div>
+    </div>
+  </div>
+</div>
+
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow dark">Our Approach</div>
+      <div class="rule-accent"></div>
+      <h2>Counsel you can rely on — even when it is not what you hoped to hear.</h2>
+      <p>Most firms are compensated to bring you to market today. We have built our reputation on a different discipline: giving owners an honest assessment of their business, their timing, and their value — and proceeding only when it genuinely serves their interests.</p>
+    </div>
+    <div class="why-grid">
+      <div class="card reveal">
+        <div class="card-top">
+          <span class="knum">01 — INTEGRITY</span>
+          <span class="kicon">&#9878;</span>
+        </div>
+        <div class="card-body">
+          <h3>We decline more than we accept</h3>
+          <p>We take on only the clients we are confident we can serve well. If your business is not yet ready, or we are not the right fit, we will tell you directly and point you toward a better path — with no engagement and no pressure.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-top">
+          <span class="knum">02 — DISCRETION</span>
+          <span class="kicon">&#9679;</span>
+        </div>
+        <div class="card-body">
+          <h3>A private process, end to end</h3>
+          <p>The sale of a business is a confidential matter. Our off-market approach ensures your staff, customers, and competitors remain unaware until you decide otherwise — protecting both your operations and your negotiating position.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-top">
+          <span class="knum">03 — VALUE</span>
+          <span class="kicon">&#9650;</span>
+        </div>
+        <div class="card-body">
+          <h3>Prepared sellers command more</h3>
+          <p>A period of preparation — clean financials, precise positioning, a stronger pool of buyers — can change your outcome by seven figures. We help you sell from a position of strength rather than urgency.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap">
+    <blockquote>
+      <div class="qbar"></div>
+      <p>"I would rather turn down a client than take on one I cannot help. But when I know I can make a difference — <span class="hl">you can bet the house I am going to make it happen.</span>"</p>
+      <cite>Alfonso E. Moncada<span>Senior M&amp;A Advisor &amp; Executive Director</span></cite>
+    </blockquote>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow center">The Process</div>
+      <div class="rule-accent gold center"></div>
+      <h2>A defined path from first conversation to closing.</h2>
+      <p>Deliberate, discreet, and structured around your objectives at every stage.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="dot">1</div>
+        <div class="stp-label">Step One</div>
+        <h3>Confidential Valuation</h3>
+        <p>We assess what your business is realistically worth today — and what could move that figure before you sell.</p>
+      </div>
+      <div class="step reveal">
+        <div class="dot">2</div>
+        <div class="stp-label">Step Two</div>
+        <h3>Readiness &amp; Strategy</h3>
+        <p>Together we determine whether to proceed now or prepare first, and we build the plan that maximizes your outcome.</p>
+      </div>
+      <div class="step reveal">
+        <div class="dot">3</div>
+        <div class="stp-label">Step Three</div>
+        <h3>Discreet Buyer Process</h3>
+        <p>We introduce your business to a vetted, qualified pool of buyers — privately, never through a public listing.</p>
+      </div>
+      <div class="step reveal">
+        <div class="dot">4</div>
+        <div class="stp-label">Step Four</div>
+        <h3>Negotiation &amp; Close</h3>
+        <p>We negotiate firmly on your behalf and manage the transaction through to a clean, successful close.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="global" id="global">
+  <div class="wrap global-grid">
+    <div class="global-copy">
+      <div class="eyebrow dark">Nationwide &amp; Cross-Border</div>
+      <div class="rule-accent"></div>
+      <h2>Based in Miami. Working across the country.</h2>
+      <p style="font-size:1.08rem;color:var(--ink-soft);font-family:Georgia,serif">The strongest buyer for your business is rarely the one next door. From our office in downtown Miami we run a national practice — with recent transactions closed in Texas, Florida, Colorado, and beyond — backed by the cross-border reach to bring qualified buyers from across the U.S. and Latin America to the table.</p>
+      <div class="mini-stats">
+        <div><span class="ms-num">$20M<span class="pl">+</span></span><span class="ms-lbl">Under contract</span></div>
+        <div><span class="ms-num">12<span class="pl">+</span></span><span class="ms-lbl">Off-market deals</span></div>
+        <div><span class="ms-num">18 mo</span><span class="ms-lbl">Recent activity</span></div>
+      </div>
+    </div>
+    <div class="global-card">
+      <div class="global-card-inner">
+        <h3>Where local advisors stop, we continue</h3>
+        <p class="gc-sub">The right buyer can be in another state or another country. We find them — and manage the added complexity those deals require.</p>
+        <ul class="global-list">
+          <li>Recent closings in TX, FL, CO, and other states</li>
+          <li>Qualified buyers sourced nationally and across Latin America</li>
+          <li>Fluent, bilingual cross-border representation</li>
+          <li>Discretion maintained across every market and jurisdiction</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="creds" id="credentials">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow center">Credentials &amp; Affiliations</div>
+      <div class="rule-accent gold center"></div>
+      <h2>Held to the standards of the industry's governing bodies.</h2>
+      <p>We hold active membership in the professional associations that set the standard for ethics and competence in business brokerage — at home in Florida and internationally.</p>
+    </div>
+    <div class="creds-grid">
+      <div class="cred reveal">
+        <div class="seal"><b>IBBA</b></div>
+        <div class="cd-body">
+          <div class="cd-org">International Business Brokers Association</div>
+          <h3>Member</h3>
+          <p>The global standard for professionalism and ethics in business brokerage — reflected in every valuation we deliver.</p>
+        </div>
+      </div>
+      <div class="cred reveal">
+        <div class="seal"><b>BBF</b></div>
+        <div class="cd-body">
+          <div class="cd-org">Business Brokers of Florida</div>
+          <h3>Member</h3>
+          <p>Florida's principal network for connecting qualified buyers and sellers — privately, never through a public listing.</p>
+        </div>
+      </div>
+      <div class="cred reveal">
+        <div class="seal"><b>BBB</b></div>
+        <div class="cd-body">
+          <div class="cd-org">Better Business Bureau</div>
+          <h3>A+ Rated</h3>
+          <p>The BBB's highest rating — earned through a record of trust, transparency, and doing right by every client.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sectors">
+      <div class="sec-label">Sectors we have represented</div>
+      <div class="chips">
+        <span class="chip"><span class="dotmark"></span>Trades &amp; Services</span>
+        <span class="chip"><span class="dotmark"></span>Healthcare</span>
+        <span class="chip"><span class="dotmark"></span>Technology</span>
+        <span class="chip"><span class="dotmark"></span>Real Estate</span>
+        <span class="chip"><span class="dotmark"></span>Retail &amp; E-commerce</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="valuation" id="valuation">
+  <div class="wrap val-grid">
+    <div class="val-copy">
+      <div class="tag">Start Here</div>
+      <h2>Request a confidential business valuation.</h2>
+      <p>Wondering what your business is worth today — and what it could be worth fully prepared? Begin with a private, no-obligation valuation. You will receive an honest, experienced assessment, not a sales pitch.</p>
+      <ul class="val-assure">
+        <li><span class="ck">&#10003;</span> Strictly confidential — your information remains between us</li>
+        <li><span class="ck">&#10003;</span> No obligation, and no public listing of your business</li>
+        <li><span class="ck">&#10003;</span> A direct conversation with a senior advisor</li>
+      </ul>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-inner">
+        <form id="valForm" novalidate>
+          <h3>Your Confidential Valuation</h3>
+          <p class="fc-sub">Tell us a little about your business, and we will reach out privately to begin.</p>
+          <div class="field row">
+            <div>
+              <label for="fname">First Name <span class="req">*</span></label>
+              <input type="text" id="fname" name="fname" autocomplete="given-name" required>
+            </div>
+            <div>
+              <label for="lname">Last Name <span class="req">*</span></label>
+              <input type="text" id="lname" name="lname" autocomplete="family-name" required>
+            </div>
+          </div>
+          <div class="field row">
+            <div>
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+          </div>
+          <div class="field">
+            <label for="industry">Industry / Type of Business <span class="req">*</span></label>
+            <input type="text" id="industry" name="industry" placeholder="e.g. HVAC, manufacturing, professional services" required>
+          </div>
+          <div class="field row">
+            <div>
+              <label for="state">Business Location (State)</label>
+              <input type="text" id="state" name="state" placeholder="e.g. Florida">
+            </div>
+            <div>
+              <label for="employees">Number of Employees</label>
+              <select id="employees" name="employees">
+                <option value="">Select</option>
+                <option>1 &ndash; 5</option>
+                <option>6 &ndash; 20</option>
+                <option>21 &ndash; 50</option>
+                <option>51 &ndash; 100</option>
+                <option>100+</option>
+              </select>
+            </div>
+          </div>
+          <div class="field row">
+            <div>
+              <label for="revenue">Annual Revenue <span class="hint">(3-yr avg)</span></label>
+              <select id="revenue" name="revenue">
+                <option value="">Select a range</option>
+                <option>Under $1M</option>
+                <option>$1M &ndash; $5M</option>
+                <option>$5M &ndash; $10M</option>
+                <option>$10M &ndash; $25M</option>
+                <option>$25M+</option>
+              </select>
+            </div>
+            <div>
+              <label for="timeline">Timeline to Sell</label>
+              <select id="timeline" name="timeline">
+                <option value="">Select</option>
+                <option>Exploring / curious</option>
+                <option>Within 12 months</option>
+                <option>1 &ndash; 3 years</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="notes">Anything you would like us to know? <span class="hint">(optional)</span></label>
+            <textarea id="notes" name="notes" placeholder="A few words about your business or your goals."></textarea>
+          </div>
+          <button type="submit" class="btn btn-red">Request My Confidential Valuation</button>
+          <p class="form-note"><span class="lock">&#9679;</span> Your details are kept strictly confidential and are never shared or listed publicly.</p>
+          <div class="form-error" id="formError" role="alert"></div>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="big">&#10003;</div>
+          <h3>Thank you — your request has been received.</h3>
+          <p>A senior advisor will contact you privately, typically within one business day, to begin your confidential valuation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand">
+          <span class="mark"><span>IC</span></span>
+          <span class="brand-txt">
+            <span class="t1">Investment Consulting USA</span>
+            <span class="t2">M&amp;A Advisory</span>
+          </span>
+        </a>
+        <p>A confidential, seller-first M&amp;A advisory firm helping business owners exit on their own terms — with discretion, integrity, and results built over eleven years.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Firm</h4>
+        <a href="#approach">Our Approach</a>
+        <a href="#process">The Process</a>
+        <a href="#global">Cross-Border &amp; LatAm</a>
+        <a href="#valuation">Request a Valuation</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <p>66 W Flagler St, Suite 900<br>Miami, FL 33130</p>
+        <p class="nationwide">Serving business owners nationwide</p>
+        <a href="tel:+15617652303">+1 (561) 765-2303</a>
+        <a href="mailto:info@ic-usa.com">info@ic-usa.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; <span id="yr"></span> Investment Consulting USA LLC. All rights reserved.</p>
+      <p class="disc">Information provided is for general purposes and does not constitute legal, tax, or financial advice. All engagements are subject to confidentiality.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  var topbar = document.getElementById('topbar');
+  var onScroll = function(){
+    if(window.scrollY > 40){ topbar.classList.add('scrolled'); }
+    else{ topbar.classList.remove('scrolled'); }
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var toggle = document.getElementById('menuToggle');
+  var navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded','false');
+    });
+  });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.16});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ------------------------------------------------------------------
+     VALUATION FORM — lead capture
+
+     To capture real valuation requests, set FORM_ENDPOINT below to the URL
+     that receives submissions, then re-save the file. No other change needed.
+       • Airtable (your CRM): point this at the Cloudflare Worker included
+         with this project (valuation-to-airtable-worker.js). The Worker
+         writes each request straight into your Airtable base and keeps your
+         Airtable key off the public page — never put an Airtable key here.
+       • Or any form handler / automation webhook (Formspree, Make, Zapier).
+     Leave FORM_ENDPOINT as "" to run in DEMO mode (shows the thank-you
+     message without sending or storing anything).
+  ------------------------------------------------------------------ */
+  var FORM_ENDPOINT = ""; // <-- paste your Worker URL here to go live
+
+  var form = document.getElementById('valForm');
+  var success = document.getElementById('formSuccess');
+  var formError = document.getElementById('formError');
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var contactFallback = 'Please call <a href="tel:+15617652303">+1 (561) 765-2303</a> or email <a href="mailto:info@ic-usa.com">info@ic-usa.com</a> and we will begin privately.';
+
+  function showFormError(msg){
+    formError.innerHTML = msg;
+    formError.classList.add('show');
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    formError.classList.remove('show');
+
+    var required = form.querySelectorAll('[required]');
+    var ok = true;
+    required.forEach(function(f){
+      if(!f.value.trim()){ f.style.borderColor = '#9B2226'; ok = false; }
+      else{ f.style.borderColor = ''; }
+    });
+    if(!ok){
+      showFormError('Please complete the required fields marked with an asterisk.');
+      return;
+    }
+
+    // Demo mode — no endpoint configured yet.
+    if(!FORM_ENDPOINT){
+      form.style.display = 'none';
+      success.classList.add('show');
+      return;
+    }
+
+    // Live mode — send the request to the configured endpoint.
+    var originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending\u2026';
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function(res){
+      if(res.ok){
+        form.style.display = 'none';
+        success.classList.add('show');
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        showFormError('We could not submit your request. ' + contactFallback);
+      }
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+      showFormError('We could not submit your request. ' + contactFallback);
+    });
+  });
+</script>
+
+<script>
+(function(){
+  var singles = document.querySelectorAll('.section-head, .philosophy blockquote, .global-card, .val-copy, .form-card, .sectors, .hero h1, .hero p.lede, .hero-cta, .hero-note, .hero-card');
+  singles.forEach(function(el){ el.classList.add('rv'); });
+  ['.why-grid','.steps','.creds-grid','.stats','.global-list','.val-assure','.mini-stats','.chips'].forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(grid){
+      Array.prototype.forEach.call(grid.children, function(child, i){
+        child.classList.add('rv');
+        child.style.setProperty('--rvd', (i*110)+'ms');
+      });
+    });
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
