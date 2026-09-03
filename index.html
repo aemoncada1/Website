@@ -251,11 +251,11 @@
   }
 
   /* --- scroll reveal (Close-AI-style blur-fade-rise) --- */
-  .rv{opacity:0;filter:blur(10px);transform:translateY(26px);
+  html.rv-js .rv{opacity:0;filter:blur(10px);transform:translateY(26px);
       transition:opacity .9s cubic-bezier(.2,.65,.2,1), filter .9s cubic-bezier(.2,.65,.2,1), transform .9s cubic-bezier(.2,.65,.2,1);
       transition-delay:var(--rvd,0ms);will-change:opacity,filter,transform}
-  .rv.in{opacity:1;filter:blur(0);transform:none}
-  @media (prefers-reduced-motion: reduce){.rv{opacity:1;filter:none;transform:none;transition:none}}
+  html.rv-js .rv.in{opacity:1;filter:blur(0);transform:none}
+  @media (prefers-reduced-motion: reduce){html.rv-js .rv{opacity:1;filter:none;transform:none;transition:none}}
 
   /* ===== v5 additions ===== */
   .hero .eyebrow{background:rgba(255,255,255,.08);border-color:rgba(216,190,115,.35);color:var(--gold-soft)}
@@ -935,22 +935,53 @@
 
 <script>
 (function(){
-  var singles = document.querySelectorAll('.section-head, .about-photo, .about-copy, .map-card, .val-copy, .form-card, .sectors, .hero h1, .hero p.lede, .hero-cta, .hero-note, .hero-card');
-  singles.forEach(function(el){ el.classList.add('rv'); });
-  ['.why-grid','.svc-grid','.steps','.creds-grid','.stats','.global-list','.val-assure','.mini-stats','.chips','.faq-list','.about-badges'].forEach(function(sel){
-    document.querySelectorAll(sel).forEach(function(grid){
-      Array.prototype.forEach.call(grid.children, function(child, i){
+  var d=document, root=d.documentElement;
+  // NOTE: .form-card is deliberately NOT hidden - the lead form must always render.
+  var SINGLES='.section-head, .about-photo, .about-copy, .map-card, .val-copy, .sectors, .hero h1, .hero p.lede, .hero-cta, .hero-note, .hero-card';
+  var GRIDS=['.why-grid','.svc-grid','.steps','.creds-grid','.stats','.global-list','.val-assure','.mini-stats','.chips','.faq-list','.about-badges'];
+
+  root.classList.add('rv-js');   // only now can the CSS hide anything
+
+  d.querySelectorAll(SINGLES).forEach(function(el){ el.classList.add('rv'); });
+  GRIDS.forEach(function(sel){
+    d.querySelectorAll(sel).forEach(function(grid){
+      Array.prototype.forEach.call(grid.children, function(child,i){
         child.classList.add('rv');
-        child.style.setProperty('--rvd', (i*110)+'ms');
+        child.style.setProperty('--rvd',(i*110)+'ms');
       });
     });
   });
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  function show(el){ el.classList.add('in'); }
+  function revealAll(){ d.querySelectorAll('.rv').forEach(show); }
+
+  var ticking=false;
+  function check(){
+    ticking=false;
+    var vh=window.innerHeight||root.clientHeight;
+    var list=d.querySelectorAll('.rv:not(.in)');
+    for(var i=0;i<list.length;i++){
+      var r=list[i].getBoundingClientRect();
+      if(r.top < vh*0.92 && r.bottom > 0) show(list[i]);
+    }
+  }
+  function onScroll(){ if(!ticking){ ticking=true; setTimeout(check,16); } }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  d.addEventListener('visibilitychange', function(){ if(!d.hidden){ check(); } });
+  window.addEventListener('load', check);
+  check();
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ show(e.target); io.unobserve(e.target); } });
+    },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    d.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  } else { revealAll(); }
+
+  setTimeout(check,1200);
+  setTimeout(function(){ if(!d.querySelector('.rv.in')){ revealAll(); } }, 2500);
 })();
 </script>
 </body>
