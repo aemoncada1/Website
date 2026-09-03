@@ -871,6 +871,8 @@
   ------------------------------------------------------------------ */
   var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbyR2e2i1GXhVdU1MzIz0_JJ9NqSiJRLPzrAGQLVnhzJOuA-xe90eyaGLal75wUzVNXarg/exec"; // Google Apps Script bridge -> Airtable (ICUSA CRM > Valuation Requests)
 
+  var PAGE_LOADED = Date.now(); // for the server's too-fast-to-be-human check
+
   var form = document.getElementById('valForm');
   var success = document.getElementById('formSuccess');
   var formError = document.getElementById('formError');
@@ -912,6 +914,7 @@
     var payload = {};
     new FormData(form).forEach(function(v, k){ payload[k] = v; });
     payload.source = 'Website';
+    payload.elapsed = Date.now() - PAGE_LOADED; // ms on page before submitting (bots submit instantly)
     fetch(FORM_ENDPOINT, {
       method: 'POST',
       body: JSON.stringify(payload)
