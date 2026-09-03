@@ -771,6 +771,8 @@
             <textarea id="notes" name="notes" placeholder="A few words about your business or your goals."></textarea>
           </div>
           <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label for="company">Company</label><input type="text" id="company" name="company" tabindex="-1" autocomplete="off"></div>
+          <!-- Cloudflare Turnstile: invisible for most visitors; proves the submission came from a human on this page -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAEmLjgQpu40wKZ1H" data-theme="light" data-size="flexible" style="margin-bottom:14px"></div>
           <button type="submit" class="btn btn-red">Request My Confidential Valuation</button>
           <p class="form-note"><span class="lock">&#9679;</span> Your details are kept strictly confidential and are never shared or listed publicly.</p>
           <div class="form-error" id="formError" role="alert"></div>
@@ -823,6 +825,7 @@
   </div>
 </footer>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -899,6 +902,13 @@
       return;
     }
 
+    // Security check: wait for the Turnstile token before sending.
+    var tsField = form.querySelector('[name="cf-turnstile-response"]');
+    if (window.turnstile && (!tsField || !tsField.value)) {
+      showFormError('One moment \u2014 the security check is still finishing. Please try again in a few seconds.');
+      return;
+    }
+
     // Demo mode — no endpoint configured yet.
     if(!FORM_ENDPOINT){
       form.style.display = 'none';
@@ -926,11 +936,13 @@
       } else {
         submitBtn.disabled = false;
         submitBtn.textContent = originalLabel;
+        if (window.turnstile) { try { turnstile.reset(); } catch(_){} }
         showFormError('We could not submit your request. ' + contactFallback);
       }
     }).catch(function(){
       submitBtn.disabled = false;
       submitBtn.textContent = originalLabel;
+      if (window.turnstile) { try { turnstile.reset(); } catch(_){} }
       showFormError('We could not submit your request. ' + contactFallback);
     });
   });
