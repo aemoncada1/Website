@@ -333,7 +333,8 @@ fbq('track','PageView');
   .about-cta{text-align:center;margin-top:72px}
   @media (max-width:680px){.about-person + .about-person{margin-top:64px;padding-top:56px}.about-name{font-size:1.6rem}.about-cta{margin-top:52px}}
 
-  /* ===== v17 (Sept 30 2026): value estimator hero. Everything below is scoped to .est-hero / .est ===== */
+  /* ===== v17 (Sept 30 2026): value estimator hero. Everything below is scoped to .est-hero / .est =====
+     v18 (Oct 4 2026): one-tap industry chips open the estimator; business name moved to the last step (optional); one name field; city dropped; trust line. Eight required answers. ===== */
   :root{--gold-ink:#7A5E14;--ok:#2F6B45;--ok-bg:#E6F0E9;--warn-bg:#F6E9EA;--sans:"Helvetica Neue",Helvetica,Arial,sans-serif}
   .est-hero{position:relative;background:var(--navy-deep);color:var(--white);padding:150px 0 124px;overflow:hidden}
   .est-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1000px 480px at 82% -10%, rgba(201,168,76,.18), transparent 58%),radial-gradient(800px 500px at 10% 110%, rgba(155,34,38,.14), transparent 60%),linear-gradient(165deg, var(--navy) 0%, var(--navy-900) 100%)}
@@ -379,7 +380,7 @@ fbq('track','PageView');
   .est .prog-bar span.on{background:var(--gold)}
   .est .est-step h2{margin:0 0 6px;font:700 1.5rem/1.25 var(--sans);color:var(--navy);letter-spacing:-.01em;text-wrap:balance}
   .est .est-step h2:focus{outline:none}
-  .est .step-sub{margin:0 0 20px;font-size:1rem;line-height:1.55;color:var(--ink-soft)}
+  .est .step-sub{margin:0 0 20px;font:400 1rem/1.55 var(--sans);color:var(--ink-soft)}
   .est .est-step > h2 + .est-field{margin-top:18px}
   .est .est-field{margin-bottom:20px;min-width:0}
   .est .est-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px}
@@ -405,6 +406,17 @@ fbq('track','PageView');
   .est .est-chip input:checked + span{background:var(--navy);border-color:var(--navy);color:var(--white)}
   .est .est-chip input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
   .est .est-chips.invalid .est-chip span{border-color:var(--red)}
+  /* v18: one-tap industry chips, trust line */
+  .est .ind-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+  @media (max-width:520px){.est .ind-chips{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .est .ind-chip{min-height:52px;padding:8px 6px;border:1.5px solid var(--line-2);border-radius:8px;background:var(--paper);font:600 1rem/1.25 var(--sans);color:var(--navy);text-align:center;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s}
+  .est .ind-chip:hover{border-color:var(--navy);background:var(--white)}
+  .est .ind-chip.on{background:var(--navy);border-color:var(--navy);color:var(--white)}
+  .est .ind-chip:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .est .ind-chips.invalid .ind-chip{border-color:var(--red)}
+  .est .lbl.more{font-weight:600;font-size:.92rem;color:var(--ink-soft)}
+  .est .trust{display:flex;gap:9px;align-items:flex-start;margin:-6px 0 18px;font:400 .9rem/1.45 var(--sans);color:var(--ink-soft)}
+  .est .trust .lock{flex:0 0 auto;margin-top:2px;color:var(--gold-ink)}
   .est .check{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px;font:400 1rem/1.45 var(--sans);color:var(--ink);cursor:pointer}
   .est .check input{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--red)}
   .est .check.small{margin:10px 0 0;font-size:.92rem;color:var(--ink-soft)}
@@ -535,28 +547,30 @@ fbq('track','PageView');
           </div>
 
           <div class="est-step" id="step1" role="group" aria-labelledby="s1h" data-name="Your business">
-            <h2 id="s1h" tabindex="-1">Tell us about your business</h2>
+            <h2 id="s1h" tabindex="-1">What kind of business is it?</h2>
+            <p class="step-sub">Tap the closest match. No business name needed to see your estimate.</p>
             <div class="est-field">
-              <label class="lbl" for="bizName">Business name</label>
-              <input class="inp" id="bizName" type="text" autocomplete="organization">
-              <p class="err" id="bizName-err"></p>
-            </div>
-            <div class="est-field">
-              <label class="lbl" for="industry">Industry</label>
+              <p class="lbl" id="ind-label">Industry</p>
+              <div class="ind-chips" id="indChips" role="group" aria-labelledby="ind-label">
+                <button type="button" class="ind-chip" data-ind="medical">Healthcare</button>
+                <button type="button" class="ind-chip" data-ind="hvac">HVAC</button>
+                <button type="button" class="ind-chip" data-ind="plumbing">Plumbing</button>
+                <button type="button" class="ind-chip" data-ind="electrical">Electrical</button>
+                <button type="button" class="ind-chip" data-ind="auto">Auto repair</button>
+                <button type="button" class="ind-chip" data-ind="landscaping">Landscaping</button>
+                <button type="button" class="ind-chip" data-ind="accounting">Accounting</button>
+                <button type="button" class="ind-chip" data-ind="trucking">Logistics</button>
+              </div>
+              <label class="lbl more" for="industry">Something else? Choose from the full list</label>
               <select class="inp" id="industry"><option value="">Choose the closest match</option></select>
               <p class="err" id="industry-err"></p>
             </div>
-            <div class="est-row">
-              <div class="est-field">
-                <label class="lbl" for="city">City</label>
-                <input class="inp" id="city" type="text" autocomplete="address-level2">
-              </div>
-              <div class="est-field">
-                <label class="lbl" for="state">State</label>
-                <select class="inp" id="state"><option value="">Select</option></select>
-                <p class="err" id="state-err"></p>
-              </div>
+            <div class="est-field">
+              <label class="lbl" for="state">State where the business operates</label>
+              <select class="inp" id="state"><option value="">Select</option></select>
+              <p class="err" id="state-err"></p>
             </div>
+            <p class="trust"><span class="lock" aria-hidden="true">&#128274;</span><span>No public listing. We never share your answers.</span></p>
             <div class="actions"><button type="button" class="est-btn est-primary" data-next>Start my estimate</button></div>
           </div>
 
@@ -611,16 +625,10 @@ fbq('track','PageView');
           <div class="est-step" id="step4" role="group" aria-labelledby="s4h" data-name="Your details" hidden>
             <h2 id="s4h" tabindex="-1">Last step: who is this estimate for?</h2>
             <p class="step-sub">Your estimate appears on the next screen. Your answers stay confidential. We never sell or share them.</p>
-            <div class="est-row even">
-              <div class="est-field">
-                <label class="lbl" for="fname">First name</label>
-                <input class="inp" id="fname" type="text" autocomplete="given-name">
-                <p class="err" id="fname-err"></p>
-              </div>
-              <div class="est-field">
-                <label class="lbl" for="lname">Last name</label>
-                <input class="inp" id="lname" type="text" autocomplete="family-name">
-              </div>
+            <div class="est-field">
+              <label class="lbl" for="name">Your name</label>
+              <input class="inp" id="name" type="text" autocomplete="name">
+              <p class="err" id="name-err"></p>
             </div>
             <div class="est-field">
               <label class="lbl" for="email">Email</label>
@@ -631,6 +639,11 @@ fbq('track','PageView');
               <label class="lbl" for="phone">Phone <span class="opt">optional</span></label>
               <input class="inp" id="phone" type="tel" autocomplete="tel" inputmode="tel">
               <p class="err" id="phone-err"></p>
+            </div>
+            <div class="est-field">
+              <label class="lbl" for="bizName">Business name <span class="opt">optional</span></label>
+              <p class="hint" id="bizName-hint">Helps your advisor prepare before reaching out. Never published.</p>
+              <input class="inp" id="bizName" type="text" autocomplete="organization" aria-describedby="bizName-hint">
             </div>
             <div class="est-field">
               <label class="lbl" for="timeline">When might you consider selling? <span class="opt">optional</span></label>
@@ -1477,6 +1490,19 @@ var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-moti
   STATES.forEach(function(s){ var o = document.createElement("option"); o.value = s[0]; o.textContent = s[1]; st.appendChild(o); });
 })();
 
+// v18: one-tap industry chips mirror the full industry select.
+(function industryChips(){
+  var wrap = $("indChips"), sel = $("industry");
+  if (!wrap || !sel) return;
+  var chips = Array.prototype.slice.call(wrap.querySelectorAll(".ind-chip"));
+  function sync(){ chips.forEach(function(c){ var on = c.getAttribute("data-ind") === sel.value; c.classList.toggle("on", on); c.setAttribute("aria-pressed", on ? "true" : "false"); }); }
+  chips.forEach(function(c){
+    c.setAttribute("aria-pressed", "false");
+    c.addEventListener("click", function(){ sel.value = c.getAttribute("data-ind"); sync(); setErr("industry", ""); wrap.classList.remove("invalid"); });
+  });
+  sel.addEventListener("change", function(){ sync(); wrap.classList.remove("invalid"); });
+})();
+
 // Ad tracking: keep UTM tags and the Facebook click ID so each lead shows which ad produced it.
 var TRACK = {};
 try { new URLSearchParams(window.location.search).forEach(function(v, k){ if (/^utm_/.test(k) || k === "fbclid") TRACK[k] = v; }); } catch (e) {}
@@ -1524,11 +1550,12 @@ function collect(){
   var net = parseMoney($("net").value);
   if (isFinite(net) && $("netLoss").checked) net = -Math.abs(net);
   var gross = parseMoney($("gross").value);
+  var name = $("name").value.trim(), parts = name ? name.split(/\s+/) : [];
   return {
-    bizName: $("bizName").value.trim(), industry: $("industry").value, city: $("city").value.trim(), state: $("state").value,
+    bizName: $("bizName").value.trim(), industry: $("industry").value, state: $("state").value,
     team: teamVal(), revenue: parseMoney($("revenue").value), gross: isFinite(gross) ? gross : null,
     net: net, owner: parseMoney($("owner").value),
-    fname: $("fname").value.trim(), lname: $("lname").value.trim(), email: $("email").value.trim(), phone: $("phone").value.trim(),
+    name: name, fname: parts.length ? parts[0] : "", lname: parts.slice(1).join(" "), email: $("email").value.trim(), phone: $("phone").value.trim(),
     timeline: $("timeline").value, wantVal: $("wantVal").checked, wantLender: $("wantLender").checked,
     sms: $("smsConsent").checked, company: $("estCompany").value
   };
@@ -1538,8 +1565,8 @@ function validate(i){
   var a = collect(), ok = true, first = null;
   function chk(id, msg){ if (!setErr(id, msg)) { ok = false; if (!first) first = $(id); } }
   if (i === 0) {
-    chk("bizName", a.bizName ? "" : "Enter your business name.");
-    chk("industry", a.industry ? "" : "Choose the industry closest to yours.");
+    chk("industry", a.industry ? "" : "Tap an industry, or choose one from the list.");
+    $("indChips").classList.toggle("invalid", !a.industry);
     chk("state", a.state ? "" : "Choose the state where the business operates.");
   } else if (i === 1) {
     var tErr = a.team ? "" : "Choose the closest team size.";
@@ -1552,7 +1579,7 @@ function validate(i){
     chk("net", !isFinite(a.net) ? "Enter your average net income. Enter 0 if the business broke even." : a.net > rev ? "Net income can’t be more than revenue (" + money(rev) + ")." : "");
     chk("owner", !isFinite(a.owner) || a.owner < 0 ? "Enter what the business pays you each year. Enter 0 if none." : a.owner > rev ? "This can’t be more than revenue (" + money(rev) + ")." : "");
   } else if (i === 3) {
-    chk("fname", a.fname ? "" : "Enter your first name.");
+    chk("name", a.name ? "" : "Enter your name.");
     chk("email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.email) ? "" : "Enter a valid email address so we can follow up on your estimate.");
     var digits = a.phone.replace(/\D/g, "");
     chk("phone", a.sms && !digits ? "Enter a phone number to receive text messages." : digits && digits.length < 10 ? "Enter a 10-digit phone number, or leave this blank." : "");
@@ -1579,7 +1606,7 @@ Array.prototype.forEach.call(form.querySelectorAll("[data-back]"), function(b){ 
     this.value = Math.round(Math.abs(v)).toLocaleString("en-US");
   });
 });
-["bizName","industry","state","revenue","gross","net","owner","fname","email","phone"].forEach(function(id){
+["industry","state","revenue","gross","net","owner","name","email","phone"].forEach(function(id){
   $(id).addEventListener("input", function(){ setErr(id, ""); });
 });
 Array.prototype.forEach.call(form.querySelectorAll('input[name="team"]'), function(r){
@@ -1597,7 +1624,7 @@ function buildPayload(a, r, leadId){
   var hot = a.timeline === "Within 12 months" || wants.length > 0;
   var lines = [
     "[" + SOURCE_LABEL + "] Lead priority: " + (hot ? "HIGH" : "Normal"),
-    "Business: " + a.bizName + " | " + (a.city ? a.city + ", " : "") + (STATE_NAME[a.state] || a.state),
+    "Business: " + (a.bizName || "(not given)") + " | " + (STATE_NAME[a.state] || a.state),
     "Industry: " + r.ind.label + " | Team: " + TEAM[a.team].label,
     "Avg revenue: " + money(a.revenue) + (a.gross != null ? " | Gross profit: " + money(a.gross) + " (" + Math.round(a.gross / a.revenue * 100) + "%)" : ""),
     "Net income: " + money(a.net) + " | Owner pay: " + money(a.owner) + " | SDE: " + money(r.sde),
@@ -1653,7 +1680,7 @@ function row(dl, label, value, cls){
   var d = el("div", cls); d.appendChild(el("dt", null, label)); d.appendChild(el("dd", null, value)); dl.appendChild(d);
 }
 function renderResult(a, r, sendFailed){
-  $("rEyebrow").textContent = "Estimated value · " + a.bizName;
+  $("rEyebrow").textContent = a.bizName ? "Estimated value · " + a.bizName : "Estimated value";
   var notes = $("rNotes"); notes.innerHTML = "";
   if (sendFailed) notes.appendChild(el("li", "alert", "We couldn’t save your details just now. To talk with an advisor, call (561) 765-2303."));
 
