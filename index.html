@@ -479,6 +479,18 @@ fbq('track','PageView');
   .est .r-phone a{color:var(--gold-soft)}
   .est .r-src{margin:18px 0 0;font:400 .82rem/1.55 var(--sans);color:var(--ink-mute)}
   .est .linkish{margin-top:10px;padding:8px 0;background:none;border:0;font:600 .95rem var(--sans);color:var(--navy);text-decoration:underline;cursor:pointer}
+  /* v19 (Oct 16 2026): range shown before contact details; optional fields collapsed */
+  .est .r-peek{margin:0 0 18px;padding:16px 18px;border-radius:10px;background:var(--paper-2);border-left:4px solid var(--gold)}
+  .est .r-peek .r-eyebrow{margin-bottom:4px}
+  .est .peek-range{margin:0;font:700 2rem/1.1 var(--sans);letter-spacing:-.02em;color:var(--navy);font-variant-numeric:tabular-nums}
+  @media (max-width:520px){.est .peek-range{font-size:1.7rem}}
+  .est .peek-mid{margin:6px 0 0;font:400 .95rem/1.5 var(--sans);color:var(--ink-soft)}
+  .est details.more{margin:0 0 16px;padding:0 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+  .est details.more summary{cursor:pointer;padding:13px 0;font:600 .95rem/1.4 var(--sans);color:var(--navy);list-style:none}
+  .est details.more summary::-webkit-details-marker{display:none}
+  .est details.more summary::before{content:"+";display:inline-block;width:1.2em;font-weight:700}
+  .est details.more[open] summary::before{content:"\2212"}
+  .est details.more .est-field:last-child{margin-bottom:16px}
   .est .hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
   @media (prefers-reduced-motion:reduce){.est *{transition:none!important}}
   .val-cta{margin-top:54px;text-align:center}
@@ -622,9 +634,14 @@ fbq('track','PageView');
             <div class="actions"><button type="button" class="est-btn est-back" data-back>Back</button><button type="button" class="est-btn est-primary" data-next>Continue</button></div>
           </div>
 
-          <div class="est-step" id="step4" role="group" aria-labelledby="s4h" data-name="Your details" hidden>
-            <h2 id="s4h" tabindex="-1">Last step: who is this estimate for?</h2>
-            <p class="step-sub">Your estimate appears on the next screen. Your answers stay confidential. We never sell or share them.</p>
+          <div class="est-step" id="step4" role="group" aria-labelledby="s4h" data-name="Your estimate" hidden>
+            <h2 id="s4h" tabindex="-1">Your estimate is ready.</h2>
+            <div class="r-peek" id="peek" aria-live="polite">
+              <p class="r-eyebrow">Estimated value</p>
+              <p class="peek-range" id="peekRange"></p>
+              <p class="peek-mid" id="peekMid"></p>
+            </div>
+            <p class="step-sub">Enter your name and email to unlock the full breakdown: how buyers would price it and what moves the number. Your answers stay confidential. We never sell or share them.</p>
             <div class="est-field">
               <label class="lbl" for="name">Your name</label>
               <input class="inp" id="name" type="text" autocomplete="name">
@@ -640,7 +657,9 @@ fbq('track','PageView');
               <input class="inp" id="phone" type="tel" autocomplete="tel" inputmode="tel">
               <p class="err" id="phone-err"></p>
             </div>
-            <div class="est-field">
+            <details class="more" id="moreDetails">
+              <summary>Add details for your advisor <span class="opt">optional</span></summary>
+              <div class="est-field">
               <label class="lbl" for="bizName">Business name <span class="opt">optional</span></label>
               <p class="hint" id="bizName-hint">Helps your advisor prepare before reaching out. Never published.</p>
               <input class="inp" id="bizName" type="text" autocomplete="organization" aria-describedby="bizName-hint">
@@ -660,12 +679,13 @@ fbq('track','PageView');
               <label class="check" for="wantVal"><input type="checkbox" id="wantVal"> A complimentary, confidential valuation from a senior advisor</label>
               <label class="check" for="wantLender"><input type="checkbox" id="wantLender"> A lender pre-qualification check: could a buyer finance my business?</label>
             </div>
+            </details>
             <!-- SMS opt-in label wording agreed 2026-09-17 (same as the contact form); if this text changes, note the date here. -->
-            <label class="sms" for="smsConsent"><input type="checkbox" id="smsConsent"><span>I agree to receive text messages from Investment Consulting USA LLC about my valuation request, company updates, and occasional marketing messages at the phone number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not required to submit this form. See our <a href="/privacy">Privacy Policy</a>.</span></label>
+            <div id="smsWrap" hidden><label class="sms" for="smsConsent"><input type="checkbox" id="smsConsent"><span>I agree to receive text messages from Investment Consulting USA LLC about my valuation request, company updates, and occasional marketing messages at the phone number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not required to submit this form. See our <a href="/privacy">Privacy Policy</a>.</span></label></div>
             <div class="hp" aria-hidden="true"><label for="estCompany">Company</label><input type="text" id="estCompany" tabindex="-1" autocomplete="off"></div>
             <div class="ts-box" id="tsBox"></div>
             <p class="form-err" id="formErr" role="alert" hidden></p>
-            <div class="actions"><button type="button" class="est-btn est-back" data-back>Back</button><button type="submit" class="est-btn est-primary" id="submitBtn">See my estimate</button></div>
+            <div class="actions"><button type="button" class="est-btn est-back" data-back>Back</button><button type="submit" class="est-btn est-primary" id="submitBtn">Unlock my full estimate</button></div>
             <p class="fine">By continuing you agree to our <a href="/privacy">Privacy Policy</a>. An advisor may follow up by email or phone about your estimate.</p>
           </div>
         </form>
@@ -1477,6 +1497,8 @@ var PAGE_LOADED = Date.now();
 var form = $("estForm"), calc = $("estimate"), result = $("result");
 var steps = [$("step1"), $("step2"), $("step3"), $("step4")];
 var cur = 0, started = false, tsToken = "", tsRendered = false, tsWidget = null;
+// v19: Turnstile fallback (submit anyway after a grace period) and extra funnel events.
+var tsFallback = false, tsTimer = null, blockedFired = false, detailsSeen = false;
 var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 (function fillSelects(){
@@ -1518,16 +1540,32 @@ function renderTs(){
     callback:function(tok){ tsToken = tok; }, "expired-callback":function(){ tsToken = ""; }, "error-callback":function(){ tsToken = ""; }});
 }
 // The shared Turnstile loader at the end of the page calls this once the library is ready.
-window.icusaCalcTsReady = function(){ if (cur === 3) renderTs(); };
+window.icusaCalcTsReady = function(){ if (cur >= 2) renderTs(); };
 function resetTs(){ tsToken = ""; if (window.turnstile && tsWidget !== null) { try { window.turnstile.reset(tsWidget); } catch (e) {} } }
 
 /* ================= STEPS ================= */
+// v19: the range is shown on step 4 before any contact details are asked for.
+function renderPeek(){
+  var a = collect(), r = estimate(a);
+  if (r.ok) {
+    $("peekRange").textContent = short(r.lo) + " – " + short(r.hi);
+    $("peekMid").textContent = "Midpoint about " + short(r.mid) + ", based on " + money(r.sde) + " in yearly owner earnings.";
+  } else {
+    $("peekRange").textContent = "Let’s look at this together";
+    $("peekMid").textContent = "Net income plus what the business pays you comes to " + money(r.sde) + ". Buyers then price equipment, contracts or a turnaround plan instead.";
+  }
+}
 function show(i, focus){
   cur = i;
   steps.forEach(function(s, k){ s.hidden = k !== i; });
   $("progText").textContent = "Step " + (i + 1) + " of 4 · " + steps[i].getAttribute("data-name");
   Array.prototype.forEach.call($("progBar").children, function(b, k){ b.className = k <= i ? "on" : ""; });
-  if (i === 3 && LIVE && TURNSTILE_SITEKEY) renderTs();
+  if (i >= 2 && LIVE && TURNSTILE_SITEKEY) renderTs();
+  if (i === 3) {
+    renderPeek();
+    if (!detailsSeen) { detailsSeen = true; px("trackCustom", "EstimatorDetails"); }
+    if (LIVE && TURNSTILE_SITEKEY && !tsToken) { clearTimeout(tsTimer); tsTimer = setTimeout(function(){ if (!tsToken) tsFallback = true; }, 7000); }
+  }
   if (focus !== false) {
     var h = steps[i].querySelector("h2");
     if (h) { try { h.focus({preventScroll:true}); } catch (e) { h.focus(); } }
@@ -1613,6 +1651,9 @@ Array.prototype.forEach.call(form.querySelectorAll('input[name="team"]'), functi
   r.addEventListener("change", function(){ $("team-err").textContent = ""; $("teamChips").classList.remove("invalid"); });
 });
 $("smsConsent").addEventListener("change", function(){ setErr("phone", ""); });
+// v19: the SMS opt-in only appears once a phone number is typed.
+function syncSms(){ var has = /\d/.test($("phone").value); $("smsWrap").hidden = !has; if (!has) $("smsConsent").checked = false; }
+$("phone").addEventListener("input", syncSms); syncSms();
 
 /* ================= SUBMIT ================= */
 function revBucket(v){ return v < 1e6 ? "Under $1M" : v < 5e6 ? "$1M – $5M" : v < 1e7 ? "$5M – $10M" : v < 2.5e7 ? "$10M – $25M" : "$25M+"; }
@@ -1640,7 +1681,7 @@ function buildPayload(a, r, leadId){
     industry:r.ind.label, state:STATE_NAME[a.state] || a.state, employees:TEAM[a.team].bucket,
     revenue:revBucket(a.revenue), timeline:a.timeline, notes:lines.join("\n"),
     source:(window.icusaSource ? window.icusaSource() : "Website"), sms_consent:a.sms && a.phone ? "yes" : "", company:a.company,
-    elapsed:Date.now() - PAGE_LOADED, "cf-turnstile-response":tsToken
+    elapsed:Date.now() - PAGE_LOADED, "cf-turnstile-response":tsToken, ts_status:(tsToken ? "ok" : (tsFallback ? "fallback" : "none"))
   };
 }
 
@@ -1657,9 +1698,16 @@ function submitNow(){
     renderResult(a, r, false);
     return;
   }
-  if (TURNSTILE_SITEKEY && !tsToken) {
-    err.textContent = "One moment. The security check is still finishing. Try again in a few seconds.";
-    err.hidden = false; return;
+  if (TURNSTILE_SITEKEY && !tsToken && !tsFallback) {
+    // v19: never leave the owner stuck. Wait up to 8 s for Turnstile, then send anyway.
+    if (!blockedFired) { blockedFired = true; px("trackCustom", "EstimatorBlocked", {reason:"turnstile"}); }
+    err.textContent = "One moment. Finishing the security check…"; err.hidden = false;
+    var wb = $("submitBtn"); wb.disabled = true;
+    var waited = 0, iv = setInterval(function(){
+      waited += 500;
+      if (tsToken || tsFallback || waited >= 8000) { clearInterval(iv); if (!tsToken) tsFallback = true; wb.disabled = false; err.hidden = true; submitNow(); }
+    }, 500);
+    return;
   }
   var btn = $("submitBtn"), label = btn.textContent;
   btn.disabled = true; btn.textContent = "Preparing your estimate…";
@@ -1668,9 +1716,10 @@ function submitNow(){
     .then(function(out){
       var saved = !!(out && out.ok);
       if (saved) px("track", "Lead", {content_name:"Business value estimate"}, {eventID:leadId});
+      else px("trackCustom", "EstimatorSendFailed", {ts:payload.ts_status});
       renderResult(a, r, !saved);
     })
-    .catch(function(){ renderResult(a, r, true); })
+    .catch(function(){ px("trackCustom", "EstimatorSendFailed", {ts:payload.ts_status, net:1}); renderResult(a, r, true); })
     .then(function(){ btn.disabled = false; btn.textContent = label; resetTs(); });
 }
 form.addEventListener("submit", function(e){ e.preventDefault(); if (cur < 3) next(); else submitNow(); });
