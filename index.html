@@ -499,9 +499,12 @@ fbq('track','PageView');
   /* v17 nav: one more link (Contact), so keep items on one line and collapse to the drawer sooner */
   nav.links a{white-space:nowrap}
   .brand-txt .t1{white-space:nowrap}
-  @media (max-width:1400px){ nav.links{gap:24px} }
-  @media (max-width:1180px){ nav.links{gap:20px} nav.links .nav-phone{display:none} }
-  @media (max-width:1000px){
+  /* v20: two more links (Listings, Buyer Services). The phone number leaves the desktop bar (it stays in the
+     drawer, the hero and the contact section) and the drawer opens at 1180px instead of 1000px. */
+  nav.links{gap:22px}
+  nav.links .nav-phone{display:none}
+  @media (max-width:1400px){ nav.links{gap:18px} }
+  @media (max-width:1180px){
     nav.links{position:fixed;top:0;right:-100%;height:100vh;width:80%;max-width:330px;background:var(--navy-900);flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:98px 32px 32px;gap:22px;transition:right .35s ease;box-shadow:-20px 0 50px -20px rgba(0,0,0,.7)}
     nav.links.open{right:0}
     nav.links a{font-size:1rem}
@@ -512,6 +515,71 @@ fbq('track','PageView');
     .menu-toggle.active span:nth-child(2){opacity:0}
     .menu-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   }
+
+  /* ===== v20 (Oct 16 2026): Listings + Buyer Services ===== */
+  .listings{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .lst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .lst{background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;overflow:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s cubic-bezier(.2,.7,.2,1), border-color .45s}
+  .lst:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+  .lst-top{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);padding:20px 26px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:3px solid var(--gold)}
+  .lst-top .lst-cat{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#C7D2DC;line-height:1.4}
+  .status{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;font-family:var(--sans);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:6px 12px;border-radius:100px;white-space:nowrap}
+  .status::before{content:"";width:7px;height:7px;border-radius:50%}
+  .status.on{color:var(--navy-900);background:var(--gold)}
+  .status.on::before{background:var(--navy-900)}
+  .status.off{color:var(--white);background:var(--red)}
+  .status.off::before{background:var(--white)}
+  .lst-body{padding:26px 26px 28px;flex:1;display:flex;flex-direction:column}
+  .lst h3{font-size:1.26rem;color:var(--navy);margin-bottom:10px;font-weight:700;line-height:1.3}
+  .lst .teaser{font-size:.96rem;color:var(--ink-soft);line-height:1.62;font-family:"Georgia",serif}
+  .lst-meta{list-style:none;margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line);font-family:var(--sans);font-size:.86rem}
+  .lst-meta li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .lst-meta li:last-child{border-bottom:none}
+  .lst-meta span{color:var(--ink-mute)}
+  .lst-meta b{color:var(--navy);font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  .lst-cta{margin-top:auto;padding-top:22px}
+  .lst-cta .btn{display:block;width:100%;padding:14px 18px}
+  .lst-cta .ext{display:block;margin-top:10px;text-align:center;font-family:var(--sans);font-size:.74rem;color:var(--ink-mute)}
+  .lst-note{margin:40px auto 0;max-width:720px;text-align:center;font-family:var(--sans);font-size:.9rem;color:var(--ink-soft);line-height:1.6}
+  .lst-note a{color:var(--navy);font-weight:700}
+  @media (max-width:1000px){.lst-grid{grid-template-columns:1fr;max-width:540px;margin:0 auto}}
+  @media (max-width:680px){.lst-body{padding:22px 20px 24px}.lst-top{padding:16px 20px}}
+  /* recently closed row */
+  .closed{margin-top:56px;padding-top:40px;border-top:1px solid var(--line)}
+  .closed .sec-label{margin-bottom:22px}
+  .closed-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .cl{background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);padding:24px 22px 22px 26px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .cl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--navy)}
+  .cl .status{align-self:flex-start;margin-bottom:14px}
+  .status.sold{color:var(--white);background:var(--navy)}
+  .status.sold::before{background:var(--gold)}
+  .cl h4{font-size:1.06rem;color:var(--navy);line-height:1.3;margin-bottom:6px;font-weight:700}
+  .cl .cl-where{font-family:var(--sans);font-size:.8rem;color:var(--ink-mute);margin-bottom:12px;line-height:1.45}
+  .cl .cl-meta{list-style:none;margin:0 0 14px;font-family:var(--sans);font-size:.78rem}
+  .cl .cl-meta li{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:5px 0;border-top:1px dashed var(--line)}
+  .cl .cl-meta span{color:var(--ink-mute);flex:0 0 auto}
+  .cl .cl-meta b{color:var(--navy);font-weight:600;text-align:right;font-variant-numeric:tabular-nums;line-height:1.35}
+  .cl .cl-price{margin-top:auto;font-family:var(--sans);font-size:1.5rem;font-weight:700;color:var(--navy);letter-spacing:-.01em;line-height:1.1;font-variant-numeric:tabular-nums}
+  .cl .cl-price small{display:block;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);font-weight:700;margin-bottom:5px}
+  .cl .cl-call{margin:0 0 14px;padding:10px 12px;border-radius:8px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.45);font-family:var(--sans);font-size:.8rem;line-height:1.45;color:var(--ink)}
+  .cl .cl-call b{color:var(--red);white-space:nowrap}
+  @media (max-width:1000px){.closed-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.closed-grid{grid-template-columns:1fr}}
+
+  .buyers{background:var(--paper)}
+  .buy-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+  .buy-copy .section-head{margin-bottom:22px}
+  .buy-copy p.extra{font-size:1.04rem;color:var(--ink-soft);line-height:1.72;font-family:"Georgia",serif;margin-bottom:16px}
+  .buy-card{background:linear-gradient(158deg,var(--navy) 0%,var(--navy-900) 100%);border-radius:var(--radius);padding:8px;box-shadow:var(--shadow-lg)}
+  .buy-card-inner{border:1px solid rgba(201,168,76,.22);border-radius:7px;padding:36px 34px}
+  .buy-card .bc-lbl{font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+  .buy-card h3{color:var(--white);font-size:1.5rem;margin-bottom:12px;line-height:1.25}
+  .buy-card p{color:#CCD7E0;font-size:.98rem;font-family:"Georgia",serif;line-height:1.65}
+  .buy-card .global-list{margin-top:18px}
+  .buy-card .btn{display:block;margin-top:26px;width:100%}
+  .buy-card .bc-fine{margin-top:16px;font-family:var(--sans);font-size:.78rem;line-height:1.55;color:#9FB1C3}
+  @media (max-width:940px){.buy-grid{grid-template-columns:1fr;gap:38px}.buy-card{max-width:520px}}
+  @media (max-width:680px){.buy-card-inner{padding:28px 22px}}
 </style>
 </head>
 <body>
@@ -530,8 +598,10 @@ fbq('track','PageView');
     </button>
     <nav class="links" id="navLinks">
       <a href="#services">Services</a>
-      <a href="#approach">Our Approach</a>
-      <a href="#process">The Process</a>
+      <a href="#listings">Listings</a>
+      <a href="#buyers">Buyer Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#process">Process</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
@@ -808,6 +878,147 @@ fbq('track','PageView');
   </div>
 </section>
 
+<!-- v20: Listings. Blind teasers only; company names and financials are released after a signed NDA. No external listing links (Alfonso, Oct 16 2026): every card leads to the inquiry form. -->
+<section class="listings" id="listings">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow center">Current Listings</div>
+      <div class="rule-accent gold center"></div>
+      <h2>Businesses we currently represent.</h2>
+      <p>We take on a small number of engagements at a time, each with a senior advisor at the table. Listings are confidential: the company name and detailed financials are shared only with qualified buyers after a signed confidentiality agreement.</p>
+    </div>
+    <div class="lst-grid">
+
+      <article class="lst">
+        <div class="lst-top"><span class="lst-cat">Technology &middot; Lead Generation</span><span class="status on">On Market</span></div>
+        <div class="lst-body">
+          <h3>Profitable Home Services Lead-Gen Platform, SBA Pre-Qualified</h3>
+          <p class="teaser">A fast-growing, fully remote platform selling exclusive, prepaid leads to roofing, HVAC, plumbing and electrical contractors across 40+ states. No retainers, no receivables, no inventory. SBA financing already structured, with seller financing available to a qualified buyer.</p>
+          <ul class="lst-meta">
+            <li><span>Location</span><b>Florida (relocatable)</b></li>
+            <li><span>Revenue (TTM)</span><b>$1.85M</b></li>
+            <li><span>Cash flow (SDE)</span><b>$956K</b></li>
+            <li><span>Asking price</span><b>$2,500,000</b></li>
+          </ul>
+          <div class="lst-cta">
+            <a class="btn btn-red" href="#contact" data-inquiry="AI-Driven Lead Generation Business (on market)">Inquire for Details</a>
+            <span class="ext">Confidential. A senior advisor replies within one business day.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="lst">
+        <div class="lst-top"><span class="lst-cat">Professional Services &middot; Accounting</span><span class="status on">On Market</span></div>
+        <div class="lst-body">
+          <h3>Established CPA &amp; Accounting Practice</h3>
+          <p class="teaser">A long-standing accounting practice with a loyal, recurring client base across tax, accounting and advisory services. An opportunity for a CPA or an existing firm looking to add a book of business. Full details are released to qualified buyers after a confidentiality agreement.</p>
+          <div class="lst-cta">
+            <a class="btn btn-red" href="#contact" data-inquiry="CPA &amp; Accounting Practice (on market)">Inquire for Details</a>
+            <span class="ext">Confidential. A senior advisor replies within one business day.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="lst">
+        <div class="lst-top"><span class="lst-cat">Healthcare &middot; Real Estate</span><span class="status off">Off Market</span></div>
+        <div class="lst-body">
+          <h3>Assisted Living Facility with Real Estate</h3>
+          <p class="teaser">An operating assisted living facility offered together with the property it occupies: a commercial real estate acquisition with a care business already in place. Suited to buyers expanding a senior-care or commercial real estate portfolio. Not publicly listed; details by inquiry only.</p>
+          <ul class="lst-meta">
+            <li><span>Real estate</span><b>Included</b></li>
+            <li><span>Reference price</span><b>$2,000,000</b></li>
+          </ul>
+          <div class="lst-cta">
+            <a class="btn btn-gold" href="#contact" data-inquiry="Assisted Living Facility with Real Estate (off-market)">Inquire for More Information</a>
+            <span class="ext">Confidential. A senior advisor replies within one business day.</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Recently closed: the two named businesses are named with the sellers' knowledge (Alfonso, Oct 16 2026); the Texas deals are described by type only. -->
+    <div class="closed">
+      <div class="sec-label">Recently Closed</div>
+      <div class="closed-grid">
+        <div class="cl">
+          <span class="status sold">Closed</span>
+          <h4>Free Yourself</h4>
+          <p class="cl-where">Mental healthcare clinic &middot; Colorado</p>
+          <ul class="cl-meta">
+            <li><span>SDE</span><b>$519K</b></li>
+            <li><span>Asking price</span><b>$1.8M</b></li>
+            <li><span>Terms</span><b>$1.68M cash + $250K seller note</b></li>
+          </ul>
+          <p class="cl-price"><small>Sold for</small>$1,930,000</p>
+        </div>
+        <div class="cl">
+          <span class="status sold">Closed</span>
+          <h4>Joe&rsquo;s Automotive</h4>
+          <p class="cl-where">Auto repair shop &middot; Illinois</p>
+          <ul class="cl-meta">
+            <li><span>SDE</span><b>$449K</b></li>
+            <li><span>Asking price</span><b>$1.75M, real estate included</b></li>
+            <li><span>Terms</span><b>$82K seller note</b></li>
+          </ul>
+          <p class="cl-call">A local advisor had said <b>$750K</b> was the ceiling. It sold for <b>$1.65M</b>.</p>
+          <p class="cl-price"><small>Sold for</small>$1,650,000</p>
+        </div>
+        <div class="cl">
+          <span class="status sold">Closed</span>
+          <h4>Occupational &amp; Physical Therapy Practice</h4>
+          <p class="cl-where">Regional, full-service &middot; Texas</p>
+          <ul class="cl-meta">
+            <li><span>SDE</span><b>$1.3M</b></li>
+            <li><span>Asking price</span><b>$6M</b></li>
+            <li><span>Terms</span><b>5% equity rollover</b></li>
+          </ul>
+          <p class="cl-price"><small>Sold for</small>$5,600,000</p>
+        </div>
+        <div class="cl">
+          <span class="status sold">Closed</span>
+          <h4>Full-Service Electrical Contractor</h4>
+          <p class="cl-where">Texas</p>
+          <p class="cl-price"><small>Sold for</small>$3,200,000</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="lst-note">Thinking of selling? Your business is never listed publicly without your approval, and most of our engagements are never listed at all. <a href="#estimate">Start with a free, confidential estimate.</a></p>
+  </div>
+</section>
+
+<!-- v20: Buyer Services. IC-USA is sell-side only; buyers are pointed to Kerdai Business Advisors (one link, no pricing tables). -->
+<section class="buyers" id="buyers">
+  <div class="wrap buy-grid">
+    <div class="buy-copy">
+      <div class="section-head">
+        <div class="eyebrow dark">Buyer Services</div>
+        <div class="rule-accent"></div>
+        <h2>We represent sellers. Only sellers.</h2>
+        <p>Investment Consulting USA is a sell-side firm. We do not represent buyers, search on their behalf, or offer buyer services of any kind. That single-sided focus is what lets every owner we serve trust that our only obligation in a transaction is to them.</p>
+      </div>
+      <p class="extra">If you are a buyer interested in one of our listings, you are welcome to request the confidentiality agreement through the listing or the inquiry form. We share information once it is signed and your qualifications are confirmed.</p>
+      <p class="extra">If you are looking for representation, a second opinion on a deal, or valuation support as a buyer, Kerdai Business Advisors is a separate firm that works exclusively on the buy side.</p>
+    </div>
+    <div class="buy-card">
+      <div class="buy-card-inner">
+        <div class="bc-lbl">For Buyers</div>
+        <h3>Kerdai Business Advisors</h3>
+        <p>A buy-side advisory firm serving business buyers nationwide, with listed businesses for sale and buyer services that include:</p>
+        <ul class="global-list">
+          <li>Deal reviews, from $199</li>
+          <li>Deal structure review</li>
+          <li>Business valuations</li>
+          <li>Quality of Earnings</li>
+        </ul>
+        <a class="btn btn-gold" href="https://www.kerdaibusinessadvisors.com" target="_blank" rel="noopener">Visit Kerdai Business Advisors</a>
+        <p class="bc-fine">Independence: to keep both firms free of conflicts, Kerdai declines any engagement where Investment Consulting USA represents the seller. Neither firm is ever on both sides of a deal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="approach" id="approach">
   <div class="wrap">
     <div class="section-head">
@@ -1047,7 +1258,7 @@ fbq('track','PageView');
       </details>
       <details>
         <summary>Do you also represent buyers?</summary>
-        <div class="faq-a">We represent owners. Working exclusively on the sell side means our only obligation in a transaction is to you, and our buyer relationships exist to serve your sale, not the other way around.</div>
+        <div class="faq-a">We represent owners. Working exclusively on the sell side means our only obligation in a transaction is to you, and our buyer relationships exist to serve your sale, not the other way around. Buyers looking for representation can read our <a href="#buyers">Buyer Services</a> note.</div>
       </details>
       <details>
         <summary>How do fees work?</summary>
@@ -1151,6 +1362,8 @@ fbq('track','PageView');
       <div class="foot-col">
         <h4>Firm</h4>
         <a href="#services">Services</a>
+        <a href="#listings">Listings</a>
+        <a href="#buyers">Buyer Services</a>
         <a href="#approach">Our Approach</a>
         <a href="#process">The Process</a>
         <a href="#about">About</a>
@@ -1216,6 +1429,20 @@ fbq('track','PageView');
     } catch (e) {}
     return 'Website';
   };
+
+  /* v20: "Inquire for Details" on an off-market listing prefills the contact form
+     (industry + message) and tags the lead so the CRM note says which listing it was. */
+  window.icusaInquiry = '';
+  document.querySelectorAll('a[data-inquiry]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var what = a.getAttribute('data-inquiry') || '';
+      window.icusaInquiry = what;
+      var ind = document.getElementById('c-industry');
+      var notes = document.getElementById('c-notes');
+      if (ind && !ind.value.trim()) ind.value = 'Buyer inquiry: ' + what;
+      if (notes && !notes.value.trim()) notes.value = 'I would like to receive details on the ' + what + ' listing. Please send me the confidentiality agreement.';
+    });
+  });
 </script>
 
 <script>
@@ -1285,7 +1512,7 @@ fbq('track','PageView');
       phone: phoneInput.value.trim(),
       sms_consent: smsBox.checked ? 'yes' : '',
       industry: document.getElementById('c-industry').value.trim(),
-      notes: '[Contact form: request for more information]\n' + document.getElementById('c-notes').value.trim(),
+      notes: (window.icusaInquiry ? '[Contact form: listing inquiry - ' + window.icusaInquiry + ']\n' : '[Contact form: request for more information]\n') + document.getElementById('c-notes').value.trim(),
       company: document.getElementById('c-company').value,
       'cf-turnstile-response': tsField ? tsField.value : '',
       source: window.icusaSource ? window.icusaSource() : 'Website',
