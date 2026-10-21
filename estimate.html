@@ -629,6 +629,9 @@ fbq('track','PageView');
   .est .linkish.back{justify-self:center;margin-top:2px;color:var(--ink-soft)}
   .est .cal-embed{margin:0 0 16px;background:var(--white);border-radius:10px;overflow:hidden}
   .est .cal-embed[hidden]{display:none}
+  .est .cal-alt{margin:-6px 0 14px;text-align:center;font:400 .86rem/1.5 var(--sans);color:var(--ink-soft)}
+  .est .cal-alt a{color:var(--navy);font-weight:600}
+  .est-btn[hidden],.finish-note[hidden],.r-next[hidden],.cal-alt[hidden]{display:none !important}
   /* what happens next */
   .lp-steps{padding:70px 0 20px}
   .lp-steps .wrap{max-width:980px}
@@ -707,7 +710,7 @@ fbq('track','PageView');
     <div class="lp-head">
       <div class="eyebrow">For business owners thinking about selling</div>
       <h1>What is your business <span class="accent">worth</span> today?</h1>
-      <p class="offer"><b>Answer a few quick questions and see your value range on screen.</b> Then book a free 20-minute call with a senior M&amp;A advisor and receive a complimentary Broker&rsquo;s Opinion of Value report by email.</p>
+      <p class="offer"><b>Answer a few quick questions and see your value range on screen.</b> Then, if we&rsquo;re a fit, book a free 20-minute call with a senior M&amp;A advisor and receive a complimentary Broker&rsquo;s Opinion of Value report by email.</p>
       <p class="lp-arrow">&darr; Start below. About 90 seconds. &darr;</p>
       <div class="lp-proofline"><span>$108M+ in closed deals</span><span>11 years advising owners</span><span>Confidential, never listed publicly</span></div>
     </div>
@@ -801,7 +804,7 @@ fbq('track','PageView');
                 <button type="button" class="tl-chip" data-tl="Exploring / curious">Just exploring</button>
               </div>
             </div>
-            <p class="step-sub strong">Where should we send the full breakdown? Your answers stay confidential. We never sell or share them.</p>
+            <p class="step-sub strong" id="s4Lead">Book your free 20-minute call: enter your name and email, then pick a time. Your answers stay confidential. We never sell or share them.</p>
             <div class="est-field">
               <label class="lbl" for="name">Your name</label>
               <input class="inp" id="name" type="text" autocomplete="name">
@@ -829,8 +832,8 @@ fbq('track','PageView');
             <div class="ts-box" id="tsBox"></div>
             <p class="form-err" id="formErr" role="alert" hidden></p>
             <div class="finish">
-              <button type="submit" class="est-btn est-primary big" id="submitBtn" data-mode="call">Book my free call &amp; get the full breakdown</button>
-              <p class="finish-note">20 minutes with a senior advisor. Your complimentary <b>Broker&rsquo;s Opinion of Value</b> report follows the call by email.</p>
+              <button type="submit" class="est-btn est-primary big" id="submitBtn" data-mode="call">Pick a time for my free call</button>
+              <p class="finish-note" id="finishNote">20 minutes with a senior advisor. Your complimentary <b>Broker&rsquo;s Opinion of Value</b> report follows the call by email.</p>
               <button type="submit" class="est-btn est-alt" id="submitEmail" data-mode="email">Not ready to talk? Email me the Preliminary Value Report</button>
               <button type="button" class="linkish back" data-back>Back</button>
             </div>
@@ -871,10 +874,17 @@ fbq('track','PageView');
             <p id="rNextP">20 minutes, free and confidential. We review your tax returns, add-backs and customer mix, check whether a buyer&rsquo;s lender would finance the price, and send you a complimentary Broker&rsquo;s Opinion of Value report after the call.</p>
             <p class="r-ok" id="rRequested" hidden></p>
             <div class="cal-embed" id="calEmbed" hidden></div>
+            <p class="cal-alt" id="calAlt" hidden>Calendar not loading? <a id="calAltLink" href="#" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
             <div class="r-cta">
               <a class="est-btn est-gold" id="rBook" href="https://www.ic-usa.com/contact" target="_blank" rel="noopener" hidden>Pick a time to talk</a>
               <p class="r-phone">Prefer to talk now? Call <a href="tel:+15617652303">(561) 765-2303</a></p>
             </div>
+          </div>
+
+          <div class="r-next r-small" id="rSmall" hidden>
+            <h3>While your report is on its way</h3>
+            <p>See how Main Street businesses are selling this year in our free State of Main Street 2026 report.</p>
+            <div class="r-cta"><a class="est-btn est-gold" href="https://www.ic-usa.com/state-of-main-street" target="_blank" rel="noopener">Read the State of Main Street report</a></div>
           </div>
 
           <p class="r-src">This is a general estimate built from recent closed-sale data and industry pricing guides (updated September 2026) and the figures you entered. It is not an appraisal, a broker&rsquo;s opinion of value, or an offer to buy; the complimentary Broker&rsquo;s Opinion of Value is prepared by a senior advisor after your call. Actual value depends on verified financials, deal terms and market conditions.</p>
@@ -968,6 +978,7 @@ fbq('track','PageView');
 var FORM_ENDPOINT     = "https://script.google.com/macros/s/AKfycbyR2e2i1GXhVdU1MzIz0_JJ9NqSiJRLPzrAGQLVnhzJOuA-xe90eyaGLal75wUzVNXarg/exec"; // Apps Script bridge -> Airtable (ICUSA CRM > Valuation Requests)
 var TURNSTILE_SITEKEY = "0x4AAAAAAEmLjgQpu40wKZ1H"; // Cloudflare Turnstile (the bridge rejects posts without a token)
 var BOOKING_URL       = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3o4wz56cO7OLnOIqlBEq_jSgJr6vZXQwWF4WKy4Io8q-5AUq11uKT6o9ofzfhk6RBEBJBqUgaZ";   // Optional scheduling link (e.g. a Google Calendar booking page). "" shows the phone number only.
+var CALL_MIN_REVENUE  = 300000;   // owners below this yearly revenue get the report path only (no call offer, no calendar)
 var SOURCE_LABEL      = "Landing page /estimate"; // shown in the Notes field; the Source field is Website or Meta Ads
 
 var MANAGER_SALARY = 125000;  // market pay for a general manager; SDE minus this = adjusted EBITDA
@@ -1185,7 +1196,7 @@ var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-moti
 })();
 // v2 landing: which way the owner chose to finish (book a call, or report by email).
 Array.prototype.forEach.call(document.querySelectorAll("[data-mode]"), function(b){
-  b.addEventListener("click", function(){ $("reportMode").value = b.getAttribute("data-mode"); });
+  b.addEventListener("click", function(){ if (b.hidden || b.disabled) return; $("reportMode").value = b.getAttribute("data-mode"); });
 });
 
 // Ad tracking: keep UTM tags and the Facebook click ID so each lead shows which ad produced it.
@@ -1207,6 +1218,19 @@ window.icusaCalcTsReady = function(){ if (cur >= 2) renderTs(); };
 function resetTs(){ tsToken = ""; if (window.turnstile && tsWidget !== null) { try { window.turnstile.reset(tsWidget); } catch (e) {} } }
 
 /* ================= STEPS ================= */
+// v3 landing: qualify, then book. callFit() decides whether step 4 offers the call and the calendar.
+function callFit(a){ return !(isFinite(a.revenue) && a.revenue < CALL_MIN_REVENUE); }
+var qualifiedSeen = false;
+function applyFit(){
+  var fit = callFit(collect()), sb = $("submitBtn"), se = $("submitEmail");
+  sb.hidden = !fit; sb.disabled = !fit; $("finishNote").hidden = !fit;
+  se.classList.toggle("est-primary", !fit); se.classList.toggle("big", !fit); se.classList.toggle("est-alt", fit);
+  se.textContent = fit ? "Not ready to talk? Email me the Preliminary Value Report" : "Email me my full report";
+  $("s4Lead").textContent = fit ? "Book your free 20-minute call: enter your name and email, then pick a time. Your answers stay confidential. We never sell or share them."
+                                : "Where should we send your full report? Your answers stay confidential. We never sell or share them.";
+  $("reportMode").value = fit ? "call" : "email";
+  if (fit && !qualifiedSeen) { qualifiedSeen = true; px("trackCustom", "EstimatorQualified"); }
+}
 // v19: the range is shown on step 4 before any contact details are asked for.
 function renderPeek(){
   var a = collect(), r = estimate(a);
@@ -1227,6 +1251,7 @@ function show(i, focus){
   if (i === 3) {
     renderPeek();
     if (!detailsSeen) { detailsSeen = true; px("trackCustom", "EstimatorDetails"); }
+    applyFit();
     if (LIVE && TURNSTILE_SITEKEY && !tsToken) { clearTimeout(tsTimer); tsTimer = setTimeout(function(){ if (!tsToken) tsFallback = true; }, 7000); }
   }
   if (focus !== false) {
@@ -1325,7 +1350,7 @@ function buildPayload(a, r, leadId){
   var wants = [];
   if (a.wantVal) wants.push("complimentary valuation");
   if (a.wantLender) wants.push("lender pre-qualification");
-  var hot = a.timeline === "Within 12 months" || $("reportMode").value === "call";
+  var fit = callFit(a), hot = fit && (a.timeline === "Within 12 months" || $("reportMode").value === "call");
   var lines = [
     "[" + SOURCE_LABEL + "] Lead priority: " + (hot ? "HIGH" : "Normal"),
     "Business: " + (a.bizName || "(not given)") + " | " + (STATE_NAME[a.state] || a.state),
@@ -1335,6 +1360,7 @@ function buildPayload(a, r, leadId){
     r.ok ? "Estimate shown: " + money(r.lo) + " – " + money(r.hi) + " (mid " + money(r.mid) + "; " + fx(r.lo / r.sde) + "–" + fx(r.hi / r.sde) + " SDE)"
          : "Estimate shown: none (net income + owner pay is not positive)",
     "Asked for: " + ($("reportMode").value === "email" ? "Preliminary Value Report by email (sent automatically by the bridge)" : "Book a call; complimentary Broker's Opinion of Value after the call"),
+    "Call offer: " + (fit ? "shown (revenue " + money(CALL_MIN_REVENUE) + " or more)" : "hidden (revenue under " + money(CALL_MIN_REVENUE) + "); report only"),
     "Lead ID: " + leadId
   ];
   var tr = Object.keys(TRACK).map(function(k){ return k + "=" + TRACK[k]; }).join(" ");
@@ -1359,6 +1385,7 @@ function submitNow(){
   for (var i = 0; i < 4; i++) { if (!validate(i)) { if (i !== cur) { show(i); validate(i); } return; } }
   var a = collect(), r = estimate(a);
   var leadId = "vc-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
+  if (!callFit(a)) $("reportMode").value = "email";
   var payload = buildPayload(a, r, leadId);
 
   if (!LIVE) {
@@ -1440,18 +1467,22 @@ function renderResult(a, r, sendFailed){
     $("rHow").hidden = true;
   }
 
-  var req = $("rRequested"), mode = $("reportMode").value;
+  var req = $("rRequested"), mode = $("reportMode").value, fit = callFit(a);
+  var rn = $("rNext"); rn.hidden = !fit; $("rSmall").hidden = fit;
+  if (fit && mode === "call") result.insertBefore(rn, $("rHow")); else result.insertBefore(rn, $("rSmall"));
+  if (!fit) { $("calEmbed").hidden = true; $("calAlt").hidden = true; }
   if (!sendFailed && mode === "email") { req.textContent = "Your Preliminary Value Report is on its way to " + a.email + ". Check your inbox (and the promotions or spam folder) in the next few minutes."; req.hidden = false; }
-  else if (!sendFailed) { req.textContent = "Saved. Pick a time below, or a senior advisor will reach out to you personally within one business day."; req.hidden = false; }
+  else if (!sendFailed) { req.textContent = "Saved. Pick a time below and use the same email, so your advisor has your numbers. Or a senior advisor will reach out to you personally within one business day."; req.hidden = false; }
   else req.hidden = true;
   if (mode === "email") { $("rNextH").textContent = "Want to go over the report with a senior advisor?"; $("rNextP").textContent = "20 minutes, free and confidential. Bring your questions; you will receive a complimentary Broker\u2019s Opinion of Value after the call."; }
   var cal = $("calEmbed");
-  if (BOOKING_URL && cal && !cal.firstChild) {
+  if (fit && BOOKING_URL && cal && !cal.firstChild) {
     var ifr = document.createElement("iframe"); ifr.src = BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") + "gv=true"; ifr.title = "Pick a time for your call"; ifr.setAttribute("loading", "lazy"); ifr.style.cssText = "border:0;width:100%;height:760px;background:#fff;border-radius:10px";
     cal.appendChild(ifr); cal.hidden = false; px("trackCustom", "BookingShown");
+    var alt = $("calAltLink"); if (alt) { alt.href = BOOKING_URL; $("calAlt").hidden = false; }
   }
   var book = $("rBook");
-  if (BOOKING_URL && !(cal && !cal.hidden)) { book.href = BOOKING_URL; book.hidden = false; } else book.hidden = true;
+  if (fit && BOOKING_URL && !(cal && !cal.hidden)) { book.href = BOOKING_URL; book.hidden = false; } else book.hidden = true;
 
   form.hidden = true; result.hidden = false;
   try { $("rRange").focus({preventScroll:true}); } catch (e) { $("rRange").focus(); }
