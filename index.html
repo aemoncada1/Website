@@ -853,6 +853,34 @@ fbq('track','PageView');
   .art-all a{color:var(--navy);font-weight:700;text-decoration:none}
   .art-all a:hover{color:var(--red)}
   @media (max-width:680px){.article{padding:56px 0 72px}.art-related{padding:70px 0 80px}}
+  /* ===== v23: calculator styles shared with /estimate ===== */
+  /* step 4 */
+  .est .tl-chips{margin-bottom:0}
+  .est .tl-chip{min-height:48px;padding:8px 10px;border:1.5px solid var(--line-2);border-radius:8px;background:var(--paper);font:600 .95rem/1.25 var(--sans);color:var(--navy);cursor:pointer;flex:1 1 auto}
+  .est .tl-chip.on{background:var(--navy);border-color:var(--navy);color:var(--white)}
+  .est .step-sub.strong{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);font-weight:600;color:var(--navy)}
+  .est .finish{display:grid;gap:10px;margin-top:6px}
+  .est .est-btn.big{min-height:62px;font-size:1.1rem;width:100%}
+  .est .finish-note{margin:-2px 0 4px;text-align:center;font:400 .88rem/1.5 var(--sans);color:var(--ink-soft)}
+  .est .finish-note b{color:var(--navy)}
+  .est .est-alt{background:var(--white);color:var(--navy);border:1.5px solid var(--navy);width:100%;font-size:.98rem}
+  .est .est-alt:hover{background:var(--paper-2)}
+  .est .linkish.back{justify-self:center;margin-top:2px;color:var(--ink-soft)}
+  .est .cal-embed{margin:0 0 16px;background:var(--white);border-radius:10px;overflow:hidden}
+  .est .cal-embed[hidden]{display:none}
+  .est .cal-alt{margin:-6px 0 14px;text-align:center;font:400 .86rem/1.5 var(--sans);color:var(--ink-soft)}
+  .est .cal-alt a{color:var(--navy);font-weight:600}
+  .est-btn[hidden],.finish-note[hidden],.r-next[hidden],.cal-alt[hidden]{display:none !important}
+  @media (max-width:680px){.est .tl-chips{flex-direction:column}.est .cal-embed iframe{height:640px}}
+  /* v4 (Oct 26 2026) */
+  .est .result > .r-ok{margin:0 0 18px;padding:12px 14px;border:1px solid rgba(201,168,76,.55);border-radius:8px;background:rgba(201,168,76,.12);font:600 .95rem/1.5 var(--sans);color:var(--navy)}
+  .est .r-next .r-more{margin:16px 0 0;font-size:.92rem}
+  .est .r-more a{color:var(--gold-soft)}
+  @media (max-width:680px){
+    .lp-arrow,.lp-proofline{display:none}
+    .lp-phone{display:inline-flex;align-items:center;min-height:44px}
+    .est .r-cta .est-btn{width:100%}
+  }
 </style>
 </head>
 <body class="page-home">
@@ -886,7 +914,7 @@ fbq('track','PageView');
     <div class="est-copy">
       <div class="eyebrow">Seller-Side M&amp;A Advisory &middot; Miami &middot; Nationwide</div>
       <h1>What is your business <span class="accent">worth</span> today?</h1>
-      <p class="lede">Most owners know what their home is worth. Few know what their business would sell for, or when the right time to sell would be. Answer eight short questions and see a confidential estimate in about two minutes.</p>
+      <p class="lede">Most owners know what their home is worth. Few know what their business would sell for, or when the right time to sell would be. Answer a few short questions and see a confidential value range in about 90 seconds.</p>
     </div>
 
     <span id="valuation" class="est-anchor" aria-hidden="true"></span>
@@ -894,26 +922,15 @@ fbq('track','PageView');
       <div class="est-inner">
         <form id="estForm" novalidate>
           <div class="progress">
-            <p class="prog-text" id="progText" aria-live="polite">Step 1 of 4 &middot; Your business</p>
+            <p class="prog-text" id="progText" aria-live="polite">Step 1 of 4 &middot; About 90 seconds</p>
             <div class="prog-bar" id="progBar" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
           </div>
 
           <div class="est-step" id="step1" role="group" aria-labelledby="s1h" data-name="Your business">
             <h2 id="s1h" tabindex="-1">What kind of business is it?</h2>
-            <p class="step-sub">Tap the closest match. No business name needed to see your estimate.</p>
+            <p class="step-sub">Choose the closest match. No business name needed to see your range.</p>
             <div class="est-field">
-              <p class="lbl" id="ind-label">Industry</p>
-              <div class="ind-chips" id="indChips" role="group" aria-labelledby="ind-label">
-                <button type="button" class="ind-chip" data-ind="medical">Healthcare</button>
-                <button type="button" class="ind-chip" data-ind="hvac">HVAC</button>
-                <button type="button" class="ind-chip" data-ind="plumbing">Plumbing</button>
-                <button type="button" class="ind-chip" data-ind="electrical">Electrical</button>
-                <button type="button" class="ind-chip" data-ind="auto">Auto repair</button>
-                <button type="button" class="ind-chip" data-ind="landscaping">Landscaping</button>
-                <button type="button" class="ind-chip" data-ind="accounting">Accounting</button>
-                <button type="button" class="ind-chip" data-ind="trucking">Logistics</button>
-              </div>
-              <label class="lbl more" for="industry">Something else? Choose from the full list</label>
+              <label class="lbl" for="industry">Industry</label>
               <select class="inp" id="industry"><option value="">Choose the closest match</option></select>
               <p class="err" id="industry-err"></p>
             </div>
@@ -923,7 +940,7 @@ fbq('track','PageView');
               <p class="err" id="state-err"></p>
             </div>
             <p class="trust"><span class="lock" aria-hidden="true">&#128274;</span><span>No public listing. We never share your answers.</span></p>
-            <div class="actions"><button type="button" class="est-btn est-primary" data-next>Start my estimate</button></div>
+            <div class="actions"><button type="button" class="est-btn est-primary" data-next>Continue &rarr;</button></div>
           </div>
 
           <div class="est-step" id="step2" role="group" aria-labelledby="s2h" data-name="Size" hidden>
@@ -943,7 +960,7 @@ fbq('track','PageView');
             <div class="est-field">
               <label class="lbl" for="revenue">Average yearly revenue, last 3 years</label>
               <p class="hint" id="revenue-hint">Total sales before any expenses. A round number is fine.</p>
-              <div class="money"><span class="cur" aria-hidden="true">$</span><input class="inp" id="revenue" type="text" inputmode="decimal" autocomplete="off" aria-describedby="revenue-hint" placeholder="1,500,000"></div>
+              <div class="money"><span class="cur" aria-hidden="true">$</span><input class="inp" id="revenue" type="text" inputmode="decimal" autocomplete="off" aria-describedby="revenue-hint" placeholder="e.g. 350,000"></div>
               <p class="err" id="revenue-err"></p>
             </div>
             <div class="actions"><button type="button" class="est-btn est-back" data-back>Back</button><button type="button" class="est-btn est-primary" data-next>Continue</button></div>
@@ -951,13 +968,8 @@ fbq('track','PageView');
 
           <div class="est-step" id="step3" role="group" aria-labelledby="s3h" data-name="Profit" hidden>
             <h2 id="s3h" tabindex="-1">How profitable is it?</h2>
-            <p class="step-sub">Use yearly averages for the last three years. Estimates are fine.</p>
-            <div class="est-field">
-              <label class="lbl" for="gross">Average gross profit <span class="opt">optional</span></label>
-              <p class="hint" id="gross-hint">Revenue minus the direct cost of doing the work, such as materials and job labor. Leave blank if you&rsquo;re not sure.</p>
-              <div class="money"><span class="cur" aria-hidden="true">$</span><input class="inp" id="gross" type="text" inputmode="decimal" autocomplete="off" aria-describedby="gross-hint"></div>
-              <p class="err" id="gross-err"></p>
-            </div>
+            <p class="step-sub">Yearly averages for the last three years. Round numbers are fine.</p>
+            <div class="est-field" hidden><input class="inp" id="gross" type="text" value=""><p class="err" id="gross-err"></p></div>
             <div class="est-field">
               <label class="lbl" for="net">Average net income before taxes</label>
               <p class="hint" id="net-hint">The profit line on your P&amp;L or tax return.</p>
@@ -975,13 +987,21 @@ fbq('track','PageView');
           </div>
 
           <div class="est-step" id="step4" role="group" aria-labelledby="s4h" data-name="Your estimate" hidden>
-            <h2 id="s4h" tabindex="-1">Your estimate is ready.</h2>
+            <h2 id="s4h" tabindex="-1">Your range is ready.</h2>
             <div class="r-peek" id="peek" aria-live="polite">
               <p class="r-eyebrow">Estimated value</p>
               <p class="peek-range" id="peekRange"></p>
               <p class="peek-mid" id="peekMid"></p>
             </div>
-            <p class="step-sub">Enter your name and email to unlock the full breakdown: how buyers would price it and what moves the number. Your answers stay confidential. We never sell or share them.</p>
+            <div class="est-field">
+              <p class="lbl" id="tl-label">When might you consider selling?</p>
+              <div class="est-chips tl-chips" id="tlChips" role="group" aria-labelledby="tl-label">
+                <button type="button" class="tl-chip" data-tl="Within 12 months">Within 12 months</button>
+                <button type="button" class="tl-chip" data-tl="1 &ndash; 3 years">1 to 3 years</button>
+                <button type="button" class="tl-chip" data-tl="Exploring / curious">Just exploring</button>
+              </div>
+            </div>
+            <p class="step-sub strong" id="s4Lead">Book your free 20-minute call: enter your name and email, then pick a time. Your answers stay confidential. We never sell or share them.</p>
             <div class="est-field">
               <label class="lbl" for="name">Your name</label>
               <input class="inp" id="name" type="text" autocomplete="name">
@@ -997,36 +1017,24 @@ fbq('track','PageView');
               <input class="inp" id="phone" type="tel" autocomplete="tel" inputmode="tel">
               <p class="err" id="phone-err"></p>
             </div>
-            <details class="more" id="moreDetails">
-              <summary>Add details for your advisor <span class="opt">optional</span></summary>
-              <div class="est-field">
-              <label class="lbl" for="bizName">Business name <span class="opt">optional</span></label>
-              <p class="hint" id="bizName-hint">Helps your advisor prepare before reaching out. Never published.</p>
-              <input class="inp" id="bizName" type="text" autocomplete="organization" aria-describedby="bizName-hint">
+            <div hidden aria-hidden="true">
+              <input class="inp" id="bizName" type="text" value="">
+              <select class="inp" id="timeline"><option value="">Select</option><option>Exploring / curious</option><option>Within 12 months</option><option>1 &ndash; 3 years</option><option>Not sure yet</option></select>
+              <input type="checkbox" id="wantVal"><input type="checkbox" id="wantLender">
+              <input type="hidden" id="reportMode" value="call">
             </div>
-            <div class="est-field">
-              <label class="lbl" for="timeline">When might you consider selling? <span class="opt">optional</span></label>
-              <select class="inp" id="timeline">
-                <option value="">Select</option>
-                <option>Exploring / curious</option>
-                <option>Within 12 months</option>
-                <option>1 &ndash; 3 years</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-            <div class="est-field">
-              <p class="lbl">Would either of these help? <span class="opt">optional</span></p>
-              <label class="check" for="wantVal"><input type="checkbox" id="wantVal"> A complimentary, confidential valuation from a senior advisor</label>
-              <label class="check" for="wantLender"><input type="checkbox" id="wantLender"> A lender pre-qualification check: could a buyer finance my business?</label>
-            </div>
-            </details>
             <!-- SMS opt-in label wording agreed 2026-09-17 (same as the contact form); if this text changes, note the date here. -->
             <div id="smsWrap" hidden><label class="sms" for="smsConsent"><input type="checkbox" id="smsConsent"><span>I agree to receive text messages from Investment Consulting USA LLC about my valuation request, company updates, and occasional marketing messages at the phone number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not required to submit this form. See our <a href="/privacy">Privacy Policy</a>.</span></label></div>
             <div class="hp" aria-hidden="true"><label for="estCompany">Company</label><input type="text" id="estCompany" tabindex="-1" autocomplete="off"></div>
             <div class="ts-box" id="tsBox"></div>
             <p class="form-err" id="formErr" role="alert" hidden></p>
-            <div class="actions"><button type="button" class="est-btn est-back" data-back>Back</button><button type="submit" class="est-btn est-primary" id="submitBtn">Unlock my full estimate</button></div>
-            <p class="fine">By continuing you agree to our <a href="/privacy">Privacy Policy</a>. An advisor may follow up by email or phone about your estimate.</p>
+            <div class="finish">
+              <button type="submit" class="est-btn est-primary big" id="submitBtn" data-mode="call">Pick a time for my free call</button>
+              <p class="finish-note" id="finishNote">20 minutes with a senior advisor. Your complimentary <b>Broker&rsquo;s Opinion of Value</b> report follows the call by email.</p>
+              <button type="submit" class="est-btn est-alt" id="submitEmail" data-mode="email">Not ready to talk? Email me the Preliminary Value Report</button>
+              <button type="button" class="linkish back" data-back>Back</button>
+            </div>
+            <p class="fine">By continuing you agree to our <a href="/privacy">Privacy Policy</a>. A senior advisor may follow up by email or phone about your estimate. No public listing, ever.</p>
           </div>
         </form>
 
@@ -1035,6 +1043,8 @@ fbq('track','PageView');
           <h2 class="r-range" id="rRange" tabindex="-1"></h2>
           <p class="r-mid" id="rMid"></p>
           <ul class="r-notes" id="rNotes"></ul>
+
+          <p class="r-ok" id="rRequested" hidden></p>
 
           <div class="r-block" id="rHow">
             <h3>How we got there</h3>
@@ -1053,27 +1063,37 @@ fbq('track','PageView');
               <li><strong>Recurring revenue.</strong> Service agreements, contracts and repeat customers raise what buyers will pay.</li>
               <li><strong>How much runs through you.</strong> If key customers, licenses or relationships depend on you, buyers discount for that risk.</li>
               <li><strong>Customer concentration.</strong> One customer above 15&ndash;20% of sales worries buyers and lenders.</li>
-              <li><strong>Financing.</strong> Most buyers of businesses this size use SBA loans. If a lender won&rsquo;t finance the price, the price usually comes down. We can check this before you go to market.</li>
+              <li><strong>Financing.</strong> Many buyers borrow to buy, often with an SBA loan. If a lender won&rsquo;t finance the price, the price usually comes down. We can check this before you go to market.</li>
               <li><strong>Add-backs.</strong> Personal or one-time expenses run through the business can raise your earnings, and your value, when they&rsquo;re documented.</li>
             </ul>
           </div>
 
-          <div class="r-next">
-            <h3>Turn this estimate into a number you can act on</h3>
-            <p>A complimentary valuation from a senior advisor reviews your tax returns, add-backs and customer mix, and checks whether a buyer&rsquo;s lender would finance your price. It&rsquo;s confidential, and there&rsquo;s no obligation.</p>
-            <p class="r-ok" id="rRequested" hidden></p>
+          <div class="r-next" id="rNext">
+            <h3 id="rNextH">Pick a time to go over it with a senior advisor</h3>
+            <p id="rNextP">20 minutes, free and confidential. We review your tax returns, add-backs and customer mix, check whether a buyer&rsquo;s lender would finance the price, and send you a complimentary Broker&rsquo;s Opinion of Value report after the call.</p>
+            <div class="cal-embed" id="calEmbed" hidden></div>
+            <p class="cal-alt" id="calAlt" hidden>Calendar not loading? <a id="calAltLink" href="#" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
             <div class="r-cta">
-              <a class="est-btn est-gold" id="rBook" href="/contact" target="_blank" rel="noopener" hidden>Pick a time to talk</a>
+              <a class="est-btn est-gold" id="rBook" href="https://www.ic-usa.com/contact" target="_blank" rel="noopener" hidden>Pick a time to talk</a>
               <p class="r-phone">Prefer to talk now? Call <a href="tel:+15617652303">(561) 765-2303</a></p>
             </div>
           </div>
 
-          <p class="r-src">This is a general estimate built from recent closed-sale data and industry pricing guides (updated September 2026) and the figures you entered. It is not an appraisal, a broker&rsquo;s opinion of value, or an offer to buy. Actual value depends on verified financials, deal terms and market conditions.</p>
+          <div class="r-next r-small" id="rSmall" hidden>
+            <h3>Questions about your numbers?</h3>
+            <p id="rSmallP">Reply to your report email or give us a call. We will also reach out personally to go over it, free and confidential.</p>
+            <div class="r-cta"><p class="r-phone">Call <a href="tel:+15617652303">(561) 765-2303</a></p></div>
+            <p class="r-more">While you wait, see how Main Street businesses are selling this year: <a href="https://www.ic-usa.com/state-of-main-street" target="_blank" rel="noopener">State of Main Street 2026</a>.</p>
+          </div>
+
+          <p class="r-src">This is a general estimate built from recent closed-sale data and industry pricing guides (updated September 2026) and the figures you entered. It is not an appraisal, a broker&rsquo;s opinion of value, or an offer to buy; the complimentary Broker&rsquo;s Opinion of Value is prepared by a senior advisor after your call. Actual value depends on verified financials, deal terms and market conditions.</p>
           <button type="button" class="linkish" id="editAnswers">Change my answers</button>
         </div>
         <noscript><p class="step-sub">This estimator needs JavaScript. Call +1 (561) 765-2303 or email info@ic-usa.com for a confidential estimate.</p></noscript>
       </div>
     </div>
+
+    
 
     <div class="est-assure">
       <ul class="est-points">
@@ -1359,7 +1379,8 @@ window.icusaPage = "home page";
 /* ================= SETTINGS ================= */
 var FORM_ENDPOINT     = "https://script.google.com/macros/s/AKfycbyR2e2i1GXhVdU1MzIz0_JJ9NqSiJRLPzrAGQLVnhzJOuA-xe90eyaGLal75wUzVNXarg/exec"; // Apps Script bridge -> Airtable (ICUSA CRM > Valuation Requests)
 var TURNSTILE_SITEKEY = "0x4AAAAAAEmLjgQpu40wKZ1H"; // Cloudflare Turnstile (the bridge rejects posts without a token)
-var BOOKING_URL       = "";   // Optional scheduling link (e.g. a Google Calendar booking page). "" shows the phone number only.
+var BOOKING_URL       = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3o4wz56cO7OLnOIqlBEq_jSgJr6vZXQwWF4WKy4Io8q-5AUq11uKT6o9ofzfhk6RBEBJBqUgaZ";   // Optional scheduling link (e.g. a Google Calendar booking page). "" shows the phone number only.
+var CALL_MIN_REVENUE  = 300000;   // owners below this yearly revenue get the report path only (no call offer, no calendar)
 var SOURCE_LABEL      = "Value Calculator"; // shown in the Notes field; the Source field is Website or Meta Ads
 
 var MANAGER_SALARY = 125000;  // market pay for a general manager; SDE minus this = adjusted EBITDA
@@ -1526,8 +1547,8 @@ function estimate(a){
   r.ok = true;
 
   if (a.net < 0) r.notes.push({text:"The business shows a loss on paper, but what it pays you counts as earnings to a buyer. That is why there is still a value here."});
-  if (sde < 60000) r.notes.push({text:"At this level of earnings, buyers also look closely at equipment, customer lists and location. An advisor can include those."});
-  if (margin > 0.6) r.notes.push({text:"Your earnings are a large share of revenue. That can happen, but it is worth double-checking. We will review the numbers with you."});
+  if (sde < 60000) r.notes.push({text:"At this level of earnings, buyers also look closely at equipment, customer lists and location. We are glad to go over those with you."});
+  if (margin > 0.6) r.notes.push({text:"Your earnings are a large share of revenue. That can happen, but it is worth double-checking the figures you entered."});
   return r;
 }
 
@@ -1565,6 +1586,21 @@ var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-moti
   sel.addEventListener("change", function(){ sync(); wrap.classList.remove("invalid"); });
 })();
 
+// v2 landing: timeline chips mirror the hidden timeline select.
+(function timelineChips(){
+  var wrap = $("tlChips"), sel = $("timeline"); if (!wrap || !sel) return;
+  var chips = Array.prototype.slice.call(wrap.querySelectorAll(".tl-chip"));
+  chips.forEach(function(c){ c.addEventListener("click", function(){
+    var v = c.getAttribute("data-tl").replace("&ndash;", "\u2013");
+    sel.value = v; if (sel.value !== v) { var o = document.createElement("option"); o.textContent = v; sel.appendChild(o); sel.value = v; }
+    chips.forEach(function(x){ x.classList.toggle("on", x === c); x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
+  }); });
+})();
+// v2 landing: which way the owner chose to finish (book a call, or report by email).
+Array.prototype.forEach.call(document.querySelectorAll("[data-mode]"), function(b){
+  b.addEventListener("click", function(){ if (b.hidden || b.disabled) return; $("reportMode").value = b.getAttribute("data-mode"); });
+});
+
 // Ad tracking: keep UTM tags and the Facebook click ID so each lead shows which ad produced it.
 var TRACK = {};
 try { new URLSearchParams(window.location.search).forEach(function(v, k){ if (/^utm_/.test(k) || k === "fbclid") TRACK[k] = v; }); } catch (e) {}
@@ -1576,7 +1612,7 @@ function px(){ if (window.fbq) { try { window.fbq.apply(null, arguments); } catc
 function renderTs(){
   if (tsRendered || !window.turnstile) return;
   tsRendered = true;
-  tsWidget = window.turnstile.render("#tsBox", {sitekey:TURNSTILE_SITEKEY, theme:"light", size:"flexible",
+  tsWidget = window.turnstile.render("#tsBox", {sitekey:TURNSTILE_SITEKEY, theme:"light", size:(window.innerWidth < 420 ? "compact" : "flexible"),
     callback:function(tok){ tsToken = tok; }, "expired-callback":function(){ tsToken = ""; }, "error-callback":function(){ tsToken = ""; }});
 }
 // The shared Turnstile loader at the end of the page calls this once the library is ready.
@@ -1584,6 +1620,19 @@ window.icusaCalcTsReady = function(){ if (cur >= 2) renderTs(); };
 function resetTs(){ tsToken = ""; if (window.turnstile && tsWidget !== null) { try { window.turnstile.reset(tsWidget); } catch (e) {} } }
 
 /* ================= STEPS ================= */
+// v3 landing: qualify, then book. callFit() decides whether step 4 offers the call and the calendar.
+function callFit(a){ return !(isFinite(a.revenue) && a.revenue < CALL_MIN_REVENUE); }
+var qualifiedSeen = false;
+function applyFit(){
+  var fit = callFit(collect()), sb = $("submitBtn"), se = $("submitEmail");
+  sb.hidden = !fit; sb.disabled = !fit; $("finishNote").hidden = !fit;
+  se.classList.toggle("est-primary", !fit); se.classList.toggle("big", !fit); se.classList.toggle("est-alt", fit);
+  se.textContent = fit ? "Not ready to talk? Email me the Preliminary Value Report" : "Email me my full report";
+  $("s4Lead").textContent = fit ? "Book your free 20-minute call: enter your name and email, then pick a time. Your answers stay confidential. We never sell or share them."
+                                : "Where should we send your full report? Your answers stay confidential. We never sell or share them.";
+  $("reportMode").value = fit ? "call" : "email";
+  if (fit && !qualifiedSeen) { qualifiedSeen = true; px("trackCustom", "EstimatorQualified"); }
+}
 // v19: the range is shown on step 4 before any contact details are asked for.
 function renderPeek(){
   var a = collect(), r = estimate(a);
@@ -1604,6 +1653,7 @@ function show(i, focus){
   if (i === 3) {
     renderPeek();
     if (!detailsSeen) { detailsSeen = true; px("trackCustom", "EstimatorDetails"); }
+    applyFit();
     if (LIVE && TURNSTILE_SITEKEY && !tsToken) { clearTimeout(tsTimer); tsTimer = setTimeout(function(){ if (!tsToken) tsFallback = true; }, 7000); }
   }
   if (focus !== false) {
@@ -1643,14 +1693,14 @@ function validate(i){
   var a = collect(), ok = true, first = null;
   function chk(id, msg){ if (!setErr(id, msg)) { ok = false; if (!first) first = $(id); } }
   if (i === 0) {
-    chk("industry", a.industry ? "" : "Tap an industry, or choose one from the list.");
-    $("indChips").classList.toggle("invalid", !a.industry);
+    chk("industry", a.industry ? "" : "Choose the closest industry from the list.");
+    if ($("indChips")) $("indChips").classList.toggle("invalid", !a.industry);
     chk("state", a.state ? "" : "Choose the state where the business operates.");
   } else if (i === 1) {
     var tErr = a.team ? "" : "Choose the closest team size.";
     $("team-err").textContent = tErr; $("teamChips").classList.toggle("invalid", !!tErr);
     if (tErr) { ok = false; first = form.querySelector('input[name="team"]'); }
-    chk("revenue", !(a.revenue > 0) ? "Enter your average yearly revenue, for example 1,200,000." : a.revenue > 5e9 ? "That looks too large. Check the number of zeros." : "");
+    chk("revenue", !(a.revenue > 0) ? "Enter your average yearly revenue, for example 350,000." : a.revenue > 5e9 ? "That looks too large. Check the number of zeros." : "");
   } else if (i === 2) {
     var rev = a.revenue;
     chk("gross", $("gross").value.trim() === "" ? "" : !(a.gross >= 0) ? "Enter a number, or leave this blank." : a.gross > rev ? "Gross profit can’t be more than revenue (" + money(rev) + ")." : "");
@@ -1658,7 +1708,7 @@ function validate(i){
     chk("owner", !isFinite(a.owner) || a.owner < 0 ? "Enter what the business pays you each year. Enter 0 if none." : a.owner > rev ? "This can’t be more than revenue (" + money(rev) + ")." : "");
   } else if (i === 3) {
     chk("name", a.name ? "" : "Enter your name.");
-    chk("email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.email) ? "" : "Enter a valid email address so we can follow up on your estimate.");
+    chk("email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.email) ? "" : "Enter a valid email address so we can reach you.");
     var digits = a.phone.replace(/\D/g, "");
     chk("phone", a.sms && !digits ? "Enter a phone number to receive text messages." : digits && digits.length < 10 ? "Enter a 10-digit phone number, or leave this blank." : "");
   }
@@ -1702,7 +1752,7 @@ function buildPayload(a, r, leadId){
   var wants = [];
   if (a.wantVal) wants.push("complimentary valuation");
   if (a.wantLender) wants.push("lender pre-qualification");
-  var hot = a.timeline === "Within 12 months" || wants.length > 0;
+  var fit = callFit(a), hot = fit && (a.timeline === "Within 12 months" || $("reportMode").value === "call");
   var lines = [
     "[" + SOURCE_LABEL + "] Lead priority: " + (hot ? "HIGH" : "Normal"),
     "Business: " + (a.bizName || "(not given)") + " | " + (STATE_NAME[a.state] || a.state),
@@ -1711,7 +1761,8 @@ function buildPayload(a, r, leadId){
     "Net income: " + money(a.net) + " | Owner pay: " + money(a.owner) + " | SDE: " + money(r.sde),
     r.ok ? "Estimate shown: " + money(r.lo) + " – " + money(r.hi) + " (mid " + money(r.mid) + "; " + fx(r.lo / r.sde) + "–" + fx(r.hi / r.sde) + " SDE)"
          : "Estimate shown: none (net income + owner pay is not positive)",
-    "Asked for: " + (wants.length ? wants.join(" + ") : "nothing selected"),
+    "Asked for: " + ($("reportMode").value === "email" ? "Preliminary Value Report by email (sent automatically by the bridge)" : "Book a call; complimentary Broker's Opinion of Value after the call"),
+    "Call offer: " + (fit ? "shown (revenue " + money(CALL_MIN_REVENUE) + " or more)" : "hidden (revenue under " + money(CALL_MIN_REVENUE) + "); report only"),
     "Lead ID: " + leadId
   ];
   var tr = Object.keys(TRACK).map(function(k){ return k + "=" + TRACK[k]; }).join(" ");
@@ -1721,6 +1772,12 @@ function buildPayload(a, r, leadId){
     industry:r.ind.label, state:STATE_NAME[a.state] || a.state, employees:TEAM[a.team].bucket,
     revenue:revBucket(a.revenue), timeline:a.timeline, notes:lines.join("\n"),
     source:(window.icusaSource ? window.icusaSource() : "Website"), sms_consent:a.sms && a.phone ? "yes" : "", company:a.company,
+    report:$("reportMode").value, lead_id:leadId,
+    est:{ok:r.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, gross:a.gross, net:a.net, owner:a.owner, sde:r.sde,
+         lo:r.lo, mid:r.mid, hi:r.hi, baseLo:r.ok ? roundNice(r.baseLo) : 0, baseHi:r.ok ? roundNice(r.baseHi) : 0,
+         methods:(r.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
+         adj:(r.adj || []).map(function(x){ return {label:x.label, pct:Math.round((x.f - 1) * 100)}; }),
+         notes:(r.notes || []).map(function(n){ return n.text; })},
     elapsed:Date.now() - PAGE_LOADED, "cf-turnstile-response":tsToken, ts_status:(tsToken ? "ok" : (tsFallback ? "fallback" : "none"))
   };
 }
@@ -1730,6 +1787,7 @@ function submitNow(){
   for (var i = 0; i < 4; i++) { if (!validate(i)) { if (i !== cur) { show(i); validate(i); } return; } }
   var a = collect(), r = estimate(a);
   var leadId = "vc-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
+  if (!callFit(a)) $("reportMode").value = "email";
   var payload = buildPayload(a, r, leadId);
 
   if (!LIVE) {
@@ -1749,13 +1807,13 @@ function submitNow(){
     }, 500);
     return;
   }
-  var btn = $("submitBtn"), label = btn.textContent;
-  btn.disabled = true; btn.textContent = "Preparing your estimate…";
+  var btn = $("reportMode").value === "email" && $("submitEmail") ? $("submitEmail") : $("submitBtn"), label = btn.textContent;
+  btn.disabled = true; btn.textContent = $("reportMode").value === "email" ? "Sending your report…" : "Saving…";
   fetch(FORM_ENDPOINT, {method:"POST", body:JSON.stringify(payload)})
     .then(function(res){ return res.json().catch(function(){ return {ok:res.ok}; }); })
     .then(function(out){
       var saved = !!(out && out.ok);
-      if (saved) px("track", "Lead", {content_name:"Business value estimate"}, {eventID:leadId});
+      if (saved) { px("track", "Lead", {content_name:"Business value estimate"}, {eventID:leadId}); px("trackCustom", $("reportMode").value === "email" ? "ReportByEmail" : "BookCallIntent"); }
       else px("trackCustom", "EstimatorSendFailed", {ts:payload.ts_status});
       renderResult(a, r, !saved);
     })
@@ -1811,13 +1869,23 @@ function renderResult(a, r, sendFailed){
     $("rHow").hidden = true;
   }
 
-  var req = $("rRequested"), wants = [];
-  if (a.wantVal) wants.push("a complimentary valuation");
-  if (a.wantLender) wants.push("a lender pre-qualification check");
-  if (wants.length && !sendFailed) { req.textContent = "You asked for " + wants.join(" and ") + ". A senior advisor will reach out to you personally."; req.hidden = false; }
+  var req = $("rRequested"), mode = $("reportMode").value, fit = callFit(a);
+  var rn = $("rNext"); rn.hidden = !fit; $("rSmall").hidden = fit || !!sendFailed;
+  if (!r.ok) $("rSmallP").textContent = "Give us a call, or watch for an email from a senior advisor within one business day.";
+  if (fit && mode === "call") result.insertBefore(rn, $("rHow")); else result.insertBefore(rn, $("rSmall"));
+  if (!fit) { $("calEmbed").hidden = true; $("calAlt").hidden = true; }
+  if (!sendFailed && mode === "email") { req.textContent = r.ok ? "Your Preliminary Value Report is on its way to " + a.email + ". Check your inbox (and the promotions or spam folder) in the next few minutes." : "Saved. With these numbers there is no automatic report, so a senior advisor will email you at " + a.email + " within one business day."; req.hidden = false; }
+  else if (!sendFailed) { req.textContent = "Saved. Pick a time below and use the same email, so your advisor has your numbers. Or a senior advisor will reach out to you personally within one business day."; req.hidden = false; }
   else req.hidden = true;
+  if (mode === "email") { $("rNextH").textContent = "Want to go over the report with a senior advisor?"; $("rNextP").textContent = "20 minutes, free and confidential. Bring your questions; you will receive a complimentary Broker\u2019s Opinion of Value after the call."; }
+  var cal = $("calEmbed");
+  if (fit && BOOKING_URL && cal && !cal.firstChild && window.innerWidth >= 600) {
+    var ifr = document.createElement("iframe"); ifr.src = BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") + "gv=true"; ifr.title = "Pick a time for your call"; ifr.setAttribute("loading", "lazy"); ifr.style.cssText = "border:0;width:100%;height:760px;background:#fff;border-radius:10px";
+    cal.appendChild(ifr); cal.hidden = false; px("trackCustom", "BookingShown");
+    var alt = $("calAltLink"); if (alt) { alt.href = BOOKING_URL; $("calAlt").hidden = false; }
+  }
   var book = $("rBook");
-  if (BOOKING_URL) { book.href = BOOKING_URL; book.hidden = false; } else book.hidden = true;
+  if (fit && BOOKING_URL && !(cal && !cal.hidden)) { book.href = BOOKING_URL; book.hidden = false; if (!window.__bookShown) { window.__bookShown = 1; px("trackCustom", "BookingShown"); } } else book.hidden = true;
 
   form.hidden = true; result.hidden = false;
   try { $("rRange").focus({preventScroll:true}); } catch (e) { $("rRange").focus(); }
