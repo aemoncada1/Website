@@ -790,8 +790,8 @@ fbq('track','PageView');
               <p class="err" id="net-err"></p>
             </div>
             <div class="est-field">
-              <label class="lbl" for="owner">What the business pays you each year</label>
-              <p class="hint" id="owner-hint">Your salary or draws, plus personal benefits the business covers, such as health insurance or a vehicle. Buyers add this back, so it raises your value. Enter 0 if none.</p>
+              <label class="lbl" for="owner">Your salary and benefits the business deducts</label>
+              <p class="hint" id="owner-hint">Count only pay taken out before your profit line: a salary paid to you through payroll, plus personal costs the business covers, like your health insurance or a vehicle. Don&rsquo;t include owner draws, they&rsquo;re already in your profit. Only take draws? Enter 0, or just those personal costs.</p>
               <div class="money"><span class="cur" aria-hidden="true">$</span><input class="inp" id="owner" type="text" inputmode="decimal" autocomplete="off" aria-describedby="owner-hint"></div>
               <p class="err" id="owner-err"></p>
             </div>
@@ -1314,7 +1314,7 @@ function validate(i){
     var rev = a.revenue;
     chk("gross", $("gross").value.trim() === "" ? "" : !(a.gross >= 0) ? "Enter a number, or leave this blank." : a.gross > rev ? "Gross profit can’t be more than revenue (" + money(rev) + ")." : "");
     chk("net", !isFinite(a.net) ? "Enter your average net income. Enter 0 if the business broke even." : a.net > rev ? "Net income can’t be more than revenue (" + money(rev) + ")." : "");
-    chk("owner", !isFinite(a.owner) || a.owner < 0 ? "Enter what the business pays you each year. Enter 0 if none." : a.owner > rev ? "This can’t be more than revenue (" + money(rev) + ")." : "");
+    chk("owner", !isFinite(a.owner) || a.owner < 0 ? "Enter your salary and benefits the business deducts. Enter 0 if you only take draws." : a.owner > rev ? "This can’t be more than revenue (" + money(rev) + ")." : "");
   } else if (i === 3) {
     chk("name", a.name ? "" : "Enter your name.");
     chk("email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.email) ? "" : "Enter a valid email address so we can reach you.");
@@ -1450,7 +1450,7 @@ function renderResult(a, r, sendFailed){
     row(dl, "Average yearly revenue", money(a.revenue));
     if (a.gross != null) row(dl, "Gross profit", money(a.gross) + " (" + Math.round(a.gross / a.revenue * 100) + "%)");
     row(dl, "Net income before taxes", money(a.net));
-    row(dl, "Plus what the business pays you", money(a.owner));
+    row(dl, "Plus your salary and benefits the business deducts", money(a.owner));
     row(dl, "Seller’s discretionary earnings (SDE)", money(r.sde), "total");
 
     var ul = $("rMethods"); ul.innerHTML = "";
