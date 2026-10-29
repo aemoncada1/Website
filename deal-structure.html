@@ -1528,7 +1528,7 @@ window.icusaPage = "buy page";
         if(out && out.ok){
           form.style.display = 'none';
           success.classList.add('show');
-          if (window.fbq) { try { window.fbq('track', 'Contact'); } catch (e) {} }
+          if (window.fbq) { try { window.fbq('track', 'Contact'); } catch (e) {} } if (window.gtag) { try { window.gtag('event', 'Contact', {}); } catch (e) {} }
         } else {
           submitBtn.disabled = false; submitBtn.textContent = originalLabel; resetTs();
           showFormError('We could not submit your request. ' + contactFallback);

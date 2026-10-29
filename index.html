@@ -1669,7 +1669,7 @@ var TRACK = {};
 try { new URLSearchParams(window.location.search).forEach(function(v, k){ if (/^utm_/.test(k) || k === "fbclid") TRACK[k] = v; }); } catch (e) {}
 
 // Meta Pixel: the base code in <head> defines fbq; events are skipped if it is blocked.
-function px(){ if (window.fbq) { try { window.fbq.apply(null, arguments); } catch (e) {} } }
+function px(){ if (window.fbq) { try { window.fbq.apply(null, arguments); } catch (e) {} } if (window.gtag) { try { var a = arguments; if ((a[0] === 'track' || a[0] === 'trackCustom') && a[1] && a[1] !== 'PageView') { window.gtag('event', a[1], a[2] || {}); } } catch (e) {} } }
 
 // Cloudflare Turnstile: explicit render on the last step (live only).
 function renderTs(){
