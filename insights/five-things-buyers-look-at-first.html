@@ -853,7 +853,63 @@ fbq('track','PageView');
   .art-all a{color:var(--navy);font-weight:700;text-decoration:none}
   .art-all a:hover{color:var(--red)}
   @media (max-width:680px){.article{padding:56px 0 72px}.art-related{padding:70px 0 80px}}
+
+  /* ===== v24 (Oct 28 2026): Services & Pricing menu, Buy-Side Transaction Advisory, single-column page hero ===== */
+  .hero.page-hero.solo .hero-grid{grid-template-columns:1fr;max-width:860px}
+  .hero.page-hero.solo .lede{max-width:760px}
+  .hero.page-hero.solo{padding-bottom:96px}
+  .page-services .services#menu{padding-top:96px}
+  .menu-group{font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:44px 0 16px;padding-left:16px;border-left:3px solid var(--gold)}
+  .menu-group:first-of-type{margin-top:8px}
+  .menu{width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);font-family:"Helvetica Neue",Arial,sans-serif}
+  .menu th{text-align:left;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ink-mute);padding:16px 22px;background:var(--paper-2);border-bottom:1px solid var(--line-2)}
+  .menu td{padding:20px 22px;vertical-align:top;border-top:1px solid var(--line);font-size:.92rem;line-height:1.55;color:var(--ink-soft)}
+  .menu tbody tr:first-child td{border-top:none}
+  .menu tbody tr{transition:background .25s}
+  .menu tbody tr:hover{background:#FDFCF9}
+  .menu td:first-child{width:24%;color:var(--ink)}
+  .menu td:first-child b{display:block;color:var(--navy);font-size:1rem;line-height:1.3}
+  .menu td:first-child span{display:block;margin-top:4px;font-size:.78rem;color:var(--ink-mute)}
+  .menu td:nth-child(2){width:46%;font-family:"Georgia",serif;font-size:.95rem;color:var(--ink)}
+  .menu td:nth-child(2) a{color:var(--navy);font-weight:700}
+  .menu td:nth-child(3){width:13%;font-size:.84rem;white-space:nowrap}
+  .menu td.price-cell{width:17%;text-align:right;white-space:nowrap}
+  .menu td.price-cell b{display:block;color:var(--navy);font-size:1.08rem;letter-spacing:-.01em}
+  .menu td.price-cell a{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:700;color:var(--red);text-decoration:none;border-bottom:1px solid rgba(155,34,38,.35);padding-bottom:1px}
+  .menu td.price-cell a:hover{color:var(--navy);border-color:var(--navy)}
+  .menu tr[id]{scroll-margin-top:110px}
+  .menu-pro{margin-top:44px;padding:28px 32px;background:var(--white);border:1px solid var(--line-2);border-left:4px solid var(--red);border-radius:12px;box-shadow:var(--shadow-sm)}
+  .menu-pro h3{font-size:1.2rem;color:var(--navy);margin-bottom:10px}
+  .menu-pro p{font-family:"Georgia",serif;font-size:1rem;line-height:1.7;color:var(--ink-soft)}
+  .menu-pro a{color:var(--navy);font-weight:700}
+  .menu-fine{margin-top:26px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.8rem;color:var(--ink-mute);line-height:1.6;max-width:900px}
+  .menu-fine a{color:var(--navy);font-weight:700}
+  @media (max-width:940px){
+    .menu,.menu tbody,.menu tr,.menu td{display:block;width:auto}
+    .menu thead{display:none}
+    .menu tbody tr{padding:18px 20px;border-top:1px solid var(--line)}
+    .menu tbody tr:first-child{border-top:none}
+    .menu td{padding:0;border-top:none;width:auto}
+    .menu td:first-child{width:auto;margin-bottom:8px}
+    .menu td:nth-child(2){width:auto;margin-bottom:10px}
+    .menu td:nth-child(3){width:auto;white-space:normal;font-size:.8rem;color:var(--ink-mute)}
+    .menu td:nth-child(3)::before{content:"Turnaround: ";font-weight:700}
+    .menu td.price-cell{width:auto;text-align:left;white-space:normal;display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+    .menu td.price-cell b{display:inline}
+    .menu td.price-cell a{margin-top:0}
+    .menu-group{margin-top:36px}
+    .menu-pro{padding:22px 20px}
+  }
+  .page-buy-side .services.tight .section-head{max-width:860px;margin-bottom:0}
+  .page-buy-side .steps .step p{font-size:.95rem}
+  .detail-grid .card-body p.card-note,.why-grid .card-body p.card-note{margin-top:14px}
+  .why-grid .card-body .checks + p{margin-top:16px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.9rem;font-weight:700;color:var(--navy)}
+  /* v24: one more nav item. Keep the brand from shrinking and drop the phone from the bar until there is room (it stays in the drawer). */
+  .nav-inner .brand{flex:0 0 auto}
+  @media (min-width:1181px) and (max-width:1600px){nav.links .nav-phone{display:none}nav.links{gap:18px}nav.links a{font-size:.8rem}nav.links .btn-nav{padding:12px 18px}}
+  @media (min-width:1181px) and (max-width:1300px){nav.links{gap:14px}nav.links a{font-size:.78rem}}
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/insights/five-things-buyers-look-at-first#webpage", "url": "https://www.ic-usa.com/insights/five-things-buyers-look-at-first", "name": "Five things buyers look at first | Investment Consulting USA", "description": "Before a buyer looks at your trucks, your building or your website, they look at these five. Each one moves the price.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-10-28"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ic-usa.com/"}, {"@type": "ListItem", "position": 2, "name": "Insights", "item": "https://www.ic-usa.com/insights/"}, {"@type": "ListItem", "position": 3, "name": "Five things buyers look at first", "item": "https://www.ic-usa.com/insights/five-things-buyers-look-at-first"}]}]}</script>
 </head>
 <body class="page-insights has-sticky">
 <header class="topbar" id="topbar">
@@ -871,6 +927,7 @@ fbq('track','PageView');
     <nav class="links" id="navLinks">
       <a href="/sell-side" data-nav="sell">Sell Your Business</a>
       <a href="/deal-structure" data-nav="buy">Deal Review for Buyers</a>
+      <a href="/services" data-nav="services">Services</a>
       <a href="/track-record" data-nav="track">Track Record</a>
       <a href="/insights/" data-nav="insights" class="active">Insights</a>
       <a href="/about" data-nav="about">About</a>
@@ -1001,17 +1058,20 @@ fbq('track','PageView');
         <a href="/sell-side#assessment">Business Assessment of Value</a>
         <a href="/sell-side#exit">Exit Planning &amp; Business Prep</a>
         <a href="/sell-side#representation">Seller Representation</a>
+        <a href="/services#for-owners">Recast, CIM &amp; Data Room</a>
       </div>
       <div class="foot-col">
         <h4>Buying</h4>
         <a href="/deal-structure#packages">Deal Review from $199</a>
         <a href="/deal-structure">Deal Structure Advisory</a>
         <a href="/deal-structure#sessions">1-on-1 Advisor Sessions</a>
+        <a href="/buy-side">Buy-Side Transaction Advisory</a>
         <a href="/deal-structure#independence">Independence Policy</a>
         <a href="https://www.kerdaibusinessadvisors.com" target="_blank" rel="noopener">Businesses for Sale</a>
       </div>
       <div class="foot-col">
         <h4>Firm</h4>
+        <a href="/services">Services &amp; Pricing</a>
         <a href="/track-record">Track Record</a>
         <a href="/insights/">Insights</a>
         <a href="/state-of-main-street">State of Main Street 2026</a>
@@ -1096,7 +1156,7 @@ window.icusaPage = "insights page";
 (function(){
   var d=document, root=d.documentElement;
   // NOTE: .form-card and the estimator (.est-hero) are deliberately NOT hidden - lead forms must always render.
-  var SINGLES='.section-head, .about-photo, .about-copy, .map-card, .val-copy, .sectors, .buy-copy, .buy-card, .cta-band .cta-inner, .cta-contact, .firm-quote, .doors-fine, .rev-links, .row-cta, .ins-feature, .art-cta';  // v17: the estimator hero is never hidden
+  var SINGLES='.section-head, .about-photo, .about-copy, .map-card, .val-copy, .sectors, .buy-copy, .buy-card, .cta-band .cta-inner, .cta-contact, .firm-quote, .doors-fine, .rev-links, .row-cta, .ins-feature, .art-cta, .menu, .menu-pro, .menu-fine, .lede-p';  // v17: the estimator hero is never hidden
   var GRIDS=['.why-grid','.svc-grid','.steps','.creds-grid','.stats','.global-list','.val-assure','.mini-stats','.chips','.faq-list','.about-badges','.door-grid','.plan-grid','.closed-grid','.info-grid','.checks.rv-list','.rev-grid','.ins-grid'];
 
   root.classList.add('rv-js');   // only now can the CSS hide anything
