@@ -939,6 +939,43 @@ fbq('track','PageView');
     .lp-phone{display:inline-flex;align-items:center;min-height:44px}
     .est .r-cta .est-btn{width:100%}
   }
+  /* v6 (Nov 2 2026): refine my estimate */
+  .est .r-teaser{margin:0 0 18px;padding:12px 14px;border-left:3px solid var(--gold);background:var(--paper-2);border-radius:0 8px 8px 0}
+  .est .r-teaser p{margin:0;font:400 .95rem/1.55 var(--sans);color:var(--ink-soft)}
+  .est .linkish.inline{display:inline;margin:0;padding:0;font-size:inherit;line-height:inherit;color:var(--navy);font-weight:700}
+  .est .refine-cta{margin-top:18px;display:grid;gap:8px}
+  .est .refine-cta .est-btn{width:100%}
+  .est .refine-cta .finish-note{margin:0}
+  .est .refine .step-sub{margin-bottom:14px}
+  .est .rf-q{margin:0 0 20px;padding:0;border:0;min-width:0}
+  .est .rf-q legend{padding:0}
+  .est .rf-q .lbl{margin-bottom:10px}
+  .est .rf-n{display:inline-grid;place-items:center;width:24px;height:24px;margin-right:8px;border-radius:50%;background:var(--navy);color:var(--white);font:700 .78rem var(--sans);vertical-align:2px}
+  .est .rf-opts{display:grid;gap:8px}
+  .est .rf-opt{position:relative;display:block;cursor:pointer;min-width:0}
+  .est .rf-opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+  .est .rf-opt span{display:flex;align-items:center;min-height:48px;padding:10px 14px 10px 42px;border:1.5px solid var(--line-2);border-radius:8px;background:var(--paper);font:500 .98rem/1.35 var(--sans);color:var(--ink);position:relative}
+  .est .rf-opt span::before{content:"";position:absolute;left:14px;top:50%;width:16px;height:16px;margin-top:-9px;border:2px solid var(--line-2);border-radius:50%;background:var(--white)}
+  .est .rf-opt input:checked + span{background:var(--navy);border-color:var(--navy);color:var(--white)}
+  .est .rf-opt input:checked + span::before{border-color:var(--gold);background:var(--gold);box-shadow:inset 0 0 0 3px var(--navy)}
+  .est .rf-opt input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
+  .est .rf-q.invalid .rf-opt span{border-color:var(--red)}
+  .est .rf-money .hint{margin-bottom:8px}
+  .est .refined{padding:22px 20px 18px;border:2px solid var(--navy);border-left:6px solid var(--gold);border-radius:12px;background:var(--white)}
+  .est .refined .rf-range{font-size:1.9rem;margin:0}
+  .est .refined .r-rows{margin-top:14px}
+  .est .rf-three-h{margin:22px 0 10px;font:700 1.08rem/1.3 var(--sans);color:var(--navy)}
+  .est .r-three{margin:0;padding-left:0;list-style:none;display:grid;gap:10px;counter-reset:three}
+  .est .r-three li{position:relative;padding:12px 14px 12px 46px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font:400 .95rem/1.5 var(--sans);color:var(--ink-soft)}
+  .est .r-three li::before{counter-increment:three;content:counter(three);position:absolute;left:12px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--navy-900);font:700 .82rem/24px var(--sans);text-align:center}
+  .est .r-three li b{display:block;margin-bottom:2px;color:var(--navy)}
+  .est .rf-cta{margin-top:18px}
+  .est .rf-cta .est-btn{width:100%}
+  .est .rf-cta .r-phone{margin:0;font:600 1rem var(--sans);color:var(--navy)}
+  .est .rf-cta .r-phone a{color:var(--navy)}
+  .est .refined .r-ok{margin:16px 0 0}
+  .est .refined .r-src{margin-top:16px}
+  .est .r-block[hidden],.est .r-teaser[hidden]{display:none !important}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/#webpage", "url": "https://www.ic-usa.com/", "name": "What Is Your Business Worth? Free Estimate and Sell-Side M&A Advisory | Investment Consulting USA", "description": "Investment Consulting USA is a Miami-based M&A advisory firm. Free, confidential business value estimate in two minutes, sell-side representation for owners, and Deal Structure Advisory for buyers with deal reviews from $199.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-10-28"}]}</script>
 </head>
@@ -1106,6 +1143,10 @@ fbq('track','PageView');
 
           <p class="r-ok" id="rRequested" hidden></p>
 
+          <div class="r-teaser" id="rTeaser">
+            <p>This is a high-level range from four answers. Recurring revenue, customer concentration, how much depends on you and your add-backs can move it 20 to 40 percent either way. <button type="button" class="linkish inline" id="refineOpen">Refine my estimate (about 3 minutes)</button></p>
+          </div>
+
           <div class="r-block" id="rHow">
             <h3>How we got there</h3>
             <dl class="r-rows" id="rEarnings"></dl>
@@ -1117,7 +1158,7 @@ fbq('track','PageView');
             <p class="r-final"><span>Your estimated range</span><span id="rFinal"></span></p>
           </div>
 
-          <div class="r-block">
+          <div class="r-block" id="rCant">
             <h3>What this estimate can&rsquo;t see</h3>
             <ul class="r-cant">
               <li><strong>Recurring revenue.</strong> Service agreements, contracts and repeat customers raise what buyers will pay.</li>
@@ -1126,6 +1167,45 @@ fbq('track','PageView');
               <li><strong>Financing.</strong> Many buyers borrow to buy, often with an SBA loan. If a lender won&rsquo;t finance the price, the price usually comes down. We can check this before you go to market.</li>
               <li><strong>Add-backs.</strong> Personal or one-time expenses run through the business can raise your earnings, and your value, when they&rsquo;re documented.</li>
             </ul>
+            <div class="refine-cta">
+              <button type="button" class="est-btn est-primary" id="refineOpen2">Refine my estimate</button>
+              <p class="finish-note">9 quick questions, about 3 minutes, no documents. You get a tighter range and the three things that would move your number.</p>
+            </div>
+          </div>
+
+          <div class="r-block refine" id="rRefine" hidden>
+            <h3 id="rfH" tabindex="-1">Refine your estimate</h3>
+            <p class="step-sub">Nine quick questions. Your best guess is fine; nothing here is a listing and only the two senior advisors see your answers.</p>
+            <fieldset class="rf-q" id="rfq-trend"><legend class="lbl"><span class="rf-n">1</span>Over the last three years, revenue has been</legend><div class="rf-opts"><label class="rf-opt"><input type="radio" name="rf_trend" value="up10"><span>Growing 10% a year or more</span></label><label class="rf-opt"><input type="radio" name="rf_trend" value="up"><span>Growing a little</span></label><label class="rf-opt"><input type="radio" name="rf_trend" value="flat"><span>About flat</span></label><label class="rf-opt"><input type="radio" name="rf_trend" value="down"><span>Down somewhat</span></label><label class="rf-opt"><input type="radio" name="rf_trend" value="down15"><span>Down 15% or more</span></label></div></fieldset>
+<fieldset class="rf-q" id="rfq-recurring"><legend class="lbl"><span class="rf-n">2</span>How much of your revenue is recurring or under contract (service agreements, maintenance plans, retainers, subscriptions)?</legend><div class="rf-opts"><label class="rf-opt"><input type="radio" name="rf_recurring" value="r0"><span>Under 10%</span></label><label class="rf-opt"><input type="radio" name="rf_recurring" value="r10"><span>10 to 30%</span></label><label class="rf-opt"><input type="radio" name="rf_recurring" value="r30"><span>30 to 60%</span></label><label class="rf-opt"><input type="radio" name="rf_recurring" value="r60"><span>Over 60%</span></label></div></fieldset>
+<fieldset class="rf-q" id="rfq-concentration"><legend class="lbl"><span class="rf-n">3</span>Your largest customer is about what share of sales?</legend><div class="rf-opts"><label class="rf-opt"><input type="radio" name="rf_concentration" value="c10"><span>Under 10%</span></label><label class="rf-opt"><input type="radio" name="rf_concentration" value="c20"><span>10 to 20%</span></label><label class="rf-opt"><input type="radio" name="rf_concentration" value="c35"><span>20 to 35%</span></label><label class="rf-opt"><input type="radio" name="rf_concentration" value="c35p"><span>Over 35%</span></label></div></fieldset>
+<fieldset class="rf-q" id="rfq-owner"><legend class="lbl"><span class="rf-n">4</span>If you stepped away for a month, what would happen?</legend><div class="rf-opts"><label class="rf-opt"><input type="radio" name="rf_owner" value="runs"><span>It would run fine; a manager handles day to day</span></label><label class="rf-opt"><input type="radio" name="rf_owner" value="mostly"><span>It would run, with a few calls to me</span></label><label class="rf-opt"><input type="radio" name="rf_owner" value="staff"><span>Things would slip; I run it day to day</span></label><label class="rf-opt"><input type="radio" name="rf_owner" value="me"><span>It would stop; customers, licenses or key relationships depend on me</span></label></div></fieldset>
+<fieldset class="rf-q" id="rfq-staff"><legend class="lbl"><span class="rf-n">5</span>Your key people (managers, lead techs, top producers)</legend><div class="rf-opts"><label class="rf-opt"><input type="radio" name="rf_staff" value="long"><span>Most have been with me 3+ years</span></label><label class="rf-opt"><input type="radio" name="rf_staff" value="mixed"><span>A mix of long-time and newer people</span></label><label class="rf-opt"><input type="radio" name="rf_staff" value="new"><span>Mostly new, or I have had turnover</span></label></div></fieldset>
+<div class="rf-q rf-money" id="rfq-addbacks"><label class="lbl" for="rfAdd"><span class="rf-n">6</span>Personal or one-time expenses run through the business each year</label><p class="hint">Your best guess. A personal vehicle or phone, travel, health insurance you did not count earlier, family on payroll who do not work in the business, a one-time lawsuit, repair or bad debt. Enter 0 if none.</p><div class="money"><span class="cur" aria-hidden="true">$</span><input class="inp" id="rfAdd" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 25,000"></div><p class="err" id="rfAdd-err"></p></div>
+<fieldset class="rf-q" id="rfq-books"><legend class="lbl"><span class="rf-n">7</span>Your books and tax returns</legend><div class="rf-opts"><label class="rf-opt"><input type="radio" name="rf_books" value="cpa"><span>Match, and a CPA prepares them</span></label><label class="rf-opt"><input type="radio" name="rf_books" value="mostly"><span>Mostly match; some cash or unrecorded items</span></label><label class="rf-opt"><input type="radio" name="rf_books" value="messy"><span>Would need a cleanup before anyone looks</span></label></div></fieldset>
+<fieldset class="rf-q" id="rfq-years"><legend class="lbl"><span class="rf-n">8</span>How long has the business been operating?</legend><div class="rf-opts"><label class="rf-opt"><input type="radio" name="rf_years" value="y3"><span>Under 3 years</span></label><label class="rf-opt"><input type="radio" name="rf_years" value="y10"><span>3 to 10 years</span></label><label class="rf-opt"><input type="radio" name="rf_years" value="y10p"><span>More than 10 years</span></label></div></fieldset>
+<fieldset class="rf-q" id="rfq-premises"><legend class="lbl"><span class="rf-n">9</span>Your location</legend><div class="rf-opts"><label class="rf-opt"><input type="radio" name="rf_premises" value="own"><span>I own the real estate</span></label><label class="rf-opt"><input type="radio" name="rf_premises" value="lease5"><span>Leased, 3+ years left or renewal options</span></label><label class="rf-opt"><input type="radio" name="rf_premises" value="lease2"><span>Leased, under 2 years left, or month to month</span></label><label class="rf-opt"><input type="radio" name="rf_premises" value="none"><span>No fixed premises or home-based</span></label></div></fieldset>
+            <p class="form-err" id="rfErr" role="alert" hidden></p>
+            <div class="finish">
+              <button type="button" class="est-btn est-primary big" id="refineGo">See my refined range</button>
+              <button type="button" class="linkish back" id="refineCancel">Not now</button>
+            </div>
+          </div>
+
+          <div class="r-block refined" id="rRefined" hidden>
+            <p class="r-eyebrow">Refined estimate</p>
+            <h3 class="r-range rf-range" id="rfRange" tabindex="-1"></h3>
+            <p class="r-mid" id="rfMid"></p>
+            <dl class="r-rows" id="rfEarn" hidden></dl>
+            <p class="r-lead">What your answers changed:</p>
+            <ul class="r-adj" id="rfAdj"></ul>
+            <p class="r-final"><span>Your refined range</span><span id="rfFinal"></span></p>
+            <h4 class="rf-three-h">The three things that would move your number</h4>
+            <ol class="r-three" id="rfThree"></ol>
+            <p class="r-ok" id="rfSaved" hidden></p>
+            <div class="r-cta rf-cta" id="rfCta"></div>
+            <p class="r-src">The refined range applies typical buyer and lender adjustments to your answers. It is still a general estimate, not an appraisal; the complimentary Broker&rsquo;s Opinion of Value is prepared by a senior advisor after your call.</p>
+            <button type="button" class="linkish" id="refineEdit">Change my refine answers</button>
           </div>
 
           <div class="r-next" id="rNext">
@@ -1444,7 +1524,8 @@ var FORM_ENDPOINT     = "https://script.google.com/macros/s/AKfycbyR2e2i1GXhVdU1
 var TURNSTILE_SITEKEY = "0x4AAAAAAEmLjgQpu40wKZ1H"; // Cloudflare Turnstile (the bridge rejects posts without a token)
 var BOOKING_URL       = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3o4wz56cO7OLnOIqlBEq_jSgJr6vZXQwWF4WKy4Io8q-5AUq11uKT6o9ofzfhk6RBEBJBqUgaZ";   // Optional scheduling link (e.g. a Google Calendar booking page). "" shows the phone number only.
 var CALL_MIN_REVENUE  = 300000;   // owners below this yearly revenue get the report path only (no call offer, no calendar)
-var SOURCE_LABEL      = "Value Calculator"; // shown in the Notes field; the Source field is Website or Meta Ads
+var SOURCE_LABEL      = "Value Calculator";
+var PAGE_PATH         = "/";   // v6: the refine link in the report email points back here // shown in the Notes field; the Source field is Website or Meta Ads
 
 var MANAGER_SALARY = 125000;  // market pay for a general manager; SDE minus this = adjusted EBITDA
 var EBITDA_FROM    = 500000;  // SDE where the larger-company method starts to count
@@ -1557,7 +1638,7 @@ function dsVal(ind, tier, k){
 function estimate(a){
   var ind = IND[a.industry];
   var tier = a.revenue < 1e6 ? 0 : (a.revenue <= 5e6 ? 1 : 2);
-  var sde = a.net + a.owner;
+  var sde = a.net + a.owner + (a.addbacks > 0 ? a.addbacks : 0);   // v6: refine add-backs
   var r = {ind:ind, tier:tier, sde:sde, methods:[], adj:[], notes:[], ok:false};
   if (!(sde > 0)) return r;
 
@@ -1835,7 +1916,7 @@ function buildPayload(a, r, leadId){
     industry:r.ind.label, state:STATE_NAME[a.state] || a.state, employees:TEAM[a.team].bucket,
     revenue:revBucket(a.revenue), timeline:a.timeline, notes:lines.join("\n"),
     source:(window.icusaSource ? window.icusaSource() : "Website"), sms_consent:a.sms && a.phone ? "yes" : "", company:a.company,
-    report:$("reportMode").value, lead_id:leadId,
+    report:$("reportMode").value, lead_id:leadId, page:PAGE_PATH,
     est:{ok:r.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, gross:a.gross, net:a.net, owner:a.owner, sde:r.sde,
          lo:r.lo, mid:r.mid, hi:r.hi, baseLo:r.ok ? roundNice(r.baseLo) : 0, baseHi:r.ok ? roundNice(r.baseHi) : 0,
          methods:(r.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
@@ -1849,14 +1930,14 @@ function submitNow(){
   var err = $("formErr"); err.hidden = true;
   for (var i = 0; i < 4; i++) { if (!validate(i)) { if (i !== cur) { show(i); validate(i); } return; } }
   var a = collect(), r = estimate(a);
-  var leadId = "vc-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
+  var leadId = LAST.leadId = "vc-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
   if (!callFit(a)) $("reportMode").value = "email";
   var payload = buildPayload(a, r, leadId);
 
   if (!LIVE) {
     var shown = {}; Object.keys(payload).forEach(function(k){ if (k !== "cf-turnstile-response" && k !== "company") shown[k] = payload[k]; });
     if ($("payloadOut")) $("payloadOut").textContent = JSON.stringify(shown, null, 2);
-    renderResult(a, r, false);
+    saveSession(a, leadId); renderResult(a, r, false);
     return;
   }
   if (TURNSTILE_SITEKEY && !tsToken && !tsFallback) {
@@ -1876,6 +1957,7 @@ function submitNow(){
     .then(function(res){ return res.json().catch(function(){ return {ok:res.ok}; }); })
     .then(function(out){
       var saved = !!(out && out.ok);
+      if (saved) saveSession(a, leadId);
       if (saved) { px("track", "Lead", {content_name:"Business value estimate"}, {eventID:leadId}); px("trackCustom", $("reportMode").value === "email" ? "ReportByEmail" : "BookCallIntent"); }
       else px("trackCustom", "EstimatorSendFailed", {ts:payload.ts_status});
       renderResult(a, r, !saved);
@@ -1890,6 +1972,7 @@ function row(dl, label, value, cls){
   var d = el("div", cls); d.appendChild(el("dt", null, label)); d.appendChild(el("dd", null, value)); dl.appendChild(d);
 }
 function renderResult(a, r, sendFailed){
+  LAST.a = a; LAST.r = r; LAST.failed = !!sendFailed; refineReset();
   $("rEyebrow").textContent = a.bizName ? "Estimated value · " + a.bizName : "Estimated value";
   var notes = $("rNotes"); notes.innerHTML = "";
   if (sendFailed) notes.appendChild(el("li", "alert", "We couldn’t save your details just now. To talk with an advisor, call (561) 765-2303."));
@@ -1954,6 +2037,188 @@ function renderResult(a, r, sendFailed){
   try { $("rRange").focus({preventScroll:true}); } catch (e) { $("rRange").focus(); }
   keepCardInView();
 }
+
+
+/* ===== v6 (Nov 2 2026): refine my estimate ===== */
+var REFINE = {"trend":{"q":"Over the last three years, revenue has been","opts":{"up10":{"f":1.06,"label":"Growing 10% a year or more","adj":"Revenue growing 10%+ a year","t":"Keep the growth documented","tip":"Buyers pay a premium for a clear upward trend and lenders underwrite on the latest year. Keep monthly P&Ls that show it."},"up":{"f":1.03,"label":"Growing a little","adj":"Revenue growing","t":null,"tip":null},"flat":{"f":1.0,"label":"About flat","adj":"Revenue flat","t":null,"tip":null},"down":{"f":0.92,"label":"Down somewhat","adj":"Revenue declining","t":"Settle the decline with data","tip":"Buyers price a declining business on the trend, not the three-year average. Show what caused it and what reversed it, or wait for two better quarters before going to market."},"down15":{"f":0.85,"label":"Down 15% or more","adj":"Revenue down 15%+","t":"Reverse the decline before you sell","tip":"A steep decline is the hardest thing to price around. Buyers and lenders will assume it continues unless the latest months prove otherwise. Fix it first, then sell."}}},"recurring":{"q":"How much of your revenue is recurring or under contract (service agreements, maintenance plans, retainers, subscriptions)?","opts":{"r0":{"f":1.0,"label":"Under 10%","adj":"Little recurring revenue","t":"Build some recurring revenue","tip":"Even a simple maintenance plan or service agreement turns one-time jobs into recurring revenue, the thing buyers pay the most for. A year of it shows up in the price."},"r10":{"f":1.03,"label":"10 to 30%","adj":"Some recurring revenue","t":null,"tip":null},"r30":{"f":1.06,"label":"30 to 60%","adj":"Strong recurring revenue","t":"Protect the recurring base","tip":"Put the agreements in writing with auto-renewal and make sure they transfer to a new owner. Buyers verify every one."},"r60":{"f":1.1,"label":"Over 60%","adj":"Mostly recurring revenue","t":"Protect the recurring base","tip":"Put the agreements in writing with auto-renewal and make sure they transfer to a new owner. This is the strongest thing in your valuation."}}},"concentration":{"q":"Your largest customer is about what share of sales?","opts":{"c10":{"f":1.02,"label":"Under 10%","adj":"No customer concentration","t":null,"tip":null},"c20":{"f":1.0,"label":"10 to 20%","adj":"Mild customer concentration","t":null,"tip":null},"c35":{"f":0.94,"label":"20 to 35%","adj":"One customer at 20-35% of sales","t":"Reduce customer concentration","tip":"Buyers and SBA lenders discount a business where one customer is above 20% of sales. A written contract with that customer, or two new accounts of real size, narrows the gap."},"c35p":{"f":0.88,"label":"Over 35%","adj":"One customer above 35% of sales","t":"Reduce customer concentration","tip":"Above 35% most lenders will not finance the full price and many buyers walk. A multi-year contract with that customer helps; diversifying before the sale helps more."}}},"owner":{"q":"If you stepped away for a month, what would happen?","opts":{"runs":{"f":1.06,"label":"It would run fine; a manager handles day to day","adj":"Runs without the owner","t":"Keep the manager","tip":"A business that runs without the owner is what every buyer wants. Make sure your manager will stay through a transition; a stay bonus is cheap insurance."},"mostly":{"f":1.02,"label":"It would run, with a few calls to me","adj":"Mostly runs without the owner","t":null,"tip":null},"staff":{"f":0.97,"label":"Things would slip; I run it day to day","adj":"Owner runs day to day","t":"Make the business run without you","tip":"Document your processes and give one person authority over scheduling, customers and cash. Buyers pay for a business that does not need its owner."},"me":{"f":0.88,"label":"It would stop; customers, licenses or key relationships depend on me","adj":"Depends on the owner","t":"Move relationships and licenses off you","tip":"This is the single biggest discount buyers apply. Start moving customer relationships to a second person now, and if a license is in your name, plan how it transfers to a buyer."}}},"staff":{"q":"Your key people (managers, lead techs, top producers)","opts":{"long":{"f":1.03,"label":"Most have been with me 3+ years","adj":"Long-tenured key people","t":null,"tip":null},"mixed":{"f":1.0,"label":"A mix of long-time and newer people","adj":"Mixed staff tenure","t":null,"tip":null},"new":{"f":0.96,"label":"Mostly new, or I have had turnover","adj":"New team or turnover","t":"Lock in your key people","tip":"Buyers worry a team will leave with the owner. Simple retention agreements or stay bonuses for your two or three key people take that risk off the table."}}},"books":{"q":"Your books and tax returns","opts":{"cpa":{"f":1.03,"label":"Match, and a CPA prepares them","adj":"Clean books, CPA-prepared","t":null,"tip":null},"mostly":{"f":0.95,"label":"Mostly match; some cash or unrecorded items","adj":"Some unrecorded income","t":"Get everything on the books","tip":"Buyers can only pay for income they can verify, and lenders only finance what is on the tax return. Run everything through the books for two years before you sell."},"messy":{"f":0.9,"label":"Would need a cleanup before anyone looks","adj":"Books need a cleanup","t":"Clean up the books first","tip":"A cleanup with your CPA is the highest-return thing you can do before a sale: earnings a buyer cannot verify are priced at zero."}}},"years":{"q":"How long has the business been operating?","opts":{"y3":{"f":0.92,"label":"Under 3 years","adj":"Under 3 years of history","t":"Build three years of returns","tip":"Most buyers and every SBA lender want three years of tax returns. Value firms up with each year of history, so the timing of a sale matters."},"y10":{"f":1.0,"label":"3 to 10 years","adj":"3-10 years in business","t":null,"tip":null},"y10p":{"f":1.03,"label":"More than 10 years","adj":"10+ years in business","t":null,"tip":null}}},"premises":{"q":"Your location","opts":{"own":{"f":1.0,"label":"I own the real estate","adj":"Owns the real estate","t":"Decide what to do with the real estate","tip":"The real estate is valued separately from the business and is not in this range. You can sell it with the business or keep it and lease it to the buyer; both can work, and the choice affects your price and your taxes."},"lease5":{"f":1.0,"label":"Leased, 3+ years left or renewal options","adj":"Lease in place","t":null,"tip":null},"lease2":{"f":0.95,"label":"Leased, under 2 years left, or month to month","adj":"Short lease","t":"Extend the lease before you sell","tip":"Buyers and lenders want a lease that covers the loan term, usually 10 years with options. Negotiate the extension before you go to market, not during due diligence."},"none":{"f":1.0,"label":"No fixed premises or home-based","adj":"No premises risk","t":null,"tip":null}}}};
+var REFINE_ORDER = ["trend", "recurring", "concentration", "owner", "staff", "books", "years", "premises"];
+var REFINE_MIN = 0.65, REFINE_MAX = 1.35;
+var LAST = {};
+function saveSession(a, leadId){
+  try {
+    var s = {}; Object.keys(a).forEach(function(k){ if (k !== "company") s[k] = a[k]; });
+    localStorage.setItem("icusaEst", JSON.stringify({v:1, leadId:leadId, a:s, mode:$("reportMode").value, t:Date.now()}));
+  } catch (e) {}
+}
+function refineReset(){
+  $("rRefine").hidden = true; $("rRefined").hidden = true; $("rCant").hidden = false; $("rTeaser").hidden = false;
+  Array.prototype.forEach.call(document.querySelectorAll("#rRefine input[type=radio]"), function(r){ r.checked = false; });
+  $("rfAdd").value = ""; $("rfErr").hidden = true; LAST.refined = null;
+}
+var refineStarted = false;
+function refineOpen(){
+  $("rCant").hidden = true; $("rRefined").hidden = true; $("rRefine").hidden = false; $("rTeaser").hidden = true;
+  if (!refineStarted) { refineStarted = true; px("trackCustom", "RefineStart"); }
+  var h = $("rfH"); try { h.focus({preventScroll:true}); } catch (e) { h.focus(); }
+  $("rRefine").scrollIntoView({behavior:reduceMotion ? "auto" : "smooth", block:"start"});
+}
+$("refineOpen").addEventListener("click", refineOpen);
+$("refineOpen2").addEventListener("click", refineOpen);
+$("refineCancel").addEventListener("click", function(){ $("rRefine").hidden = true; $("rCant").hidden = false; $("rTeaser").hidden = false; $("rCant").scrollIntoView({behavior:reduceMotion ? "auto" : "smooth", block:"start"}); });
+$("refineEdit").addEventListener("click", refineOpen);
+$("rfAdd").addEventListener("blur", function(){ var v = parseMoney(this.value); if (isFinite(v)) this.value = Math.round(Math.abs(v)).toLocaleString("en-US"); });
+$("rfAdd").addEventListener("input", function(){ $("rfAdd-err").textContent = ""; });
+Array.prototype.forEach.call(document.querySelectorAll("#rRefine input[type=radio]"), function(r){ r.addEventListener("change", function(){ r.closest(".rf-q").classList.remove("invalid"); }); });
+
+function refineCompute(){
+  var a = LAST.a, r = LAST.r; if (!a) return null;
+  var items = [], fac = 1, missing = [], ans = {};
+  REFINE_ORDER.forEach(function(k){
+    var c = document.querySelector('input[name="rf_' + k + '"]:checked'), q = $("rfq-" + k);
+    q.classList.toggle("invalid", !c);
+    if (!c) { missing.push(q); return; }
+    var o = REFINE[k].opts[c.value]; ans[k] = c.value; fac *= o.f;
+    items.push({k:k, q:REFINE[k].q, a:o.label, adj:o.adj, f:o.f, t:o.t, tip:o.tip});
+  });
+  var raw = $("rfAdd").value.trim(), add = raw === "" ? 0 : parseMoney(raw);
+  var addErr = !isFinite(add) || add < 0 ? "Enter a number, or 0 if none." : add > a.revenue ? "This can’t be more than revenue (" + money(a.revenue) + ")." : "";
+  $("rfAdd-err").textContent = addErr;
+  if (missing.length || addErr) {
+    var err = $("rfErr"); err.textContent = missing.length ? "Answer every question. Your best guess is fine." : addErr; err.hidden = false;
+    (missing.length ? missing[0] : $("rfAdd")).scrollIntoView({behavior:reduceMotion ? "auto" : "smooth", block:"center"});
+    return null;
+  }
+  $("rfErr").hidden = true;
+  var rawFac = fac; fac = clamp(fac, REFINE_MIN, REFINE_MAX);
+  var a2 = {}; Object.keys(a).forEach(function(k){ a2[k] = a[k]; }); a2.addbacks = add;
+  var r2 = estimate(a2);
+  var out = {ans:ans, items:items, add:add, fac:fac, rawFac:rawFac, r2:r2, ok:r2.ok};
+  if (r2.ok) { out.lo = roundNice(r2.lo * fac); out.mid = roundNice(r2.mid * fac); out.hi = roundNice(r2.hi * fac); }
+  // The three things: the weakest answers first (biggest discount), then add-back documentation, then notes, then strengths to protect.
+  var fixes = items.filter(function(x){ return x.f < 1 && x.tip; }).sort(function(p, q){ return p.f - q.f; });
+  var notes = items.filter(function(x){ return x.f === 1 && x.tip; });
+  var keeps = items.filter(function(x){ return x.f > 1 && x.tip; }).sort(function(p, q){ return q.f - p.f; });
+  var three = fixes.map(function(x){ return {t:x.t, tip:x.tip, kind:"fix"}; });
+  if (add > 0) three.push({t:"Document your add-backs", tip:"Keep the invoice, payroll record or statement behind each of the " + money(add) + " in add-backs. Undocumented add-backs are the first thing a buyer’s lender strikes, and each dollar struck costs you two to three dollars of price.", kind:"note"});
+  notes.forEach(function(x){ three.push({t:x.t, tip:x.tip, kind:"note"}); });
+  keeps.forEach(function(x){ three.push({t:x.t, tip:x.tip, kind:"keep"}); });
+  out.three = three.slice(0, 3);
+  return out;
+}
+function refineRender(o){
+  var a = LAST.a, r = LAST.r;
+  var adj = $("rfAdj"); adj.innerHTML = "";
+  var earn = $("rfEarn"); earn.innerHTML = ""; earn.hidden = !(o.add > 0 && o.ok);
+  if (o.ok) {
+    $("rfRange").textContent = short(o.lo) + " – " + short(o.hi);
+    var pc = Math.round((o.fac - 1) * 100);
+    $("rfMid").textContent = (r.ok ? "Your first range from four answers was " + short(r.lo) + " – " + short(r.hi) + ". " : "With your add-backs there is now a range. ")
+      + "Midpoint about " + short(o.mid) + ", or roughly " + fx(o.lo / o.r2.sde) + " to " + fx(o.hi / o.r2.sde) + " your yearly earnings"
+      + (o.add > 0 ? " of " + money(o.r2.sde) + " including add-backs" : "") + ".";
+    if (o.add > 0) {
+      row(earn, "Earnings a buyer would count, before add-backs", money(r.sde));
+      row(earn, "Plus personal and one-time expenses (your estimate)", money(o.add));
+      row(earn, "Seller’s discretionary earnings, refined", money(o.r2.sde), "total");
+      var li0 = el("li"); li0.appendChild(el("span", null, "Add-backs of " + money(o.add) + " raise your earnings")); li0.appendChild(el("span", "pill up", "+" + money(o.add) + " SDE")); adj.appendChild(li0);
+    }
+    $("rfFinal").textContent = short(o.lo) + " – " + short(o.hi);
+  } else {
+    $("rfRange").textContent = "Let’s look at this together";
+    $("rfMid").textContent = "Even with add-backs, net income plus what the business pays you is not positive, so there is no earnings-based range yet. The three things below still apply, and an advisor can walk you through how buyers would price the equipment, contracts or a turnaround plan.";
+    $("rfFinal").textContent = "—";
+  }
+  o.items.forEach(function(x){
+    var li = el("li"); li.appendChild(el("span", null, x.adj));
+    var p = Math.round((x.f - 1) * 100);
+    li.appendChild(el("span", "pill" + (p > 0 ? " up" : p < 0 ? " down" : ""), p === 0 ? "No change" : (p > 0 ? "+" : "−") + Math.abs(p) + "%"));
+    adj.appendChild(li);
+  });
+  if (o.rawFac !== o.fac) { var lc = el("li"); lc.appendChild(el("span", null, "Combined adjustments are limited to " + (o.fac < 1 ? "−" : "+") + Math.round(Math.abs(o.fac - 1) * 100) + "% in this estimate")); lc.appendChild(el("span", "pill", "cap")); adj.appendChild(lc); }
+  var ol = $("rfThree"); ol.innerHTML = "";
+  o.three.forEach(function(x){ var li = el("li"); li.appendChild(el("b", null, x.t)); li.appendChild(document.createTextNode(x.tip)); ol.appendChild(li); });
+  var cta = $("rfCta"); cta.innerHTML = "";
+  var fit = callFit(a);
+  if (fit && BOOKING_URL) {
+    var b = el("a", "est-btn est-gold", "Go over these three things with a senior advisor"); b.href = BOOKING_URL; b.target = "_blank"; b.rel = "noopener";
+    var cal = $("calEmbed");
+    if (cal && !cal.hidden) b.addEventListener("click", function(e){ e.preventDefault(); $("rNext").scrollIntoView({behavior:reduceMotion ? "auto" : "smooth", block:"start"}); });
+    cta.appendChild(b);
+    var ph = el("p", "r-phone"); ph.appendChild(document.createTextNode("20 minutes, free and confidential. Or call ")); var pa = el("a", null, "(561) 765-2303"); pa.href = "tel:+15617652303"; ph.appendChild(pa); cta.appendChild(ph);
+  } else {
+    var ph2 = el("p", "r-phone"); ph2.appendChild(document.createTextNode("Questions about these? Reply to your report email or call ")); var pa2 = el("a", null, "(561) 765-2303"); pa2.href = "tel:+15617652303"; ph2.appendChild(pa2); cta.appendChild(ph2);
+  }
+  $("rRefine").hidden = true; $("rRefined").hidden = false;
+  try { $("rfRange").focus({preventScroll:true}); } catch (e) { $("rfRange").focus(); }
+  $("rRefined").scrollIntoView({behavior:reduceMotion ? "auto" : "smooth", block:"start"});
+}
+function refinePayload(o){
+  var a = LAST.a, r = LAST.r, r2 = o.r2;
+  var lines = ["[Refined estimate] " + new Date().toLocaleDateString("en-US") + " | 9 answers | combined adjustment " + (o.fac >= 1 ? "+" : "−") + Math.round(Math.abs(o.fac - 1) * 100) + "%" + (o.add > 0 ? " | add-backs " + money(o.add) : "")];
+  o.items.forEach(function(x){ lines.push("- " + x.q.replace(/\?$/, "") + ": " + x.a + " (" + (x.f === 1 ? "no change" : (x.f > 1 ? "+" : "−") + Math.round(Math.abs(x.f - 1) * 100) + "%") + ")"); });
+  lines.push("- Add-backs (owner estimate): " + money(o.add) + (o.ok ? " | refined SDE " + money(r2.sde) : ""));
+  lines.push(o.ok ? "Refined estimate: " + money(o.lo) + " – " + money(o.hi) + " (mid " + money(o.mid) + "; was " + (r.ok ? money(r.lo) + " – " + money(r.hi) : "no range") + ")" : "Refined estimate: none (earnings still not positive)");
+  lines.push("Three things: " + o.three.map(function(x){ return x.t; }).join(" | "));
+  return {
+    refine:1, lead_id:LAST.leadId, email:a.email, fname:a.fname, page:PAGE_PATH,
+    source:(window.icusaSource ? window.icusaSource() : "Website"), notes:lines.join("\n"),
+    answers:o.items.map(function(x){ return {q:x.q, a:x.a, pct:Math.round((x.f - 1) * 100)}; }), addbacks:o.add, factor:Math.round(o.fac * 1000) / 1000,
+    est:{ok:o.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, gross:a.gross, net:a.net, owner:a.owner, addbacks:o.add, sde:r2.sde,
+         lo:o.ok ? o.lo : 0, mid:o.ok ? o.mid : 0, hi:o.ok ? o.hi : 0, baseLo:r2.ok ? roundNice(r2.baseLo) : 0, baseHi:r2.ok ? roundNice(r2.baseHi) : 0,
+         prevLo:r.ok ? r.lo : 0, prevHi:r.ok ? r.hi : 0, prevMid:r.ok ? r.mid : 0,
+         methods:(r2.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
+         adj:(r2.adj || []).map(function(x){ return {label:x.label, pct:Math.round((x.f - 1) * 100)}; }),
+         refine:o.items.map(function(x){ return {label:x.adj, pct:Math.round((x.f - 1) * 100)}; }),
+         three:o.three.map(function(x){ return {t:x.t, tip:x.tip}; }),
+         notes:(r2.notes || []).map(function(n){ return n.text; })},
+    elapsed:Date.now() - PAGE_LOADED
+  };
+}
+$("refineGo").addEventListener("click", function(){
+  var o = refineCompute(); if (!o) return;
+  LAST.refined = o; px("trackCustom", "RefineComplete", {pct:Math.round((o.fac - 1) * 100)});
+  refineRender(o);
+  var saved = $("rfSaved"); saved.hidden = true;
+  if (!LAST.leadId || LAST.failed) { saved.textContent = "Your refined range is on screen. We could not save it to your file, so mention it when you talk to an advisor."; saved.hidden = false; return; }
+  var payload = refinePayload(o);
+  if (!LIVE) { if ($("payloadOut")) $("payloadOut").textContent = JSON.stringify(payload, null, 2); saved.textContent = "Saved to your file (demo)."; saved.hidden = false; return; }
+  var btn = $("refineGo"); btn.disabled = true;
+  fetch(FORM_ENDPOINT, {method:"POST", body:JSON.stringify(payload)})
+    .then(function(res){ return res.json().catch(function(){ return {ok:res.ok}; }); })
+    .then(function(out){
+      var ok = !!(out && out.ok);
+      if (ok) { px("trackCustom", "RefineSaved"); saved.textContent = "Saved to your file. " + (o.ok ? "Your refined Preliminary Value Report is on its way to " + LAST.a.email + "." : "A senior advisor will go over these with you."); }
+      else saved.textContent = "Your refined range is on screen, but we could not save it just now. Mention it when you talk to an advisor, or call (561) 765-2303.";
+      saved.hidden = false;
+    })
+    .catch(function(){ saved.textContent = "Your refined range is on screen, but we could not save it just now. Mention it when you talk to an advisor."; saved.hidden = false; })
+    .then(function(){ btn.disabled = false; });
+});
+// Report email link (?r=<lead id>): restore the answers saved on this device and open Refine.
+(function restoreFromLink(){
+  var id; try { id = new URLSearchParams(window.location.search).get("r"); } catch (e) { return; }
+  if (!id) return;
+  var s = null; try { s = JSON.parse(localStorage.getItem("icusaEst") || "null"); } catch (e) {}
+  if (!s || s.leadId !== id || !s.a) { try { calc.scrollIntoView({block:"start"}); } catch (e) {} return; }
+  var a = s.a;
+  try {
+    $("industry").value = a.industry; $("state").value = a.state;
+    var tr = form.querySelector('input[name="team"][value="' + a.team + '"]'); if (tr) tr.checked = true;
+    $("revenue").value = Math.round(a.revenue).toLocaleString("en-US");
+    $("net").value = Math.round(Math.abs(a.net)).toLocaleString("en-US"); $("netLoss").checked = a.net < 0;
+    $("owner").value = Math.round(a.owner).toLocaleString("en-US");
+    $("name").value = a.name || ""; $("email").value = a.email || ""; $("phone").value = a.phone || "";
+    if (a.timeline) { var ts = $("timeline"); ts.value = a.timeline; if (ts.value !== a.timeline) { var op = document.createElement("option"); op.textContent = a.timeline; ts.appendChild(op); ts.value = a.timeline; } }
+    $("reportMode").value = s.mode || "email";
+  } catch (e) { return; }
+  var a1 = collect(), r1 = estimate(a1);
+  LAST.leadId = id; LAST.failed = false; started = true; detailsSeen = true; qualifiedSeen = true;
+  renderResult(a1, r1, false);
+  var req = $("rRequested"); req.textContent = "Welcome back" + (a1.fname ? ", " + a1.fname : "") + ". Your answers are restored; refine your estimate below."; req.hidden = false;
+  // Open Refine and scroll to it only after the page has finished loading: Chrome resets the scroll position at load.
+  try { history.scrollRestoration = "manual"; } catch (e) {}
+  var go = function(){ setTimeout(function(){ refineOpen(); setTimeout(function(){ try { window.scrollTo(0, $("rRefine").getBoundingClientRect().top + window.pageYOffset - 12); } catch (e) {} }, 60); }, 250); };
+  if (document.readyState === "complete") go(); else window.addEventListener("load", go);
+})();
 
 $("editAnswers").addEventListener("click", function(){ result.hidden = true; form.hidden = false; show(0); });
 
