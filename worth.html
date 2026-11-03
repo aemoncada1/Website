@@ -743,6 +743,9 @@ fbq('track','PageView');
   .est .refined .r-src{margin-top:16px}
   .est .r-block[hidden],.est .r-teaser[hidden]{display:none !important}
 
+  /* v7 (Nov 3 2026): name + email before the range */
+  .est #s4Lead{margin-top:0;padding-top:0;border-top:0}
+  .est .tl-field{margin-top:6px}
   /* ===== /worth: Close-AI SMS landing page (Nov 1 2026) ===== */
   .lp-head-sms .lp-from{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;font:600 .82rem/1.3 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--gold-soft)}
   .lp-head-sms .lp-from-dot{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex:0 0 7px}
@@ -880,20 +883,7 @@ fbq('track','PageView');
 
           <div class="est-step" id="step4" role="group" aria-labelledby="s4h" data-name="Your estimate" hidden>
             <h2 id="s4h" tabindex="-1">Your range is ready.</h2>
-            <div class="r-peek" id="peek" aria-live="polite">
-              <p class="r-eyebrow">Estimated value</p>
-              <p class="peek-range" id="peekRange"></p>
-              <p class="peek-mid" id="peekMid"></p>
-            </div>
-            <div class="est-field">
-              <p class="lbl" id="tl-label">When might you consider selling?</p>
-              <div class="est-chips tl-chips" id="tlChips" role="group" aria-labelledby="tl-label">
-                <button type="button" class="tl-chip" data-tl="Within 12 months">Within 12 months</button>
-                <button type="button" class="tl-chip" data-tl="1 &ndash; 3 years">1 to 3 years</button>
-                <button type="button" class="tl-chip" data-tl="Exploring / curious">Just exploring</button>
-              </div>
-            </div>
-            <p class="step-sub strong" id="s4Lead">Book your free 20-minute call: enter your name and email, then pick a time. Your answers stay confidential. We never sell or share them.</p>
+            <p class="step-sub strong" id="s4Lead">Enter your name and email to see your range on screen. Your Preliminary Value Report follows by email. Your answers stay confidential. We never sell or share them.</p>
             <div class="est-field">
               <label class="lbl" for="name">Your name</label>
               <input class="inp" id="name" type="text" autocomplete="name">
@@ -909,11 +899,19 @@ fbq('track','PageView');
               <input class="inp" id="phone" type="tel" autocomplete="tel" inputmode="tel">
               <p class="err" id="phone-err"></p>
             </div>
+            <div class="est-field tl-field">
+              <p class="lbl" id="tl-label">When might you consider selling? <span class="opt">optional</span></p>
+              <div class="est-chips tl-chips" id="tlChips" role="group" aria-labelledby="tl-label">
+                <button type="button" class="tl-chip" data-tl="Within 12 months">Within 12 months</button>
+                <button type="button" class="tl-chip" data-tl="1 &ndash; 3 years">1 to 3 years</button>
+                <button type="button" class="tl-chip" data-tl="Exploring / curious">Just exploring</button>
+              </div>
+            </div>
             <div hidden aria-hidden="true">
               <input class="inp" id="bizName" type="text" value="">
               <select class="inp" id="timeline"><option value="">Select</option><option>Exploring / curious</option><option>Within 12 months</option><option>1 &ndash; 3 years</option><option>Not sure yet</option></select>
               <input type="checkbox" id="wantVal"><input type="checkbox" id="wantLender">
-              <input type="hidden" id="reportMode" value="call">
+              <input type="hidden" id="reportMode" value="email">
             </div>
             <!-- SMS opt-in label wording agreed 2026-09-17 (same as the contact form); if this text changes, note the date here. -->
             <div id="smsWrap" hidden><label class="sms" for="smsConsent"><input type="checkbox" id="smsConsent"><span>I agree to receive text messages from Investment Consulting USA LLC about my valuation request, company updates, and occasional marketing messages at the phone number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not required to submit this form. See our <a href="/privacy">Privacy Policy</a>.</span></label></div>
@@ -921,9 +919,8 @@ fbq('track','PageView');
             <div class="ts-box" id="tsBox"></div>
             <p class="form-err" id="formErr" role="alert" hidden></p>
             <div class="finish">
-              <button type="submit" class="est-btn est-primary big" id="submitBtn" data-mode="call">Pick a time for my free call</button>
-              <p class="finish-note" id="finishNote">20 minutes with a senior advisor. Your complimentary <b>Broker&rsquo;s Opinion of Value</b> report follows the call by email.</p>
-              <button type="submit" class="est-btn est-alt" id="submitEmail" data-mode="email">Not ready to talk? Email me the Preliminary Value Report</button>
+              <button type="submit" class="est-btn est-primary big" id="submitBtn">See my value range &rarr;</button>
+              <p class="finish-note" id="finishNote">On screen right away. Your <b>Preliminary Value Report</b> follows by email.</p>
               <button type="button" class="linkish back" data-back>Back</button>
             </div>
             <p class="fine">By continuing you agree to our <a href="/privacy">Privacy Policy</a>. A senior advisor may follow up by email or phone about your estimate. No public listing, ever.</p>
@@ -1369,26 +1366,12 @@ function resetTs(){ tsToken = ""; if (window.turnstile && tsWidget !== null) { t
 function callFit(a){ return !(isFinite(a.revenue) && a.revenue < CALL_MIN_REVENUE); }
 var qualifiedSeen = false;
 function applyFit(){
-  var fit = callFit(collect()), sb = $("submitBtn"), se = $("submitEmail");
-  sb.hidden = !fit; sb.disabled = !fit; $("finishNote").hidden = !fit;
-  se.classList.toggle("est-primary", !fit); se.classList.toggle("big", !fit); se.classList.toggle("est-alt", fit);
-  se.textContent = fit ? "Not ready to talk? Email me the Preliminary Value Report" : "Email me my full report";
-  $("s4Lead").textContent = fit ? "Book your free 20-minute call: enter your name and email, then pick a time. Your answers stay confidential. We never sell or share them."
-                                : "Where should we send your full report? Your answers stay confidential. We never sell or share them.";
-  $("reportMode").value = fit ? "call" : "email";
+  // v7 (Nov 3 2026): one path for everyone (report by email); fit owners also get the calendar on the result screen.
+  var fit = callFit(collect());
+  $("reportMode").value = "email";
   if (fit && !qualifiedSeen) { qualifiedSeen = true; px("trackCustom", "EstimatorQualified"); }
 }
-// v19: the range is shown on step 4 before any contact details are asked for.
-function renderPeek(){
-  var a = collect(), r = estimate(a);
-  if (r.ok) {
-    $("peekRange").textContent = short(r.lo) + " – " + short(r.hi);
-    $("peekMid").textContent = "Midpoint about " + short(r.mid) + ", based on " + money(r.sde) + " in yearly owner earnings.";
-  } else {
-    $("peekRange").textContent = "Let’s look at this together";
-    $("peekMid").textContent = "Net income plus what the business pays you comes to " + money(r.sde) + ". Buyers then price equipment, contracts or a turnaround plan instead.";
-  }
-}
+// v7 (Nov 3 2026): the range is shown on the result screen, after the name and email are saved.
 function show(i, focus){
   cur = i;
   steps.forEach(function(s, k){ s.hidden = k !== i; });
@@ -1396,7 +1379,6 @@ function show(i, focus){
   Array.prototype.forEach.call($("progBar").children, function(b, k){ b.className = k <= i ? "on" : ""; });
   if (i >= 2 && LIVE && TURNSTILE_SITEKEY) renderTs();
   if (i === 3) {
-    renderPeek();
     if (!detailsSeen) { detailsSeen = true; px("trackCustom", "EstimatorDetails"); }
     applyFit();
     if (LIVE && TURNSTILE_SITEKEY && !tsToken) { clearTimeout(tsTimer); tsTimer = setTimeout(function(){ if (!tsToken) tsFallback = true; }, 7000); }
@@ -1497,7 +1479,7 @@ function buildPayload(a, r, leadId){
   var wants = [];
   if (a.wantVal) wants.push("complimentary valuation");
   if (a.wantLender) wants.push("lender pre-qualification");
-  var fit = callFit(a), hot = fit && (a.timeline === "Within 12 months" || $("reportMode").value === "call");
+  var fit = callFit(a), hot = fit;   // v7: every owner at the call threshold is HIGH
   var lines = [
     "[" + SOURCE_LABEL + "] Lead priority: " + (hot ? "HIGH" : "Normal"),
     "Business: " + (a.bizName || "(not given)") + " | " + (STATE_NAME[a.state] || a.state),
@@ -1552,8 +1534,8 @@ function submitNow(){
     }, 500);
     return;
   }
-  var btn = $("reportMode").value === "email" && $("submitEmail") ? $("submitEmail") : $("submitBtn"), label = btn.textContent;
-  btn.disabled = true; btn.textContent = $("reportMode").value === "email" ? "Sending your report…" : "Saving…";
+  var btn = $("submitBtn"), label = btn.textContent;
+  btn.disabled = true; btn.textContent = "Calculating your range…";
   fetch(FORM_ENDPOINT, {method:"POST", body:JSON.stringify(payload)})
     .then(function(res){ return res.json().catch(function(){ return {ok:res.ok}; }); })
     .then(function(out){
@@ -1619,12 +1601,11 @@ function renderResult(a, r, sendFailed){
   var req = $("rRequested"), mode = $("reportMode").value, fit = callFit(a);
   var rn = $("rNext"); rn.hidden = !fit; $("rSmall").hidden = fit || !!sendFailed;
   if (!r.ok) $("rSmallP").textContent = "Give us a call, or watch for an email from a senior advisor within one business day.";
-  if (fit && mode === "call") result.insertBefore(rn, $("rHow")); else result.insertBefore(rn, $("rSmall"));
+  if (fit) result.insertBefore(rn, $("rHow")); else result.insertBefore(rn, $("rSmall"));
   if (!fit) { $("calEmbed").hidden = true; $("calAlt").hidden = true; }
   if (!sendFailed && mode === "email") { req.textContent = r.ok ? "Your Preliminary Value Report is on its way to " + a.email + ". Check your inbox (and the promotions or spam folder) in the next few minutes." : "Saved. With these numbers there is no automatic report, so a senior advisor will email you at " + a.email + " within one business day."; req.hidden = false; }
   else if (!sendFailed) { req.textContent = "Saved. Pick a time below and use the same email, so your advisor has your numbers. Or a senior advisor will reach out to you personally within one business day."; req.hidden = false; }
   else req.hidden = true;
-  if (mode === "email") { $("rNextH").textContent = "Want to go over the report with a senior advisor?"; $("rNextP").textContent = "20 minutes, free and confidential. Bring your questions; you will receive a complimentary Broker\u2019s Opinion of Value after the call."; }
   var cal = $("calEmbed");
   if (fit && BOOKING_URL && cal && !cal.firstChild && window.innerWidth >= 600) {
     var ifr = document.createElement("iframe"); ifr.src = BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") + "gv=true"; ifr.title = "Pick a time for your call"; ifr.setAttribute("loading", "lazy"); ifr.style.cssText = "border:0;width:100%;height:760px;background:#fff;border-radius:10px";
