@@ -612,9 +612,12 @@ fbq('track','PageView');
   .door .card-body{padding:34px 32px 32px;display:flex;flex-direction:column}
   .door h3{font-size:1.6rem;margin-bottom:12px}
   .door-list{list-style:none;margin:18px 0 26px}
-  .door-list li{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-family:"Helvetica Neue",Arial,sans-serif;font-size:.92rem;line-height:1.5;color:var(--ink)}
+  .door-list li{display:block;position:relative;padding:9px 0 9px 20px;border-top:1px solid var(--line);font-family:"Helvetica Neue",Arial,sans-serif;font-size:.92rem;line-height:1.5;color:var(--ink)}
   .door-list li:first-child{border-top:none}
-  .door-list li::before{content:"";flex:0 0 8px;width:8px;height:8px;margin-top:7px;background:var(--gold);transform:rotate(45deg)}
+  .door-list li::before{content:"";position:absolute;left:0;top:16px;width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+  /* v25.1: inline links inside the door bullets were unstyled (browser blue/purple) and, as flex items, split each bullet into two columns */
+  .door-list a{color:var(--navy);font-weight:700;text-decoration:underline;text-decoration-color:rgba(201,168,76,.75);text-decoration-thickness:1.5px;text-underline-offset:3px;transition:text-decoration-color .2s}
+  .door-list a:hover{text-decoration-color:var(--navy)}
   .door .btn{margin-top:auto;align-self:flex-start}
   .door-note{margin-top:16px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--ink-mute);line-height:1.5}
   .door-note a{color:var(--navy);font-weight:700}
@@ -1086,7 +1089,7 @@ fbq('track','PageView');
         <a href="/sell-side#assessment">Business Assessment of Value</a>
         <a href="/sell-side#exit">Exit Planning &amp; Business Prep</a>
         <a href="/sell-side#representation">Seller Representation</a>
-        <a href="/services#for-owners">Recast, CIM &amp; Data Room</a>
+        <a href="/services#for-owners">Valuation &amp; Data Room</a>
       </div>
       <div class="foot-col">
         <h4>Buying</h4>
