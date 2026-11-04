@@ -612,9 +612,12 @@ fbq('track','PageView');
   .door .card-body{padding:34px 32px 32px;display:flex;flex-direction:column}
   .door h3{font-size:1.6rem;margin-bottom:12px}
   .door-list{list-style:none;margin:18px 0 26px}
-  .door-list li{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-family:"Helvetica Neue",Arial,sans-serif;font-size:.92rem;line-height:1.5;color:var(--ink)}
+  .door-list li{display:block;position:relative;padding:9px 0 9px 20px;border-top:1px solid var(--line);font-family:"Helvetica Neue",Arial,sans-serif;font-size:.92rem;line-height:1.5;color:var(--ink)}
   .door-list li:first-child{border-top:none}
-  .door-list li::before{content:"";flex:0 0 8px;width:8px;height:8px;margin-top:7px;background:var(--gold);transform:rotate(45deg)}
+  .door-list li::before{content:"";position:absolute;left:0;top:16px;width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+  /* v25.1: inline links inside the door bullets were unstyled (browser blue/purple) and, as flex items, split each bullet into two columns */
+  .door-list a{color:var(--navy);font-weight:700;text-decoration:underline;text-decoration-color:rgba(201,168,76,.75);text-decoration-thickness:1.5px;text-underline-offset:3px;transition:text-decoration-color .2s}
+  .door-list a:hover{text-decoration-color:var(--navy)}
   .door .btn{margin-top:auto;align-self:flex-start}
   .door-note{margin-top:16px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--ink-mute);line-height:1.5}
   .door-note a{color:var(--navy);font-weight:700}
@@ -957,13 +960,13 @@ fbq('track','PageView');
   </div>
 </header>
 
-<!-- v24 (Oct 28 2026): prices deployed as drafted on Alfonso's OK. v25 (Nov 4 2026): buyer table leads with the Deal Structure Engagement, nav label "Pricing". -->
+<!-- v24 (Oct 28 2026): prices deployed as drafted on Alfonso's OK. v25 (Nov 4 2026): buyer table leads with the Deal Structure Engagement, nav label "Pricing". v25.1 (Nov 4 2026, Alfonso): every price is a starting point scoped case by case; floors raised on everything except the data room (recast $2,500, CBR $3,500, CIM $6,500, lender package $3,500, engagement from $2,500 per phase). -->
 <section class="hero page-hero solo" id="top">
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow">Pricing &middot; Owners, Buyers, Referring Professionals</div>
       <h1>Every piece of the deal, <span class="accent">priced up front.</span></h1>
-      <p class="lede">Most of what we build inside a full engagement is also available on its own: the recast, the book, the data room, the lender package, the review of a deal on your desk. Flat fees where the scope is standard, a written quote within one business day where it is not, and the same two senior advisors on every file.</p>
+      <p class="lede">Most of what we build inside a full engagement is also available on its own: the recast, the book, the data room, the lender package, the review of a deal on your desk. Every price is a starting point, scoped case by case and put in writing within one business day, with the same two senior advisors on every file.</p>
       <div class="hero-cta">
         <a href="#menu" class="btn btn-red">See the Menu</a>
         <a href="#contact" class="btn btn-ghost" data-prefill="I would like a quote for one of the services on the menu: " data-prefill-industry="Services quote" data-tag="services page, hero quote">Ask for a Quote</a>
@@ -979,7 +982,7 @@ fbq('track','PageView');
       <div class="eyebrow">The Menu</div>
       <div class="rule-accent gold"></div>
       <h2>Order one piece, or the whole engagement.</h2>
-      <p>Prices are starting points for a typical owner-operated business with a few years of clean books. Unusual businesses, several entities or messy records are quoted after we see the files. Advisory engagements are scoped on a short call. Nothing starts until you have the scope and the price in writing.</p>
+      <p>Every price below is a starting point. The fee is scoped case by case after we see the files: the number of entities and years, the state of the books, and what the buyer&rsquo;s lender will ask for. Advisory engagements are scoped on a short call. Nothing starts until you have the scope and the price in writing.</p>
     </div>
 
     <h3 class="menu-group" id="for-owners">For owners</h3>
@@ -1002,19 +1005,19 @@ fbq('track','PageView');
           <td><b>Earnings Recast</b><span>SDE or EBITDA, with add-back schedule</span></td>
           <td>Three years of recast P&amp;L and a documented add-back schedule, line by line, written to survive a buyer&rsquo;s lender and a Quality of Earnings review. Editable workbook plus PDF.</td>
           <td>5 business days</td>
-          <td class="price-cell"><b>from $750</b><a href="#contact" data-prefill="I would like a quote for an earnings recast (SDE/EBITDA with add-back schedule)." data-prefill-industry="Owner: earnings recast" data-tag="services page, recast">Ask for a quote</a></td>
+          <td class="price-cell"><b>from $2,500</b><a href="#contact" data-prefill="I would like a quote for an earnings recast (SDE/EBITDA with add-back schedule)." data-prefill-industry="Owner: earnings recast" data-tag="services page, recast">Ask for a quote</a></td>
         </tr>
         <tr id="cbr">
           <td><b>Confidential Business Review</b><span>10 to 20 pages, Main Street businesses</span></td>
           <td>The book a buyer and an SBA lender read first: the business, the numbers, the people, the transition, and a one-page blind teaser. Built for businesses selling under roughly $1 million.</td>
           <td>7 business days</td>
-          <td class="price-cell"><b>from $1,500</b><a href="#contact" data-prefill="I would like a quote for a Confidential Business Review (10-20 page book plus blind teaser)." data-prefill-industry="Owner: CBR" data-tag="services page, CBR">Ask for a quote</a></td>
+          <td class="price-cell"><b>from $3,500</b><a href="#contact" data-prefill="I would like a quote for a Confidential Business Review (10-20 page book plus blind teaser)." data-prefill-industry="Owner: CBR" data-tag="services page, CBR">Ask for a quote</a></td>
         </tr>
         <tr id="cim">
           <td><b>Confidential Information Memorandum</b><span>25 to 40 pages, lower middle market</span></td>
           <td>An institutional-grade CIM with financial exhibits, normalized earnings, customer and market analysis and a blind teaser, for buyers, lenders and private equity. Editable files plus PDF.</td>
           <td>10 business days</td>
-          <td class="price-cell"><b>from $2,950</b><a href="#contact" data-prefill="I would like a quote for a Confidential Information Memorandum (25-40 pages plus blind teaser)." data-prefill-industry="Owner: CIM" data-tag="services page, CIM">Ask for a quote</a></td>
+          <td class="price-cell"><b>from $6,500</b><a href="#contact" data-prefill="I would like a quote for a Confidential Information Memorandum (25-40 pages plus blind teaser)." data-prefill-industry="Owner: CIM" data-tag="services page, CIM">Ask for a quote</a></td>
         </tr>
         <tr id="data-room">
           <td><b>Data Room Build</b><span>Diligence-ready from day one</span></td>
@@ -1051,13 +1054,13 @@ fbq('track','PageView');
           <td><b>Deal Structure Engagement</b><span>Live deal: declined LOI, stalled loan, under LOI</span></td>
           <td>The deal packaged so it works for the bank and for you: the recast, the structure stress-tested against the lender&rsquo;s model, the term sheet, and the bank coordinated through closing and the first 90 days. One phase or all four. <a href="/deal-structure">How it works</a></td>
           <td>Scope and price within 24 hours</td>
-          <td class="price-cell"><b>Flat fee per phase</b><a href="#contact" data-prefill="I have a live deal (under LOI, declined LOI or stalled loan) and would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal under LOI" data-tag="services page, deal structure engagement">Ask for a scope</a></td>
+          <td class="price-cell"><b>from $2,500 per phase</b><a href="#contact" data-prefill="I have a live deal (under LOI, declined LOI or stalled loan) and would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal under LOI" data-tag="services page, deal structure engagement">Ask for a scope</a></td>
         </tr>
         <tr id="lender-package">
           <td><b>Lender Package</b><span>For the credit desk</span></td>
           <td>A loan request memo, three-year projections with debt-service coverage the way the bank runs it, sources and uses, and the pre-credit checklist, so the file lands complete. Editable files plus PDF.</td>
           <td>5 business days</td>
-          <td class="price-cell"><b>from $1,500</b><a href="#contact" data-prefill="I would like a quote for a lender package (loan request memo, projections, pre-credit checklist)." data-prefill-industry="Buyer: lender package" data-tag="services page, lender package">Ask for a quote</a></td>
+          <td class="price-cell"><b>from $3,500</b><a href="#contact" data-prefill="I would like a quote for a lender package (loan request memo, projections, pre-credit checklist)." data-prefill-industry="Buyer: lender package" data-tag="services page, lender package">Ask for a quote</a></td>
         </tr>
         <tr>
           <td><b>Deal Review</b><span>Two deals, one hour</span></td>
@@ -1266,7 +1269,7 @@ fbq('track','PageView');
         <a href="/sell-side#assessment">Business Assessment of Value</a>
         <a href="/sell-side#exit">Exit Planning &amp; Business Prep</a>
         <a href="/sell-side#representation">Seller Representation</a>
-        <a href="/services#for-owners">Recast, CIM &amp; Data Room</a>
+        <a href="/services#for-owners">Valuation &amp; Data Room</a>
       </div>
       <div class="foot-col">
         <h4>Buying</h4>
