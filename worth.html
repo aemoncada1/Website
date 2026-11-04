@@ -1106,7 +1106,7 @@ fbq('track','PageView');
     try {
       var q = new URLSearchParams(window.location.search);
       var s = (q.get('utm_source') || '').toLowerCase();
-      if (q.get('cid') || /closeai|close-ai|close_ai|jacob/.test(s)) return 'Close-AI SMS';
+      if (q.get('cid') || /closeai|close-ai|close_ai|jacob/.test(s) || /^(alfonso|jacob)$/.test((q.get('from') || '').toLowerCase())) return 'Close-AI SMS';
       if (q.get('fbclid') || /facebook|fb|instagram|ig|meta/.test(s)) return 'Meta Ads';
     } catch (e) {}
     return 'Website';
