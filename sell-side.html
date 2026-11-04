@@ -907,12 +907,28 @@ fbq('track','PageView');
   .page-buy-side .steps .step p{font-size:.95rem}
   .detail-grid .card-body p.card-note,.why-grid .card-body p.card-note{margin-top:14px}
   .why-grid .card-body .checks + p{margin-top:16px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.9rem;font-weight:700;color:var(--navy)}
+  /* ===== v25 (Nov 4 2026): deal structure strategy for buyers ===== */
+  .eng-fine{max-width:860px;margin:40px auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+  .eng-fine div{padding:18px 20px;border-radius:12px;background:var(--white);border:1px solid var(--line-2);border-top:3px solid var(--gold);box-shadow:var(--shadow-sm);font-family:"Helvetica Neue",Arial,sans-serif;font-size:.9rem;line-height:1.55;color:var(--ink-soft)}
+  .eng-fine div b{display:block;color:var(--navy);margin-bottom:4px;font-size:.95rem}
+  @media (max-width:940px){.eng-fine{grid-template-columns:1fr}}
+  .sep-note.community{max-width:960px;border-left-color:var(--gold);padding:28px 32px}
+  .sep-note.community h3{font-size:1.25rem;color:var(--navy);margin-bottom:10px}
+  .sep-note.community p{font-family:"Georgia",serif;font-size:1rem;line-height:1.7;color:var(--ink-soft)}
+  .sep-note.community p + p{margin-top:10px}
+  .sep-note.community .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+  .sep-note.community .btns .btn{padding:12px 18px;font-size:.78rem}
+  .sep-note.community .fine{margin-top:14px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.8rem;color:var(--ink-mute)}
+  @media (max-width:680px){.sep-note.community{padding:22px 20px}.sep-note.community .btns .btn{width:100%;text-align:center}}
+  .desk .card-body p{font-family:"Georgia",serif;font-size:1rem;line-height:1.68;color:var(--ink)}
+  .desk .card-body p + p{margin-top:10px}
+  .desk .card-body p.card-note{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.8rem;color:var(--ink-mute);line-height:1.5}
   /* v24: one more nav item. Keep the brand from shrinking and drop the phone from the bar until there is room (it stays in the drawer). */
   .nav-inner .brand{flex:0 0 auto}
   @media (min-width:1181px) and (max-width:1600px){nav.links .nav-phone{display:none}nav.links{gap:18px}nav.links a{font-size:.8rem}nav.links .btn-nav{padding:12px 18px}}
   @media (min-width:1181px) and (max-width:1300px){nav.links{gap:14px}nav.links a{font-size:.78rem}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/sell-side#webpage", "url": "https://www.ic-usa.com/sell-side", "name": "Sell Your Business: Assessment of Value, Exit Planning, Seller Representation | Investment Consulting USA", "description": "Seller representation before market, on the market, at closing and through transition, with a senior M&A advisor at every stage. Business assessment of value and exit planning for owners one to three years out.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-10-28"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ic-usa.com/"}, {"@type": "ListItem", "position": 2, "name": "Sell Your Business", "item": "https://www.ic-usa.com/sell-side"}]}, {"@type": "FAQPage", "@id": "https://www.ic-usa.com/sell-side#faq", "mainEntity": [{"@type": "Question", "name": "What is a Business Assessment of Value, and how is it different from an appraisal?", "acceptedAnswer": {"@type": "Answer", "text": "The assessment is a market-based view of what your business would likely command from qualified buyers today, prepared by an advisor who negotiates with those buyers regularly, together with the factors that would move the number. A certified appraisal is a formal valuation used for legal, tax or lending purposes. If your situation requires one, we will tell you so and point you to the right resource."}}, {"@type": "Question", "name": "How long does a sale take?", "acceptedAnswer": {"@type": "Answer", "text": "Preparation typically takes four to eight weeks, the buyer process two to four months, and diligence and closing another two to three months, so most engagements run six to twelve months from start to finish. An owner who prepares first usually closes faster, and for more."}}, {"@type": "Question", "name": "Will my employees, customers or competitors find out?", "acceptedAnswer": {"@type": "Answer", "text": "No. There is no public listing without your approval. Buyers see a blind profile first, sign a confidentiality agreement, and are qualified before your company is identified. Staff and customers learn of the sale when you decide, usually at or after closing."}}, {"@type": "Question", "name": "Do most buyers use financing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Most buyers of businesses this size use SBA loans, and if a lender will not finance the price, the price usually comes down. We check lender fit before you go to market and coordinate the buyer’s lender through closing, so financing does not become the surprise that kills the deal."}}, {"@type": "Question", "name": "What if the honest answer is that I should wait?", "acceptedAnswer": {"@type": "Answer", "text": "Then that is what we will tell you, with a specific list of what to fix and how long it should take. We decline more engagements than we accept. Exit Planning & Business Prep exists for owners who want to sell from strength rather than urgency."}}, {"@type": "Question", "name": "How are you paid?", "acceptedAnswer": {"@type": "Answer", "text": "Plainly and up front. We discuss fees in our first conversation, and there is no obligation of any kind until you decide to engage us."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/sell-side#webpage", "url": "https://www.ic-usa.com/sell-side", "name": "Sell Your Business: Assessment of Value, Exit Planning, Seller Representation | Investment Consulting USA", "description": "Seller representation before market, on the market, at closing and through transition, with a senior M&A advisor at every stage. Business assessment of value and exit planning for owners one to three years out.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-11-04"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ic-usa.com/"}, {"@type": "ListItem", "position": 2, "name": "Sell Your Business", "item": "https://www.ic-usa.com/sell-side"}]}, {"@type": "FAQPage", "@id": "https://www.ic-usa.com/sell-side#faq", "mainEntity": [{"@type": "Question", "name": "What is a Business Assessment of Value, and how is it different from an appraisal?", "acceptedAnswer": {"@type": "Answer", "text": "The assessment is a market-based view of what your business would likely command from qualified buyers today, prepared by an advisor who negotiates with those buyers regularly, together with the factors that would move the number. A certified appraisal is a formal valuation used for legal, tax or lending purposes. If your situation requires one, we will tell you so and point you to the right resource."}}, {"@type": "Question", "name": "How long does a sale take?", "acceptedAnswer": {"@type": "Answer", "text": "Preparation typically takes four to eight weeks, the buyer process two to four months, and diligence and closing another two to three months, so most engagements run six to twelve months from start to finish. An owner who prepares first usually closes faster, and for more."}}, {"@type": "Question", "name": "Will my employees, customers or competitors find out?", "acceptedAnswer": {"@type": "Answer", "text": "No. There is no public listing without your approval. Buyers see a blind profile first, sign a confidentiality agreement, and are qualified before your company is identified. Staff and customers learn of the sale when you decide, usually at or after closing."}}, {"@type": "Question", "name": "Do most buyers use financing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Most buyers of businesses this size use SBA loans, and if a lender will not finance the price, the price usually comes down. We check lender fit before you go to market and coordinate the buyer’s lender through closing, so financing does not become the surprise that kills the deal."}}, {"@type": "Question", "name": "What if the honest answer is that I should wait?", "acceptedAnswer": {"@type": "Answer", "text": "Then that is what we will tell you, with a specific list of what to fix and how long it should take. We decline more engagements than we accept. Exit Planning & Business Prep exists for owners who want to sell from strength rather than urgency."}}, {"@type": "Question", "name": "How are you paid?", "acceptedAnswer": {"@type": "Answer", "text": "Plainly and up front. We discuss fees in our first conversation, and there is no obligation of any kind until you decide to engage us."}}]}]}</script>
 </head>
 <body class="page-sell has-sticky">
 <header class="topbar" id="topbar">
@@ -929,8 +945,8 @@ fbq('track','PageView');
     </button>
     <nav class="links" id="navLinks">
       <a href="/sell-side" data-nav="sell" class="active">Sell Your Business</a>
-      <a href="/deal-structure" data-nav="buy">Deal Review for Buyers</a>
-      <a href="/services" data-nav="services">Services</a>
+      <a href="/deal-structure" data-nav="buy">For Buyers</a>
+      <a href="/services" data-nav="services">Pricing</a>
       <a href="/track-record" data-nav="track">Track Record</a>
       <a href="/insights/" data-nav="insights">Insights</a>
       <a href="/about" data-nav="about">About</a>
@@ -1014,7 +1030,7 @@ fbq('track','PageView');
       </div>
     </div>
     <div class="val-cta">
-      <p>Not sure where you stand? Start with a free, confidential estimate. Selling on your own and only need the recast, the book or the data room? See <a href="/services#for-owners">Services &amp; Pricing</a>.</p>
+      <p>Not sure where you stand? Start with a free, confidential estimate. Selling on your own and only need the recast, the book or the data room? See <a href="/services#for-owners">Pricing</a>.</p>
       <a href="/#estimate" class="btn btn-red">Get My Free Estimate</a>
     </div>
   </div>
@@ -1269,16 +1285,16 @@ fbq('track','PageView');
       </div>
       <div class="foot-col">
         <h4>Buying</h4>
-        <a href="/deal-structure#packages">Deal Review from $199</a>
-        <a href="/deal-structure">Deal Structure Advisory</a>
-        <a href="/deal-structure#sessions">1-on-1 Advisor Sessions</a>
-        <a href="/buy-side">Buy-Side Transaction Advisory</a>
+        <a href="/deal-structure">Deal Structure Strategy</a>
+        <a href="/buy-side">The Engagement: LOI to Closing</a>
+        <a href="/deal-structure#packages">Deal Reviews from $199</a>
+        <a href="/services#lender-package">Lender Package</a>
         <a href="/deal-structure#independence">Independence Policy</a>
         <a href="https://www.kerdaibusinessadvisors.com" target="_blank" rel="noopener">Businesses for Sale</a>
       </div>
       <div class="foot-col">
         <h4>Firm</h4>
-        <a href="/services">Services &amp; Pricing</a>
+        <a href="/services">Pricing</a>
         <a href="/track-record">Track Record</a>
         <a href="/insights/">Insights</a>
         <a href="/state-of-main-street">State of Main Street 2026</a>
@@ -1454,7 +1470,7 @@ window.icusaPage = "sell page";
 (function(){
   var d=document, root=d.documentElement;
   // NOTE: .form-card and the estimator (.est-hero) are deliberately NOT hidden - lead forms must always render.
-  var SINGLES='.section-head, .about-photo, .about-copy, .map-card, .val-copy, .sectors, .buy-copy, .buy-card, .cta-band .cta-inner, .cta-contact, .firm-quote, .doors-fine, .rev-links, .row-cta, .ins-feature, .art-cta, .menu, .menu-pro, .menu-fine, .lede-p';  // v17: the estimator hero is never hidden
+  var SINGLES='.section-head, .about-photo, .about-copy, .map-card, .val-copy, .sectors, .buy-copy, .buy-card, .cta-band .cta-inner, .cta-contact, .firm-quote, .doors-fine, .rev-links, .row-cta, .ins-feature, .art-cta, .menu, .menu-pro, .menu-fine, .lede-p, .sep-note, .eng-fine';  // v17: the estimator hero is never hidden
   var GRIDS=['.why-grid','.svc-grid','.steps','.creds-grid','.stats','.global-list','.val-assure','.mini-stats','.chips','.faq-list','.about-badges','.door-grid','.plan-grid','.closed-grid','.info-grid','.checks.rv-list','.rev-grid','.ins-grid'];
 
   root.classList.add('rv-js');   // only now can the CSS hide anything
