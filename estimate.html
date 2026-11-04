@@ -860,6 +860,10 @@ fbq('track','PageView');
               <input class="inp" id="phone" type="tel" autocomplete="tel" inputmode="tel">
               <p class="err" id="phone-err"></p>
             </div>
+            <div class="est-field">
+              <label class="lbl" for="bizName">Business name <span class="opt">optional</span></label>
+              <input class="inp" id="bizName" type="text" autocomplete="organization" placeholder="e.g. Smith Roofing LLC">
+            </div>
             <div class="est-field tl-field">
               <p class="lbl" id="tl-label">When might you consider selling? <span class="opt">optional</span></p>
               <div class="est-chips tl-chips" id="tlChips" role="group" aria-labelledby="tl-label">
@@ -869,7 +873,6 @@ fbq('track','PageView');
               </div>
             </div>
             <div hidden aria-hidden="true">
-              <input class="inp" id="bizName" type="text" value="">
               <select class="inp" id="timeline"><option value="">Select</option><option>Exploring / curious</option><option>Within 12 months</option><option>1 &ndash; 3 years</option><option>Not sure yet</option></select>
               <input type="checkbox" id="wantVal"><input type="checkbox" id="wantLender">
               <input type="hidden" id="reportMode" value="email">
