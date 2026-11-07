@@ -968,6 +968,21 @@ fbq('track','PageView');
 <!-- v25 (Nov 4 2026): the buyer hub. Order = problem (hero, why deals die), the engagement, community / loan-broker door, from the desk, then the
      Deal Review packages as the supporting product (#packages, #sessions and the Stripe links unchanged), reviews, independence, FAQ, CTA.
      Headline B chosen by Alfonso 11/4. Stories in "From the desk" are anonymous by rule: type and financing only, never a name. -->
+<!-- v25.4 (Nov 6 2026): page-local rule (kept out of extra.css so only this page redeploys): on phones drop the hero side card so the first button sits on the first screen; its three points are repeated in the engagement steps. -->
+<style>
+.plan-swipe{display:none}
+@media (max-width:680px){
+  .page-buy .hero-card{display:none}
+  /* packages: one card at a time, swipe for the others (three stacked cards were ~2,700 px) */
+  .page-buy .plan-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;max-width:none;margin:8px -20px 0;padding:0 20px 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .page-buy .plan-grid::-webkit-scrollbar{display:none}
+  .page-buy .plan{flex:0 0 86%;scroll-snap-align:start;transform:none}
+  .page-buy .plan-swipe{display:block;margin:4px 0 0;text-align:center;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.8rem;color:var(--ink-mute)}
+  /* one review instead of three, and the lender list card folds away; both stay on desktop */
+  .page-buy .rev-grid .rev:nth-child(n+2){display:none}
+  .page-buy .buy-card{display:none}
+}
+</style>
 <section class="hero page-hero" id="top">
   <div class="wrap hero-grid">
     <div>
@@ -1013,22 +1028,22 @@ fbq('track','PageView');
       <div class="svc">
         <div class="svc-num">01</div>
         <h3>Price against what a lender will finance</h3>
-        <p>Not what the seller asks or what the buyer can stretch to. The number a credit desk will carry at a coverage ratio it can defend, on each of the last three years, not only the best one.</p>
+        <p>The number a credit desk will carry at a coverage ratio it can defend, on each of the last three years, not only the best one.</p>
       </div>
       <div class="svc">
         <div class="svc-num">02</div>
         <h3>Equity injection and the seller note</h3>
-        <p>How much cash down, how much on a seller note, how long it sits on standby, and whether an earnout or a holdback belongs in the deal at all. Most declines trace back to this box.</p>
+        <p>Cash down, seller note, standby terms, and whether an earnout belongs in the deal at all. Most declines trace back to this box.</p>
       </div>
       <div class="svc">
         <div class="svc-num">03</div>
         <h3>Debt-service coverage, year by year</h3>
-        <p>Lenders run coverage on every historical year, with working capital and the owner&rsquo;s replacement salary included. A growing business priced on this year&rsquo;s earnings fails on last year&rsquo;s unless the structure accounts for it.</p>
+        <p>Lenders run coverage on every historical year, after working capital and the owner&rsquo;s replacement salary. The structure has to pass on all of them.</p>
       </div>
       <div class="svc">
         <div class="svc-num">04</div>
         <h3>The right financing path and the right desk</h3>
-        <p>SBA 7(a), conventional, a combination with real estate carved out, or a seller-financed bridge. Then the specific lender whose credit box fits the deal, so the file lands on a desk that has funded this kind of business before.</p>
+        <p>SBA 7(a), conventional, or a combination, then the specific lender whose credit box fits, so the file lands on a desk that has funded this kind of business before.</p>
       </div>
     </div>
   </div>
@@ -1047,19 +1062,19 @@ fbq('track','PageView');
         <div class="dot">1</div>
         <div class="stp-label">The Numbers</div>
         <h3>Recast</h3>
-        <p>Three years of the seller&rsquo;s numbers rebuilt the way the lender&rsquo;s analyst will read them: add-backs that survive, taxes and expenses that were never recorded, and the working capital the deal needs. Reconciled to the transaction level before it leaves.</p>
+        <p>Three years of the seller&rsquo;s numbers rebuilt the way the lender&rsquo;s analyst will read them, reconciled to the transaction level before it leaves.</p>
       </div>
       <div class="step">
         <div class="dot">2</div>
         <div class="stp-label">The Structure</div>
         <h3>Stress test</h3>
-        <p>The structure run against the lender&rsquo;s own model: debt-service coverage on every historical year, the equity injection, the seller note and its standby, the earnout. Where it fails, you hear it before the bank does.</p>
+        <p>The structure run against the lender&rsquo;s own model: coverage on every year, injection, seller note and standby, earnout. Where it fails, you hear it before the bank does.</p>
       </div>
       <div class="step">
         <div class="dot">3</div>
         <div class="stp-label">The Terms</div>
         <h3>Term sheet</h3>
-        <p>Price, injection, note, standby, working capital peg and earnout written as the terms for the LOI or its amendment, in language the broker will accept and the lender can finance.</p>
+        <p>Price, injection, note, standby, working capital and earnout written as the terms for the LOI or its amendment, in language the broker will accept and the lender can finance.</p>
       </div>
       <div class="step">
         <div class="dot">4</div>
@@ -1069,9 +1084,9 @@ fbq('track','PageView');
       </div>
     </div>
     <div class="eng-fine">
-      <div><b>Scope and price within 24 hours.</b> Buyers at this stage are usually against the wall with the seller waiting. Send the LOI or the deal summary; a senior advisor comes back with the phases you need and a flat fee for each.</div>
-      <div><b>Flat fee per phase. No success fee.</b> Agreed in writing before the work starts, nothing that depends on whether you close. A Deal Review fee you already paid is credited.</div>
-      <div><b>Checked by hand before it leaves.</b> Every recast and every review is reviewed by a senior advisor for accuracy. A recast is reconciled to the transaction level or it does not pass. Nothing we send is an automated report.</div>
+      <div><b>Scope and price within 24 hours.</b> Send the LOI or the deal summary; a senior advisor comes back with the phases you need and a flat fee for each.</div>
+      <div><b>Flat fee per phase. No success fee.</b> Agreed in writing before the work starts. A Deal Review fee you already paid is credited.</div>
+      <div><b>Checked by hand before it leaves.</b> A senior advisor reviews every recast and every memo. A recast is reconciled to the transaction level or it does not pass. Nothing we send is an automated report.</div>
     </div>
     <div class="row-cta">
       <a href="#contact" class="btn btn-red" data-prefill="I have a live deal (under LOI, declined LOI or stalled loan) and would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal under LOI" data-tag="deal-structure page, engagement scope">Ask for a Scope</a>
@@ -1129,7 +1144,7 @@ fbq('track','PageView');
       <div class="eyebrow center">Still Choosing a Target?</div>
       <div class="rule-accent gold center"></div>
       <h2>Two deal reviews, a structure for each, and an hour with an advisor, for $199.</h2>
-      <p>The supporting product for the search stage, priced so you can run it on every serious listing. Pay by card, upload the CIM, read the memo, book your time. Already under LOI and stuck? <a href="#contact" data-prefill="My deal is under LOI (or about to be) and the financing is at risk. I would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal at risk" data-tag="deal-structure page, packages intro">Ask for a scope</a> instead.</p>
+      <p>A review of the deal on paper, for the search stage, priced so you can run it on every serious listing. It is not the engagement: structuring a live deal for the bank is scoped separately. Already under LOI and stuck? <a href="#contact" data-prefill="My deal is under LOI (or about to be) and the financing is at risk. I would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal at risk" data-tag="deal-structure page, packages intro">Ask for a scope</a> instead.</p>
     </div>
     <div class="plan-grid">
       <article class="plan">
@@ -1176,30 +1191,26 @@ fbq('track','PageView');
         <small>Billed monthly by card through Stripe, cancel anytime. We confirm your search criteria on the first call. Prefer to talk first? <a href="#contact" data-prefill="I am considering the Active Search plan and would like to talk first." data-prefill-industry="Buyer: Active Search plan" data-tag="deal-structure page, Active Search note">Send a note</a>.</small>
       </article>
     </div>
+    <p class="plan-swipe">Swipe for the other two packages.</p>
     <div class="detail-grid">
       <div class="card" id="sessions">
         <div class="card-top"><span class="knum">HOW IT WORKS</span><span class="kicon">&#9654;</span></div>
         <div class="card-body">
           <h3>Pay once, send the CIM, get the memo, book your time.</h3>
           <ol class="dr-steps">
-            <li><b>Pick a package</b> and pay by card through Stripe. Your confirmation page carries the upload link and the booking calendar; we also confirm by email within one business day.</li>
-            <li><b>Send the deal.</b> Upload the CIM or broker summary, and tax returns if you have them. No NDA problem: we sign the broker&rsquo;s NDA when asked.</li>
-            <li><b>Read the memo</b> in two business days, next business day on the Active Search plan: a verdict, the red flags, the structure a lender will fund, and the questions to send back to the broker.</li>
-            <li><b>Book your time</b> with a senior advisor in 30 or 60 minute blocks on Tuesday, Wednesday or Friday afternoons, Eastern.</li>
+            <li><b>Pick a package</b> and pay by card. The upload link and the booking calendar are on your confirmation page.</li>
+            <li><b>Send the deal:</b> the CIM or broker summary, and tax returns if you have them. We sign the broker&rsquo;s NDA when asked.</li>
+            <li><b>Read the memo</b> in two business days: verdict, red flags, the structure a lender will fund, the questions for the broker.</li>
+            <li><b>Book your time</b> with a senior advisor, Tuesday, Wednesday or Friday afternoons, Eastern.</li>
           </ol>
-          <p><b>Not a loan approval.</b> Investment Consulting USA is not a lender. The financing fit check tells you whether a deal is likely to clear an SBA credit desk and what would need to change if not. When it fits, we introduce you to a lender in our network for a real pre-qualification.</p>
+          <p><b>Not a loan approval.</b> We are not a lender. The fit check says whether a deal is likely to clear an SBA credit desk; when it fits, we introduce you to a lender in our network for a real pre-qualification.</p>
         </div>
       </div>
       <div class="card">
         <div class="card-top"><span class="knum">WHO CHECKS THE WORK</span><span class="kicon">&#9776;</span></div>
         <div class="card-body">
           <h3>A senior advisor, by hand, every time.</h3>
-          <p>Every memo goes through quality assurance before it reaches you: one of the firm&rsquo;s two senior advisors reads it against the CIM and the financials and signs off on the verdict and the structure. We do not generate an automated report and send it.</p>
-          <ul class="checks">
-            <li>Verdict, red flags and structure checked by the advisor you will later talk to</li>
-            <li>Numbers tied back to the CIM, the recap and the tax returns you sent</li>
-            <li>Where the seller&rsquo;s recast does not hold, the memo says so and by how much</li>
-          </ul>
+          <p>Every memo goes through quality assurance before it reaches you: one of the firm&rsquo;s two senior advisors reads it against the CIM and the financials and signs off on the verdict and the structure. Numbers are tied back to what you sent, and where the seller&rsquo;s recast does not hold, the memo says so and by how much. We do not generate an automated report and send it.</p>
         </div>
       </div>
     </div>
@@ -1245,11 +1256,10 @@ fbq('track','PageView');
         <p>Investment Consulting USA represents sellers in its main practice. Deal Structure Advisory exists for buyers. The two never touch the same transaction, and we would rather lose an engagement than put that in doubt.</p>
       </div>
       <ul class="checks">
-        <li><b>We decline to review, coach on or structure</b> any deal where Investment Consulting USA represents the seller. Any other listing, from any broker, marketplace or direct outreach, is welcome.</li>
-        <li><b>We decline to work for a buyer</b> who is under contract, or under LOI, on a business we represent.</li>
+        <li><b>We decline any deal where Investment Consulting USA represents the seller.</b> Any other listing, from any broker or marketplace, is welcome.</li>
         <li><b>We tell you before you pay.</b> If a deal you send turns out to be one of ours, you hear it before any work starts and your review is not used up.</li>
-        <li><b>You pay us, nobody else does.</b> On every other deal we sign the broker&rsquo;s NDA when asked, we are paid only by you, and our fee never depends on whether you buy. Any conflict of interest is disclosed as soon as we know of it.</li>
-        <li><b>Quality of Earnings and appraisals</b> come from Kerdai, the group&rsquo;s independent QofE and appraisal firm, and never on a business we represent either.</li>
+        <li><b>You pay us, nobody else does.</b> Our fee never depends on whether you buy, and any conflict of interest is disclosed as soon as we know of it.</li>
+        <li><b>Quality of Earnings and appraisals</b> come from Kerdai, the group&rsquo;s independent QofE and appraisal firm, never on a business we represent.</li>
       </ul>
     </div>
     <div class="buy-card">
