@@ -935,10 +935,39 @@ fbq('track','PageView');
   .nav-inner .brand{flex:0 0 auto}
   @media (min-width:1181px) and (max-width:1600px){nav.links .nav-phone{display:none}nav.links{gap:18px}nav.links a{font-size:.8rem}nav.links .btn-nav{padding:12px 18px}}
   @media (min-width:1181px) and (max-width:1300px){nav.links{gap:14px}nav.links a{font-size:.78rem}}
+
+  /* ===== v26 (Nov 9 2026): Acquire Weekly pointers. Who-we-work-with panel, the ask in the phone top bar, no sticky bar. ===== */
+  /* four labelled cells: a visitor self-qualifies in one glance. Plain bordered grid; .lift = sits over the hero edge like .stats. */
+  .fit-wrap{position:relative;z-index:5;margin-top:18px}
+  .fit-wrap.lift{margin-top:-58px}
+  .fit{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
+  .fit-wrap.lift .fit{box-shadow:var(--shadow-lg)}
+  .fit-cell{padding:26px 26px 24px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .fit-cell:not(:last-child){border-right:1px solid var(--line)}
+  .fit-k{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);font-weight:700}
+  .fit-v{font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;font-weight:600;color:var(--navy);line-height:1.45}
+  @media (max-width:940px){.fit{grid-template-columns:1fr 1fr}.fit-cell:nth-child(2){border-right:none}.fit-cell:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+  @media (max-width:680px){.fit-wrap.lift{margin-top:-30px}.fit{grid-template-columns:1fr}.fit-cell{padding:18px 20px}.fit-cell:not(:last-child){border-right:none;border-bottom:1px solid var(--line)}}
+  /* track record: buttons under the hero stats */
+  .hero .mini-stats + .hero-cta{margin-top:30px}
+  /* about: the second conversation button becomes a line of text */
+  .about-link{font-family:"Georgia",serif;font-size:1.06rem;color:var(--ink-soft)}
+  .about-link a{color:var(--navy);font-weight:700;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:1.5px;text-underline-offset:3px}
+  /* the ask in the phone top bar: brand mark, red pill, menu. Hidden on desktop, where the bar has the full link row. */
+  .nav-cta{display:none}
+  @media (max-width:1180px){
+    .nav-cta{display:inline-block;margin-left:auto;margin-right:16px;padding:10px 15px;font-size:.74rem;letter-spacing:.04em;white-space:nowrap;box-shadow:none}
+    .nav-cta:hover{transform:none}
+    body.nav-open .nav-cta{visibility:hidden}
+  }
+  @media (max-width:560px){
+    .topbar .brand-txt{display:none}   /* monogram only: the 220 px wordmark and the pill do not both fit at 375 px */
+    .nav-cta{padding:10px 13px;font-size:.72rem}
+  }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/track-record#webpage", "url": "https://www.ic-usa.com/track-record", "name": "Track Record: $108M+ Closed | Investment Consulting USA", "description": "Recent closings by type and state, transactions across the country, and the sectors we have represented. Over $108 million in transaction value since 2018.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-11-06"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ic-usa.com/"}, {"@type": "ListItem", "position": 2, "name": "Track Record", "item": "https://www.ic-usa.com/track-record"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/track-record#webpage", "url": "https://www.ic-usa.com/track-record", "name": "Track Record: $108M+ Closed | Investment Consulting USA", "description": "Recent closings by type and state, transactions across the country, and the sectors we have represented. Over $108 million in transaction value since 2018.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-11-09"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ic-usa.com/"}, {"@type": "ListItem", "position": 2, "name": "Track Record", "item": "https://www.ic-usa.com/track-record"}]}]}</script>
 </head>
-<body class="page-track has-sticky">
+<body class="page-track">
 <header class="topbar" id="topbar">
   <div class="wrap nav-inner">
     <a href="/" class="brand" aria-label="Investment Consulting USA home">
@@ -948,6 +977,7 @@ fbq('track','PageView');
         <span class="t2">M&amp;A Advisory</span>
       </span>
     </a>
+    <a href="/#estimate" class="btn btn-red nav-cta">Free Estimate</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -970,11 +1000,15 @@ fbq('track','PageView');
     <div>
       <div class="eyebrow">Track Record &middot; Since 2018</div>
       <h1>Closed quietly. <span class="accent">Sold for more.</span></h1>
-      <p class="lede">Together the firm has closed more than $108 million in transaction value, almost all of it off-market and nearly all of it by referral from an owner we told the truth to. Below, recent closings by type and state, and the ground we cover.</p>
+      <p class="lede">More than $108 million closed, almost all of it off-market and nearly all of it by referral from an owner we told the truth to. Below, recent closings by type and state.</p>
       <div class="mini-stats light">
         <div><span class="ms-num">$108M<span class="pl">+</span></span><span class="ms-lbl">Transaction value</span></div>
         <div><span class="ms-num">11<span class="pl">+</span></span><span class="ms-lbl">Years advising owners</span></div>
         <div><span class="ms-num">19</span><span class="ms-lbl">States, closed or co-brokered</span></div>
+      </div>
+      <div class="hero-cta">
+        <a href="/#estimate" class="btn btn-red">Get My Free Estimate</a>
+        <a href="/contact" class="btn btn-ghost">Talk to an Advisor</a>
       </div>
     </div>
     <div class="hero-card">
@@ -1150,82 +1184,6 @@ fbq('track','PageView');
   </div>
 </section>
 
-<section class="valuation" id="contact">
-  <div class="wrap val-grid">
-    <div class="val-copy">
-      <div class="tag">Contact Us</div>
-      <h2>Have a question first? Ask us directly.</h2>
-      <p>Not ready for an estimate, or want to understand how we work before sharing any numbers? Send us a note. A senior advisor will reply privately, typically within one business day.</p>
-      <ul class="val-assure">
-        <li><span class="ck">&#10003;</span> Strictly confidential: your information remains between us</li>
-        <li><span class="ck">&#10003;</span> No obligation, and no public listing of your business</li>
-        <li><span class="ck">&#10003;</span> A direct conversation with a senior advisor</li>
-      </ul>
-      <p class="val-phone">Prefer to talk? <a href="tel:+15617652303">+1 (561) 765-2303</a> &middot; <a href="mailto:info@ic-usa.com">info@ic-usa.com</a></p>
-    </div>
-
-    <div class="form-card">
-      <div class="form-card-inner">
-        <form id="contactForm" novalidate>
-          <h3>Request More Information</h3>
-          <p class="fc-sub">Tell us a little about yourself and what you would like to know.</p>
-          <div class="field row">
-            <div>
-              <label for="c-fname">First Name <span class="req">*</span></label>
-              <input type="text" id="c-fname" name="fname" autocomplete="given-name" required>
-            </div>
-            <div>
-              <label for="c-lname">Last Name <span class="req">*</span></label>
-              <input type="text" id="c-lname" name="lname" autocomplete="family-name" required>
-            </div>
-          </div>
-          <div class="field row">
-            <div>
-              <label for="c-email">Email <span class="req">*</span></label>
-              <input type="email" id="c-email" name="email" autocomplete="email" required>
-            </div>
-            <div>
-              <label for="c-phone">Phone</label>
-              <input type="tel" id="c-phone" name="phone" autocomplete="tel">
-              <div class="field-error" id="c-phoneErr" role="alert"></div>
-            </div>
-          </div>
-          <!-- SMS opt-in label wording agreed 2026-09-17; if this text changes, note the date here so we can show what a given lead consented to. -->
-          <div class="field">
-            <label class="sms-consent" for="c-sms">
-              <input type="checkbox" id="c-sms" name="sms_consent" value="yes">
-              <span>I agree to receive text messages from Investment Consulting USA LLC about my valuation request, company updates, and occasional marketing messages at the phone number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not required to submit this form. See our <a href="/privacy">Privacy Policy</a>.</span>
-            </label>
-          </div>
-          <div class="field">
-            <label for="c-industry">Your Business or Industry <span class="req">*</span></label>
-            <input type="text" id="c-industry" name="industry" placeholder="e.g. HVAC company, accounting practice" required>
-          </div>
-          <div class="field">
-            <label for="c-notes">How can we help? <span class="req">*</span></label>
-            <textarea id="c-notes" name="notes" placeholder="Your question, or what you would like to learn more about." required></textarea>
-          </div>
-          <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label for="c-company">Company</label><input type="text" id="c-company" name="company" tabindex="-1" autocomplete="off"></div>
-          <!-- Cloudflare Turnstile (rendered by script): proves the submission came from a human on this page -->
-          <div id="tsContact" style="margin-bottom:14px"></div>
-          <button type="submit" class="btn btn-red">Send My Request</button>
-          <p class="form-note">By submitting this form, you agree to our <a href="/privacy">Privacy Policy</a>.</p>
-          <p class="form-note"><span class="lock">&#9679;</span> Your details are kept strictly confidential and are never shared or listed publicly.</p>
-          <div class="form-error" id="contactError" role="alert"></div>
-        </form>
-
-        <div class="form-success" id="contactSuccess">
-          <div class="big">&#10003;</div>
-          <h3>Thank you. Your message has been received.</h3>
-          <p>A senior advisor will reply privately, typically within one business day.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<div class="sticky-cta" id="stickyCta"><span>What is your business worth?</span><a href="/#estimate" class="btn btn-red">Free Estimate</a></div>
 <footer class="site">
   <div class="wrap">
     <div class="foot-grid four">
@@ -1274,6 +1232,7 @@ fbq('track','PageView');
     <div class="foot-bottom">
       <p>&copy; <span id="yr"></span> Investment Consulting USA LLC. All rights reserved.</p>
       <p class="disc">Information provided is for general purposes and does not constitute legal, tax, or financial advice. All engagements are subject to confidentiality. Investment Consulting USA is not a lender and does not approve or pre-qualify loans.</p>
+      <p class="disc">Closings are shown by business type and state only. We never publish a client&rsquo;s name, before or after a sale, and every figure is from the closing table.</p>
     </div>
   </div>
 </footer>
@@ -1307,13 +1266,7 @@ window.icusaPage = "track page";
     });
   });
 
-  /* v22: sticky mobile call to action on sub-pages, shown once the visitor has scrolled past the hero */
-  var sticky = document.getElementById('stickyCta');
-  if (sticky) {
-    var onStick = function(){ sticky.classList.toggle('show', window.scrollY > 520); };
-    window.addEventListener('scroll', onStick, {passive:true});
-    onStick();
-  }
+  /* v26 (Nov 9 2026): the v22 sticky bar is gone; the ask now sits in the phone top bar (.nav-cta, build.py NAV_CTA). */
 
   /* Shared: lead source for Airtable. Visitors arriving from a Meta ad (utm_source=facebook/instagram or an fbclid) are "Meta Ads". */
   window.icusaSource = function(){
@@ -1339,97 +1292,6 @@ window.icusaPage = "track page";
       if (notes && !notes.value.trim()) notes.value = what;
     });
   });
-</script>
-<script>
-/* ------------------------------------------------------------------
-   CONTACT FORM ("Request More Information") -> Apps Script bridge -> Airtable
-   (ICUSA CRM > Valuation Requests). Same bridge and guards as the estimator.
------------------------------------------------------------------- */
-(function(){
-  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbyR2e2i1GXhVdU1MzIz0_JJ9NqSiJRLPzrAGQLVnhzJOuA-xe90eyaGLal75wUzVNXarg/exec";
-  var TURNSTILE_SITEKEY = "0x4AAAAAAEmLjgQpu40wKZ1H";
-  var PAGE_LOADED = Date.now(); // for the server's too-fast-to-be-human check
-
-  var form = document.getElementById('contactForm');
-  var success = document.getElementById('contactSuccess');
-  var formError = document.getElementById('contactError');
-  var submitBtn = form.querySelector('button[type="submit"]');
-  var smsBox = document.getElementById('c-sms');
-  var phoneInput = document.getElementById('c-phone');
-  var phoneSmsError = document.getElementById('c-phoneErr');
-  var tsId = null;
-
-  window.icusaRenderContactTs = function(){
-    if (tsId !== null || !window.turnstile) return;
-    try { tsId = window.turnstile.render('#tsContact', {sitekey: TURNSTILE_SITEKEY, theme: 'light', size: 'flexible'}); } catch (e) {}
-  };
-  function resetTs(){ if (window.turnstile && tsId !== null) { try { window.turnstile.reset(tsId); } catch (e) {} } }
-
-  function clearSmsError(){ phoneSmsError.classList.remove('show'); phoneInput.style.borderColor = ''; }
-  smsBox.addEventListener('change', clearSmsError);
-  phoneInput.addEventListener('input', clearSmsError);
-
-  var contactFallback = 'Please call <a href="tel:+15617652303">+1 (561) 765-2303</a> or email <a href="mailto:info@ic-usa.com">info@ic-usa.com</a> and we will begin privately.';
-  function showFormError(msg){ formError.innerHTML = msg; formError.classList.add('show'); }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    formError.classList.remove('show');
-
-    var ok = true;
-    form.querySelectorAll('[required]').forEach(function(f){
-      if(!f.value.trim()){ f.style.borderColor = '#9B2226'; ok = false; } else { f.style.borderColor = ''; }
-    });
-    if(!ok){ showFormError('Please complete the required fields marked with an asterisk.'); return; }
-
-    if(smsBox.checked && !phoneInput.value.trim()){
-      phoneSmsError.textContent = 'Enter a phone number to receive text messages.';
-      phoneSmsError.classList.add('show');
-      phoneInput.style.borderColor = '#9B2226';
-      phoneInput.focus();
-      return;
-    }
-
-    var tsField = form.querySelector('[name="cf-turnstile-response"]');
-    if (window.turnstile && (!tsField || !tsField.value)) {
-      showFormError('One moment — the security check is still finishing. Please try again in a few seconds.');
-      return;
-    }
-
-    var originalLabel = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-
-    var payload = {
-      fname: document.getElementById('c-fname').value.trim(),
-      lname: document.getElementById('c-lname').value.trim(),
-      email: document.getElementById('c-email').value.trim(),
-      phone: phoneInput.value.trim(),
-      sms_consent: smsBox.checked ? 'yes' : '',
-      industry: document.getElementById('c-industry').value.trim(),
-      notes: (window.icusaInquiry ? '[Contact form: listing inquiry - ' + window.icusaInquiry + ']\n' : '[Contact form: ' + (window.icusaPage || 'request for more information') + ']\n') + document.getElementById('c-notes').value.trim(),
-      company: document.getElementById('c-company').value,
-      'cf-turnstile-response': tsField ? tsField.value : '',
-      source: window.icusaSource ? window.icusaSource() : 'Website',
-      elapsed: Date.now() - PAGE_LOADED
-    };
-    fetch(FORM_ENDPOINT, { method: 'POST', body: JSON.stringify(payload) })
-      .then(function(res){ return res.json().catch(function(){ return {ok: res.ok}; }); })
-      .then(function(out){
-        if(out && out.ok){
-          form.style.display = 'none';
-          success.classList.add('show');
-          if (window.fbq) { try { window.fbq('track', 'Contact'); } catch (e) {} } if (window.gtag) { try { window.gtag('event', 'Contact', {}); } catch (e) {} }
-        } else {
-          submitBtn.disabled = false; submitBtn.textContent = originalLabel; resetTs();
-          showFormError('We could not submit your request. ' + contactFallback);
-        }
-      }).catch(function(){
-        submitBtn.disabled = false; submitBtn.textContent = originalLabel; resetTs();
-        showFormError('We could not submit your request. ' + contactFallback);
-      });
-  });
-})();
 </script>
 <script>
 (function(){
@@ -1482,13 +1344,5 @@ window.icusaPage = "track page";
   setTimeout(function(){ if(!d.querySelector('.rv.in')){ revealAll(); } }, 2500);
 })();
 </script>
-<script>
-  /* One Cloudflare Turnstile loader for both forms (explicit rendering). */
-  window.icusaTsReady = function(){
-    if (window.icusaRenderContactTs) window.icusaRenderContactTs();
-    if (window.icusaCalcTsReady) window.icusaCalcTsReady();
-  };
-</script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=icusaTsReady" async defer></script>
 </body>
 </html>

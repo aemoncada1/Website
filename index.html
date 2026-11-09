@@ -935,6 +935,35 @@ fbq('track','PageView');
   .nav-inner .brand{flex:0 0 auto}
   @media (min-width:1181px) and (max-width:1600px){nav.links .nav-phone{display:none}nav.links{gap:18px}nav.links a{font-size:.8rem}nav.links .btn-nav{padding:12px 18px}}
   @media (min-width:1181px) and (max-width:1300px){nav.links{gap:14px}nav.links a{font-size:.78rem}}
+
+  /* ===== v26 (Nov 9 2026): Acquire Weekly pointers. Who-we-work-with panel, the ask in the phone top bar, no sticky bar. ===== */
+  /* four labelled cells: a visitor self-qualifies in one glance. Plain bordered grid; .lift = sits over the hero edge like .stats. */
+  .fit-wrap{position:relative;z-index:5;margin-top:18px}
+  .fit-wrap.lift{margin-top:-58px}
+  .fit{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
+  .fit-wrap.lift .fit{box-shadow:var(--shadow-lg)}
+  .fit-cell{padding:26px 26px 24px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .fit-cell:not(:last-child){border-right:1px solid var(--line)}
+  .fit-k{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);font-weight:700}
+  .fit-v{font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;font-weight:600;color:var(--navy);line-height:1.45}
+  @media (max-width:940px){.fit{grid-template-columns:1fr 1fr}.fit-cell:nth-child(2){border-right:none}.fit-cell:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+  @media (max-width:680px){.fit-wrap.lift{margin-top:-30px}.fit{grid-template-columns:1fr}.fit-cell{padding:18px 20px}.fit-cell:not(:last-child){border-right:none;border-bottom:1px solid var(--line)}}
+  /* track record: buttons under the hero stats */
+  .hero .mini-stats + .hero-cta{margin-top:30px}
+  /* about: the second conversation button becomes a line of text */
+  .about-link{font-family:"Georgia",serif;font-size:1.06rem;color:var(--ink-soft)}
+  .about-link a{color:var(--navy);font-weight:700;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:1.5px;text-underline-offset:3px}
+  /* the ask in the phone top bar: brand mark, red pill, menu. Hidden on desktop, where the bar has the full link row. */
+  .nav-cta{display:none}
+  @media (max-width:1180px){
+    .nav-cta{display:inline-block;margin-left:auto;margin-right:16px;padding:10px 15px;font-size:.74rem;letter-spacing:.04em;white-space:nowrap;box-shadow:none}
+    .nav-cta:hover{transform:none}
+    body.nav-open .nav-cta{visibility:hidden}
+  }
+  @media (max-width:560px){
+    .topbar .brand-txt{display:none}   /* monogram only: the 220 px wordmark and the pill do not both fit at 375 px */
+    .nav-cta{padding:10px 13px;font-size:.72rem}
+  }
   /* ===== v23: calculator styles shared with /estimate ===== */
   /* step 4 */
   .est .tl-chips{margin-bottom:0}
@@ -1005,7 +1034,7 @@ fbq('track','PageView');
   .est #s4Lead{margin-top:0;padding-top:0;border-top:0}
   .est .tl-field{margin-top:6px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/#webpage", "url": "https://www.ic-usa.com/", "name": "What Is Your Business Worth? | Investment Consulting USA", "description": "Miami M&A advisory, nationwide. Free, confidential business value estimate in two minutes, seller representation for owners, deal structure for buyers.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-11-06"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/#webpage", "url": "https://www.ic-usa.com/", "name": "What Is Your Business Worth? | Investment Consulting USA", "description": "Miami M&A advisory, nationwide. Free, confidential business value estimate in two minutes, seller representation for owners, deal structure for buyers.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-11-09"}]}</script>
 </head>
 <body class="page-home">
 <header class="topbar" id="topbar">
@@ -1017,6 +1046,7 @@ fbq('track','PageView');
         <span class="t2">M&amp;A Advisory</span>
       </span>
     </a>
+    <a href="/#estimate" class="btn btn-red nav-cta">Free Estimate</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -1471,6 +1501,7 @@ fbq('track','PageView');
     <div class="foot-bottom">
       <p>&copy; <span id="yr"></span> Investment Consulting USA LLC. All rights reserved.</p>
       <p class="disc">Information provided is for general purposes and does not constitute legal, tax, or financial advice. All engagements are subject to confidentiality. Investment Consulting USA is not a lender and does not approve or pre-qualify loans.</p>
+      <p class="disc">Closings are shown by business type and state only. We never publish a client&rsquo;s name, before or after a sale, and every figure is from the closing table.</p>
     </div>
   </div>
 </footer>
@@ -1504,13 +1535,7 @@ window.icusaPage = "home page";
     });
   });
 
-  /* v22: sticky mobile call to action on sub-pages, shown once the visitor has scrolled past the hero */
-  var sticky = document.getElementById('stickyCta');
-  if (sticky) {
-    var onStick = function(){ sticky.classList.toggle('show', window.scrollY > 520); };
-    window.addEventListener('scroll', onStick, {passive:true});
-    onStick();
-  }
+  /* v26 (Nov 9 2026): the v22 sticky bar is gone; the ask now sits in the phone top bar (.nav-cta, build.py NAV_CTA). */
 
   /* Shared: lead source for Airtable. Visitors arriving from a Meta ad (utm_source=facebook/instagram or an fbclid) are "Meta Ads". */
   window.icusaSource = function(){

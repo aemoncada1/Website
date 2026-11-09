@@ -935,10 +935,39 @@ fbq('track','PageView');
   .nav-inner .brand{flex:0 0 auto}
   @media (min-width:1181px) and (max-width:1600px){nav.links .nav-phone{display:none}nav.links{gap:18px}nav.links a{font-size:.8rem}nav.links .btn-nav{padding:12px 18px}}
   @media (min-width:1181px) and (max-width:1300px){nav.links{gap:14px}nav.links a{font-size:.78rem}}
+
+  /* ===== v26 (Nov 9 2026): Acquire Weekly pointers. Who-we-work-with panel, the ask in the phone top bar, no sticky bar. ===== */
+  /* four labelled cells: a visitor self-qualifies in one glance. Plain bordered grid; .lift = sits over the hero edge like .stats. */
+  .fit-wrap{position:relative;z-index:5;margin-top:18px}
+  .fit-wrap.lift{margin-top:-58px}
+  .fit{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
+  .fit-wrap.lift .fit{box-shadow:var(--shadow-lg)}
+  .fit-cell{padding:26px 26px 24px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .fit-cell:not(:last-child){border-right:1px solid var(--line)}
+  .fit-k{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);font-weight:700}
+  .fit-v{font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;font-weight:600;color:var(--navy);line-height:1.45}
+  @media (max-width:940px){.fit{grid-template-columns:1fr 1fr}.fit-cell:nth-child(2){border-right:none}.fit-cell:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+  @media (max-width:680px){.fit-wrap.lift{margin-top:-30px}.fit{grid-template-columns:1fr}.fit-cell{padding:18px 20px}.fit-cell:not(:last-child){border-right:none;border-bottom:1px solid var(--line)}}
+  /* track record: buttons under the hero stats */
+  .hero .mini-stats + .hero-cta{margin-top:30px}
+  /* about: the second conversation button becomes a line of text */
+  .about-link{font-family:"Georgia",serif;font-size:1.06rem;color:var(--ink-soft)}
+  .about-link a{color:var(--navy);font-weight:700;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:1.5px;text-underline-offset:3px}
+  /* the ask in the phone top bar: brand mark, red pill, menu. Hidden on desktop, where the bar has the full link row. */
+  .nav-cta{display:none}
+  @media (max-width:1180px){
+    .nav-cta{display:inline-block;margin-left:auto;margin-right:16px;padding:10px 15px;font-size:.74rem;letter-spacing:.04em;white-space:nowrap;box-shadow:none}
+    .nav-cta:hover{transform:none}
+    body.nav-open .nav-cta{visibility:hidden}
+  }
+  @media (max-width:560px){
+    .topbar .brand-txt{display:none}   /* monogram only: the 220 px wordmark and the pill do not both fit at 375 px */
+    .nav-cta{padding:10px 13px;font-size:.72rem}
+  }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/deal-structure#webpage", "url": "https://www.ic-usa.com/deal-structure", "name": "Deal Structure Strategy for Buyers | Investment Consulting USA", "description": "Losing deals at the LOI or the bank? We package the deal so it works for the lender and for you: recast, stress test, term sheet, bank. Scope in 24 hours.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-11-06"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ic-usa.com/"}, {"@type": "ListItem", "position": 2, "name": "Deal Structure Strategy for Buyers", "item": "https://www.ic-usa.com/deal-structure"}]}, {"@type": "FAQPage", "@id": "https://www.ic-usa.com/deal-structure#faq", "mainEntity": [{"@type": "Question", "name": "The business was good and my profile was good. Why was my LOI declined or my loan stalled?", "acceptedAnswer": {"@type": "Answer", "text": "In our experience, most of the time because the deal was not bankable as written. The price was set against the seller’s hopes rather than against what a lender will carry, the equity injection or seller note did not fit the lender’s credit policy, the seller note was not on standby, or debt-service coverage failed on one of the historical years the bank looks at. Brokers decline LOIs they do not believe will finance, lenders stall files that fail a test they do not always explain, and after the second or third failed attempt many stop replying. None of that says anything about the business or about you. It says the structure needs to change before the next offer."}}, {"@type": "Question", "name": "Is the 80/10/10 SBA structure the right one for my deal?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes, and far less often than the training courses suggest. Eighty percent bank debt, ten percent seller note and ten percent buyer equity is a starting template, not a rule, and every lender layers its own credit policy on top: how long the seller note must stand by, what counts toward the injection, how working capital and the owner’s replacement salary enter the coverage calculation, and how much of the price can be goodwill. The right structure depends on the business, the lender and the buyer, and it is usually settled in the LOI, not at the bank."}}, {"@type": "Question", "name": "I already have a loan broker. What do you add?", "acceptedAnswer": {"@type": "Answer", "text": "A loan broker places the loan. We build the deal the loan has to fit: the recast the lender’s analyst will accept, the structure that passes the lender’s own coverage tests, and the term sheet that puts it in writing. When the broker is doing their job, we work alongside them and the file moves faster. When the broker has gone quiet with the seller waiting, we tell you what the file is missing and, if you ask, bring in a broker who is already working with us. The decision is always yours."}}, {"@type": "Question", "name": "How fast can you turn this around?", "acceptedAnswer": {"@type": "Answer", "text": "Scope and price within 24 hours of seeing the LOI or the deal summary. On a live engagement the first read of the structure, including a fast no if it will not fund, comes within days, and credit questions from the lender are answered the same day. Buyers at this stage are usually against the wall with the seller waiting, so we work on the deal’s clock, not ours."}}, {"@type": "Question", "name": "Is the SBA financing fit check a lender pre-approval?", "acceptedAnswer": {"@type": "Answer", "text": "No. Only a lender can pre-qualify or approve a loan, and we are not a lender. The fit check applies the tests an SBA credit desk will apply: program eligibility, the purchase price against the SOP thresholds for a valuation and a Quality of Earnings report, the equity injection and seller-note structure, and debt-service coverage on each historical year. It tells you whether the deal is likely to finance as presented and what would need to change if not. When a deal fits, we introduce you to a lender in our network who can run a real pre-qualification, usually within a few days."}}, {"@type": "Question", "name": "What is a deal review, and when do I need a Quality of Earnings report instead?", "acceptedAnswer": {"@type": "Answer", "text": "A deal review works from what the seller has already published: the CIM or broker summary, the financial recap and, if you have them, tax returns. It is built for the search stage, when you are deciding which of several listings deserves your attention. A Quality of Earnings report tests the earnings against bank statements, tax returns and source documents once you are under LOI, and SBA lenders must commission one on acquisitions of $3 million or more. QofE reports and appraisals come from Kerdai , the group’s independent QofE and appraisal firm."}}, {"@type": "Question", "name": "Who do I actually talk to?", "acceptedAnswer": {"@type": "Answer", "text": "One of the firm’s two senior advisors, Alejandra B. Barrera or Alfonso E. Moncada. There is no junior analyst layer. Read about both on the About page."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["Organization", "ProfessionalService"], "@id": "https://www.ic-usa.com/#organization", "name": "Investment Consulting USA", "legalName": "Investment Consulting USA LLC", "url": "https://www.ic-usa.com/", "telephone": "+1-561-765-2303", "email": "info@ic-usa.com", "foundingDate": "2018", "description": "Boutique M&A advisory firm in Miami, working nationwide: sell-side representation for business owners and Deal Structure Advisory for buyers.", "address": {"@type": "PostalAddress", "streetAddress": "66 W Flagler St, Suite 900", "addressLocality": "Miami", "addressRegion": "FL", "postalCode": "33130", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsLanguage": ["en", "es"], "sameAs": ["https://www.linkedin.com/company/investment-consulting-usa/", "https://maps.google.com/?cid=11441798272528132131"]}, {"@type": "WebSite", "@id": "https://www.ic-usa.com/#website", "url": "https://www.ic-usa.com/", "name": "Investment Consulting USA", "publisher": {"@id": "https://www.ic-usa.com/#organization"}}, {"@type": "WebPage", "@id": "https://www.ic-usa.com/deal-structure#webpage", "url": "https://www.ic-usa.com/deal-structure", "name": "Deal Structure Strategy for Buyers | Investment Consulting USA", "description": "Losing deals at the LOI or the bank? We package the deal so it works for the lender and for you: recast, stress test, term sheet, bank. Scope in 24 hours.", "isPartOf": {"@id": "https://www.ic-usa.com/#website"}, "about": {"@id": "https://www.ic-usa.com/#organization"}, "inLanguage": "en", "dateModified": "2026-11-09"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ic-usa.com/"}, {"@type": "ListItem", "position": 2, "name": "Deal Structure Strategy for Buyers", "item": "https://www.ic-usa.com/deal-structure"}]}, {"@type": "FAQPage", "@id": "https://www.ic-usa.com/deal-structure#faq", "mainEntity": [{"@type": "Question", "name": "The business was good and my profile was good. Why was my LOI declined or my loan stalled?", "acceptedAnswer": {"@type": "Answer", "text": "In our experience, most of the time because the deal was not bankable as written. The price was set against the seller’s hopes rather than against what a lender will carry, the equity injection or seller note did not fit the lender’s credit policy, the seller note was not on standby, or debt-service coverage failed on one of the historical years the bank looks at. Brokers decline LOIs they do not believe will finance, lenders stall files that fail a test they do not always explain, and after the second or third failed attempt many stop replying. None of that says anything about the business or about you. It says the structure needs to change before the next offer."}}, {"@type": "Question", "name": "Is the 80/10/10 SBA structure the right one for my deal?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes, and far less often than the training courses suggest. Eighty percent bank debt, ten percent seller note and ten percent buyer equity is a starting template, not a rule, and every lender layers its own credit policy on top: how long the seller note must stand by, what counts toward the injection, how working capital and the owner’s replacement salary enter the coverage calculation, and how much of the price can be goodwill. The right structure depends on the business, the lender and the buyer, and it is usually settled in the LOI, not at the bank."}}, {"@type": "Question", "name": "I already have a loan broker. What do you add?", "acceptedAnswer": {"@type": "Answer", "text": "A loan broker places the loan. We build the deal the loan has to fit: the recast the lender’s analyst will accept, the structure that passes the lender’s own coverage tests, and the term sheet that puts it in writing. When the broker is doing their job, we work alongside them and the file moves faster. When the broker has gone quiet with the seller waiting, we tell you what the file is missing and, if you ask, bring in a broker who is already working with us. The decision is always yours."}}, {"@type": "Question", "name": "How fast can you turn this around?", "acceptedAnswer": {"@type": "Answer", "text": "Scope and price within 24 hours of seeing the LOI or the deal summary. On a live engagement the first read of the structure, including a fast no if it will not fund, comes within days, and credit questions from the lender are answered the same day. Buyers at this stage are usually against the wall with the seller waiting, so we work on the deal’s clock, not ours."}}, {"@type": "Question", "name": "Is the SBA financing fit check a lender pre-approval?", "acceptedAnswer": {"@type": "Answer", "text": "No. Only a lender can pre-qualify or approve a loan, and we are not a lender. The fit check applies the tests an SBA credit desk will apply: program eligibility, the purchase price against the SOP thresholds for a valuation and a Quality of Earnings report, the equity injection and seller-note structure, and debt-service coverage on each historical year. It tells you whether the deal is likely to finance as presented and what would need to change if not. When a deal fits, we introduce you to a lender in our network who can run a real pre-qualification, usually within a few days."}}, {"@type": "Question", "name": "What is a deal review, and when do I need a Quality of Earnings report instead?", "acceptedAnswer": {"@type": "Answer", "text": "A deal review works from what the seller has already published: the CIM or broker summary, the financial recap and, if you have them, tax returns. It is built for the search stage, when you are deciding which of several listings deserves your attention. A Quality of Earnings report tests the earnings against bank statements, tax returns and source documents once you are under LOI, and SBA lenders must commission one on acquisitions of $3 million or more. QofE reports and appraisals come from Kerdai , the group’s independent QofE and appraisal firm."}}, {"@type": "Question", "name": "Who do I actually talk to?", "acceptedAnswer": {"@type": "Answer", "text": "One of the firm’s two senior advisors, Alejandra B. Barrera or Alfonso E. Moncada. There is no junior analyst layer. Read about both on the About page."}}]}]}</script>
 </head>
-<body class="page-buy has-sticky">
+<body class="page-buy">
 <header class="topbar" id="topbar">
   <div class="wrap nav-inner">
     <a href="/" class="brand" aria-label="Investment Consulting USA home">
@@ -948,6 +977,7 @@ fbq('track','PageView');
         <span class="t2">M&amp;A Advisory</span>
       </span>
     </a>
+    <a href="#contact" class="btn btn-red nav-cta" data-prefill="My deal is under LOI (or about to be) and the financing is at risk. I would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal at risk" data-tag="deal-structure page, top bar">Ask for a Scope</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -988,10 +1018,10 @@ fbq('track','PageView');
     <div>
       <div class="eyebrow">Deal Structure Strategy &middot; For Buyers</div>
       <h1>Stop losing deals at the LOI <span class="accent">and at the bank.</span></h1>
-      <p class="lede">Declined LOIs. A loan stuck in underwriting for months. A lender who stopped answering. Almost every time, the business was fine and the buyer was fine; the deal was never bankable as written. We recast the numbers, rebuild the structure against the lender&rsquo;s own tests, write the term sheet and take the file to the right desk.</p>
+      <p class="lede">Declined LOI? Loan stuck in underwriting? The deal was never bankable as written. We rebuild the structure against the lender&rsquo;s own tests, write the term sheet and take the file to the right desk.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-red" data-prefill="My deal is under LOI (or about to be) and the financing is at risk. I would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal at risk" data-tag="deal-structure page, hero scope">Ask for a Scope</a>
-        <a href="#packages" class="btn btn-ghost">Still choosing a target? Deal reviews from $199</a>
+        <a href="#packages" class="btn btn-ghost">Deal Reviews from $199</a>
       </div>
       <div class="hero-note"><span class="lock">&#9679;</span> Scope and price within 24 hours. Never on a deal we represent. We are not a lender.</div>
     </div>
@@ -1007,12 +1037,13 @@ fbq('track','PageView');
   </div>
 </section>
 
-<div class="wrap stats-wrap">
-  <div class="stats four">
-    <div class="stat"><div class="stat-num">12 <span class="unit">Years</span></div><div class="stat-label">Structuring deals with lenders</div></div>
-    <div class="stat"><div class="stat-num">100<span class="plus">+</span></div><div class="stat-label">Deals reviewed in 2026</div></div>
-    <div class="stat"><div class="stat-num"><span class="gold">$100K</span> <span class="unit">to</span> $50M</div><div class="stat-label">Deal sizes we structure</div></div>
-    <div class="stat"><div class="stat-num">24 <span class="unit">Hours</span></div><div class="stat-label">To a scope and a price</div></div>
+<!-- v26 (Nov 9 2026): the stats row became a who-we-work-with panel; the 24-hour and $100K-$50M facts and the 100+ reviews stay in it. -->
+<div class="wrap fit-wrap lift">
+  <div class="fit" aria-label="Who this is for">
+    <div class="fit-cell"><span class="fit-k">Where the deal stands</span><span class="fit-v">Under LOI, declined, or stuck at the bank</span></div>
+    <div class="fit-cell"><span class="fit-k">Financing</span><span class="fit-v">SBA 7(a) and conventional, $100K to $50M</span></div>
+    <div class="fit-cell"><span class="fit-k">Turnaround</span><span class="fit-v">Scope and price within 24 hours</span></div>
+    <div class="fit-cell"><span class="fit-k">Who checks it</span><span class="fit-v">A senior advisor, by hand. 100+ deals reviewed in 2026</span></div>
   </div>
 </div>
 
@@ -1331,7 +1362,7 @@ fbq('track','PageView');
     </div>
     <div class="cta-actions">
       <a href="#contact" class="btn btn-gold" data-prefill="My deal is under LOI (or about to be) and the financing is at risk. I would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal at risk" data-tag="deal-structure page, closing band">Ask for a Scope</a>
-      <a href="#packages" class="btn btn-ghost">Still searching? Deal reviews from $199</a>
+      <a href="#packages" class="btn btn-ghost">Deal Reviews from $199</a>
     </div>
   </div>
 </section>
@@ -1411,7 +1442,6 @@ fbq('track','PageView');
 </section>
 
 
-<div class="sticky-cta" id="stickyCta"><span>Losing deals at the LOI or the bank?</span><a href="#contact" class="btn btn-red" data-prefill="My deal is under LOI (or about to be) and the financing is at risk. I would like a scope for a deal structure engagement." data-prefill-industry="Buyer: live deal at risk" data-tag="deal-structure page, sticky bar">Ask for a Scope</a></div>
 <footer class="site">
   <div class="wrap">
     <div class="foot-grid four">
@@ -1460,6 +1490,7 @@ fbq('track','PageView');
     <div class="foot-bottom">
       <p>&copy; <span id="yr"></span> Investment Consulting USA LLC. All rights reserved.</p>
       <p class="disc">Information provided is for general purposes and does not constitute legal, tax, or financial advice. All engagements are subject to confidentiality. Investment Consulting USA is not a lender and does not approve or pre-qualify loans.</p>
+      <p class="disc">Closings are shown by business type and state only. We never publish a client&rsquo;s name, before or after a sale, and every figure is from the closing table.</p>
     </div>
   </div>
 </footer>
@@ -1493,13 +1524,7 @@ window.icusaPage = "buy page";
     });
   });
 
-  /* v22: sticky mobile call to action on sub-pages, shown once the visitor has scrolled past the hero */
-  var sticky = document.getElementById('stickyCta');
-  if (sticky) {
-    var onStick = function(){ sticky.classList.toggle('show', window.scrollY > 520); };
-    window.addEventListener('scroll', onStick, {passive:true});
-    onStick();
-  }
+  /* v26 (Nov 9 2026): the v22 sticky bar is gone; the ask now sits in the phone top bar (.nav-cta, build.py NAV_CTA). */
 
   /* Shared: lead source for Airtable. Visitors arriving from a Meta ad (utm_source=facebook/instagram or an fbclid) are "Meta Ads". */
   window.icusaSource = function(){
