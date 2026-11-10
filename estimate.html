@@ -1709,7 +1709,7 @@ function refinePayload(o){
 }
 $("refineGo").addEventListener("click", function(){
   var o = refineCompute(); if (!o) return;
-  LAST.refined = o; px("trackCustom", "RefineComplete", {pct:Math.round((o.fac - 1) * 100)});
+  LAST.refined = o; px("trackCustom", "RefineDone", {pct:Math.round((o.fac - 1) * 100)});
   refineRender(o);
   var saved = $("rfSaved"); saved.hidden = true;
   if (!LAST.leadId || LAST.failed) { saved.textContent = "Your refined range is on screen. We could not save it to your file, so mention it when you talk to an advisor."; saved.hidden = false; return; }
