@@ -746,6 +746,17 @@ fbq('track','PageView');
   /* v7 (Nov 3 2026): name + email before the range */
   .est #s4Lead{margin-top:0;padding-top:0;border-top:0}
   .est .tl-field{margin-top:6px}
+  /* v9 (Nov 12 2026): call me on the result screen */
+  .est .r-call{margin:0 0 18px;padding:16px 18px;border:1.5px solid var(--gold);border-radius:10px;background:var(--paper-2)}
+  .est .r-call-h{margin:0 0 4px;font:700 1.05rem/1.35 var(--sans);color:var(--navy)}
+  .est .r-call-p{margin:0 0 12px;font:400 .95rem/1.5 var(--sans);color:var(--ink-soft)}
+  .est #rCallDone .r-call-p{margin:0}
+  .est .r-call-row{display:flex;gap:10px;align-items:stretch}
+  .est .r-call-row .inp{flex:1 1 auto;min-width:0;margin:0}
+  .est .r-call-row .est-btn{flex:0 0 auto;width:auto;margin:0;white-space:nowrap}
+  .est .r-call .err{margin:8px 0 0}
+  .est .r-call .err:empty{display:none}
+  @media (max-width:420px){ .est .r-call-row{flex-direction:column} .est .r-call-row .est-btn{width:100%} }
   /* ===== /worth: Close-AI SMS landing page (Nov 1 2026) ===== */
   .lp-head-sms .lp-from{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;font:600 .82rem/1.3 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--gold-soft)}
   .lp-head-sms .lp-from-dot{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex:0 0 7px}
@@ -937,6 +948,22 @@ fbq('track','PageView');
           <ul class="r-notes" id="rNotes"></ul>
 
           <p class="r-ok" id="rRequested" hidden></p>
+
+          <div class="r-call" id="rCall" hidden>
+            <div id="rCallForm">
+              <p class="r-call-h">Want a senior advisor to walk you through this?</p>
+              <p class="r-call-p">Leave your best number and we&rsquo;ll call you, usually within one business day. One call, no obligation.</p>
+              <div class="r-call-row">
+                <input class="inp" id="callPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" aria-label="Best phone number">
+                <button type="button" class="est-btn est-primary" id="callGo">Call me</button>
+              </div>
+              <p class="err" id="callErr" role="alert"></p>
+            </div>
+            <div id="rCallDone" hidden>
+              <p class="r-call-h" id="rCallThanks" tabindex="-1"></p>
+              <p class="r-call-p">Usually within one business day. The call comes from (561) 765-2303.</p>
+            </div>
+          </div>
 
           <div class="r-teaser" id="rTeaser">
             <p>This is a high-level range from four answers. Recurring revenue, customer concentration, how much depends on you and your add-backs can move it 20 to 40 percent either way. <button type="button" class="linkish inline" id="refineOpen">Refine my estimate (about 3 minutes)</button></p>
@@ -1558,7 +1585,7 @@ function row(dl, label, value, cls){
   var d = el("div", cls); d.appendChild(el("dt", null, label)); d.appendChild(el("dd", null, value)); dl.appendChild(d);
 }
 function renderResult(a, r, sendFailed){
-  LAST.a = a; LAST.r = r; LAST.failed = !!sendFailed; refineReset();
+  LAST.a = a; LAST.r = r; LAST.failed = !!sendFailed; refineReset(); callReset(a);
   $("rEyebrow").textContent = a.bizName ? "Estimated value · " + a.bizName : "Estimated value";
   var notes = $("rNotes"); notes.innerHTML = "";
   if (sendFailed) notes.appendChild(el("li", "alert", "We couldn’t save your details just now. To talk with an advisor, call (561) 765-2303."));
@@ -1805,6 +1832,40 @@ $("refineGo").addEventListener("click", function(){
   if (document.readyState === "complete") go(); else window.addEventListener("load", go);
 })();
 
+// ---- v9 (Nov 12 2026): "Call me" on the result screen (see build_landing.py) ----
+function callReset(a){
+  if (!$("rCall")) return;
+  var has = String(a && a.phone || "").replace(/\D/g, "").length >= 10;
+  $("rCall").hidden = has || !LAST.leadId || LAST.failed;
+  $("rCallForm").hidden = false; $("rCallDone").hidden = true;
+  $("callPhone").value = ""; $("callErr").textContent = ""; $("callGo").disabled = false;
+}
+function fmtPhone(d){ if (d.length === 11 && d.charAt(0) === "1") d = d.slice(1); return d.length === 10 ? "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6) : "+" + d; }
+function callDone(ok, phone){
+  if (ok) {
+    px("trackCustom", "CallRequested");
+    $("rCallThanks").textContent = "Thanks" + (LAST.a && LAST.a.fname ? ", " + LAST.a.fname : "") + ". We’ll call you at " + phone + ".";
+    $("rCallForm").hidden = true; $("rCallDone").hidden = false;
+    try { $("rCallThanks").focus({preventScroll:true}); } catch (e) {}
+  } else {
+    $("callErr").textContent = "We couldn’t save your number just now. Try again, or call us at (561) 765-2303.";
+    $("callGo").disabled = false;
+  }
+}
+$("callGo").addEventListener("click", function(){
+  var d = $("callPhone").value.replace(/\D/g, "");
+  if (d.length < 10 || d.length > 15) { $("callErr").textContent = "Enter a 10-digit phone number."; $("callPhone").focus(); return; }
+  $("callErr").textContent = "";
+  var phone = fmtPhone(d);
+  var payload = {callback:1, lead_id:LAST.leadId, phone:phone, page:PAGE_PATH, elapsed:Date.now() - PAGE_LOADED};
+  if (!LIVE) { if ($("payloadOut")) $("payloadOut").textContent = JSON.stringify(payload, null, 2); callDone(true, phone); return; }
+  $("callGo").disabled = true;
+  fetch(FORM_ENDPOINT, {method:"POST", body:JSON.stringify(payload)})
+    .then(function(res){ return res.json().catch(function(){ return {ok:res.ok}; }); })
+    .then(function(out){ callDone(!!(out && out.ok), phone); })
+    .catch(function(){ callDone(false, phone); });
+});
+$("callPhone").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); $("callGo").click(); } });
 $("editAnswers").addEventListener("click", function(){ result.hidden = true; form.hidden = false; show(0); });
 
 })();
