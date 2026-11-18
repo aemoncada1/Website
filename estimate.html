@@ -945,7 +945,7 @@ fbq('track','PageView');
           </div>
 
           <div class="r-teaser" id="rTeaser">
-            <p>This is a high-level range from four answers. Recurring revenue, customer concentration, how much depends on you and your add-backs can move it 20 to 40 percent either way. <button type="button" class="linkish inline" id="refineOpen">Refine my estimate (about 3 minutes)</button></p>
+            <p>This is a high-level range from four answers. <span id="teaserWhat">Recurring revenue, customer concentration, how much depends on you and your add-backs</span> can move it 20 to 40 percent either way. <button type="button" class="linkish inline" id="refineOpen">Refine my estimate (about 3 minutes)</button></p>
           </div>
 
           <div class="r-block" id="rHow">
@@ -962,9 +962,9 @@ fbq('track','PageView');
           <div class="r-block" id="rCant">
             <h3>What this estimate can&rsquo;t see</h3>
             <ul class="r-cant">
-              <li><strong>Recurring revenue.</strong> Service agreements, contracts and repeat customers raise what buyers will pay.</li>
+              <li id="cantRecurring"><strong>Recurring revenue.</strong> Service agreements, contracts and repeat customers raise what buyers will pay.</li>
               <li><strong>How much runs through you.</strong> If key customers, licenses or relationships depend on you, buyers discount for that risk.</li>
-              <li><strong>Customer concentration.</strong> One customer above 15&ndash;20% of sales worries buyers and lenders.</li>
+              <li id="cantConc"><strong>Customer concentration.</strong> One customer above 15&ndash;20% of sales worries buyers and lenders.</li>
               <li><strong>Financing.</strong> Many buyers borrow to buy, often with an SBA loan. If a lender won&rsquo;t finance the price, the price usually comes down. We can check this before you go to market.</li>
               <li><strong>Add-backs.</strong> Personal or one-time expenses run through the business can raise your earnings, and your value, when they&rsquo;re documented.</li>
             </ul>
@@ -1635,6 +1635,26 @@ var REFINE = {"trend":{"q":"Over the last three years, revenue has been","opts":
 var REFINE_ORDER = ["trend", "recurring", "concentration", "owner", "staff", "books", "years", "premises"];
 var REFINE_MIN = 0.65, REFINE_MAX = 1.35;
 var LAST = {};
+// Healthcare wording (Nov 17 2026, see v6_refine.py): practice industries get four questions in a practice owner's terms.
+var REFINE_HC = {"recurring":{"q":"Where do most of your collections come from?","opts":{"r0":{"f":1.0,"label":"Mostly Medicare or Medicaid","adj":"Payer mix: mostly Medicare or Medicaid","t":"Have your payer mix ready","tip":"Buyers and lenders verify payer mix before anything else. A collections report by payer for the last three years answers the question before it is asked."},"r10":{"f":1.0,"label":"A mix of government and commercial payers","adj":"Payer mix: government and commercial","t":"Have your payer mix ready","tip":"Buyers and lenders verify payer mix before anything else. A collections report by payer for the last three years answers the question before it is asked."},"r30":{"f":1.0,"label":"Mostly commercial insurance","adj":"Payer mix: mostly commercial insurance","t":"Have your payer mix ready","tip":"Buyers and lenders verify payer mix before anything else. A collections report by payer for the last three years answers the question before it is asked."},"r60":{"f":1.0,"label":"Mostly private pay","adj":"Payer mix: mostly private pay","t":"Have your payer mix ready","tip":"Buyers and lenders verify payer mix before anything else. A collections report by payer for the last three years answers the question before it is asked."}}},"concentration":{"q":"Your largest referral source or contract is about what share of revenue?","opts":{"c10":{"f":1.02,"label":"Under 10%","adj":"No referral concentration","t":null,"tip":null},"c20":{"f":1.0,"label":"10 to 20%","adj":"Mild referral concentration","t":null,"tip":null},"c35":{"f":0.94,"label":"20 to 35%","adj":"One referral source at 20-35% of revenue","t":"Widen your referral base","tip":"Buyers and lenders discount a practice where one referral source or contract is above 20% of revenue. Two or three more referral relationships of real size before a sale narrow the gap."},"c35p":{"f":0.88,"label":"Over 35%","adj":"One referral source above 35% of revenue","t":"Widen your referral base","tip":"Above 35% many lenders will not finance the full price, because the revenue can leave with one relationship. Widening the referral base before the sale is the fix."}}},"owner":{"q":"How many of the practice’s visits or procedures do you personally perform?","opts":{"runs":{"f":1.06,"label":"Under 25%; other providers carry the caseload","adj":"Other providers carry the caseload","t":"Keep your providers","tip":"A practice that does not depend on the owner’s own caseload is what buyers want. Make sure your providers will stay through a transition; employment agreements and a stay bonus are cheap insurance."},"mostly":{"f":1.02,"label":"25 to 50%","adj":"Owner sees a minority of the patients","t":null,"tip":null},"staff":{"f":0.97,"label":"50 to 75%","adj":"Owner sees most of the patients","t":"Shift caseload to other providers","tip":"Buyers pay for visits that continue after you step back. Adding a provider, or moving part of your caseload to one, before a sale raises what they will pay."},"me":{"f":0.88,"label":"Over 75%; patients come to see me","adj":"Practice depends on the owner","t":"Reduce how much depends on you","tip":"This is the single biggest discount buyers apply to a practice. Plan a longer transition, and start moving patients and referral relationships to another provider now."}}},"staff":{"q":"Your providers and clinical staff","opts":{"long":{"f":1.03,"label":"Most have been with me 3+ years","adj":"Long-tenured providers","t":null,"tip":null},"mixed":{"f":1.0,"label":"A mix of long-time and newer people","adj":"Mixed provider tenure","t":null,"tip":null},"new":{"f":0.96,"label":"Mostly new, or I have had turnover","adj":"New providers or turnover","t":"Lock in your providers","tip":"Buyers worry that clinicians will leave with the owner. Employment agreements and stay bonuses for your key providers take that risk off the table."}}}}, HC_IND = ["medical", "dental"], HC_CANT = {"recurring": "<strong>Payer mix.</strong> Buyers and lenders verify where your collections come from before anything else.", "concentration": "<strong>Referral concentration.</strong> One referral source or contract above 20% of revenue worries buyers and lenders."}, HC_TEASER = "Payer mix, how much depends on you, your providers and your add-backs";
+var REFINE_BASE = JSON.parse(JSON.stringify(REFINE)), HC_SAVED = null, refineIsHc = false;
+function refineVariant(ind){
+  var hc = HC_IND.indexOf(ind) > -1;
+  if (hc === refineIsHc) return;
+  refineIsHc = hc;
+  if (!HC_SAVED) HC_SAVED = {recurring:$("cantRecurring").innerHTML, concentration:$("cantConc").innerHTML, teaser:$("teaserWhat").textContent};
+  Object.keys(REFINE_HC).forEach(function(k){
+    var src = hc ? REFINE_HC[k] : REFINE_BASE[k];
+    REFINE[k] = JSON.parse(JSON.stringify(src));
+    var fs = $("rfq-" + k); if (!fs) return;
+    var lg = fs.querySelector("legend"), num = lg.querySelector(".rf-n");
+    lg.textContent = ""; lg.appendChild(num); lg.appendChild(document.createTextNode(src.q));
+    Array.prototype.forEach.call(fs.querySelectorAll("input[type=radio]"), function(r){ var o = src.opts[r.value]; if (o) r.parentNode.querySelector("span").textContent = o.label; });
+  });
+  $("cantRecurring").innerHTML = hc ? HC_CANT.recurring : HC_SAVED.recurring;
+  $("cantConc").innerHTML = hc ? HC_CANT.concentration : HC_SAVED.concentration;
+  $("teaserWhat").textContent = hc ? HC_TEASER : HC_SAVED.teaser;
+}
 function saveSession(a, leadId){
   try {
     var s = {}; Object.keys(a).forEach(function(k){ if (k !== "company") s[k] = a[k]; });
@@ -1642,6 +1662,7 @@ function saveSession(a, leadId){
   } catch (e) {}
 }
 function refineReset(){
+  refineVariant(LAST.a && LAST.a.industry);
   $("rRefine").hidden = true; $("rRefined").hidden = true; $("rCant").hidden = false; $("rTeaser").hidden = false;
   Array.prototype.forEach.call(document.querySelectorAll("#rRefine input[type=radio]"), function(r){ r.checked = false; });
   $("rfAdd").value = ""; $("rfErr").hidden = true; LAST.refined = null;
