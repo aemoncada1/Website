@@ -741,6 +741,9 @@ fbq('track','PageView');
   /* v7 (Nov 3 2026): name + email before the range */
   .est #s4Lead{margin-top:0;padding-top:0;border-top:0}
   .est .tl-field{margin-top:6px}
+  /* v11 (Nov 17 2026): welcome-back line for saved progress */
+  .est .est-resume{margin:0 0 16px;padding:10px 14px;border-radius:8px;background:var(--paper-2);font:400 .92rem/1.5 var(--sans);color:var(--ink-soft)}
+  .est .est-resume .linkish{margin:0 0 0 4px;padding:0;font-size:.92rem}
   /* v10 (Nov 17 2026): revenue range buttons */
   .est .rev-chips .est-chip span{white-space:nowrap}
   @media (max-width:560px){ .est .rev-chips{grid-template-columns:repeat(2,minmax(0,1fr))} }
@@ -795,6 +798,7 @@ fbq('track','PageView');
             <p class="prog-text" id="progText" aria-live="polite">Step 1 of 4 &middot; About 90 seconds</p>
             <div class="prog-bar" id="progBar" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
           </div>
+          <p class="est-resume" id="estResume" hidden>Welcome back. Your answers are saved on this device only. <button type="button" class="linkish" id="estRestart">Start over</button></p>
 
           <div class="est-step" id="step1" role="group" aria-labelledby="s1h" data-name="Your business">
             <h2 id="s1h" tabindex="-1">What kind of business is it?</h2>
@@ -1525,7 +1529,7 @@ function submitNow(){
   if (!LIVE) {
     var shown = {}; Object.keys(payload).forEach(function(k){ if (k !== "cf-turnstile-response" && k !== "company") shown[k] = payload[k]; });
     if ($("payloadOut")) $("payloadOut").textContent = JSON.stringify(shown, null, 2);
-    saveSession(a, leadId); renderResult(a, r, false);
+    saveSession(a, leadId); progDone(); renderResult(a, r, false);
     return;
   }
   if (TURNSTILE_SITEKEY && !tsToken && !tsFallback) {
@@ -1545,7 +1549,7 @@ function submitNow(){
     .then(function(res){ return res.json().catch(function(){ return {ok:res.ok}; }); })
     .then(function(out){
       var saved = !!(out && out.ok);
-      if (saved) saveSession(a, leadId);
+      if (saved) { saveSession(a, leadId); progDone(); }
       if (saved) { px("track", "Lead", {content_name:"Business value estimate"}, {eventID:leadId}); px("trackCustom", $("reportMode").value === "email" ? "ReportByEmail" : "BookCallIntent"); }
       else px("trackCustom", "EstimatorSendFailed", {ts:payload.ts_status});
       renderResult(a, r, !saved);
@@ -1843,6 +1847,62 @@ $("callGo").addEventListener("click", function(){
 });
 $("callPhone").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); $("callGo").click(); } });
 $("editAnswers").addEventListener("click", function(){ result.hidden = true; form.hidden = false; show(0); });
+
+// ---- v11 (Nov 17 2026): save progress on this device (see build_landing.py) ----
+var PROG_KEY = "icusaProg", PROG_DAYS = 7, progBusy = false, progOff = false;
+function progClear(){ try { localStorage.removeItem(PROG_KEY); } catch (e) {} }
+function progDone(){ progOff = true; progClear(); $("estResume").hidden = true; }   // lead submitted: stop saving on this page view
+function progSave(){
+  if (progBusy || progOff) return;
+  try {
+    var s = {v:1, t:Date.now(), step:cur, industry:$("industry").value, state:$("state").value, team:teamVal(), revBand:revBandVal(),
+             net:$("net").value, netLoss:$("netLoss").checked, owner:$("owner").value};
+    if (!s.industry && !s.state && !s.team && !s.revBand && !s.net && !s.owner) { progClear(); return; }
+    localStorage.setItem(PROG_KEY, JSON.stringify(s));
+  } catch (e) {}
+}
+form.addEventListener("change", progSave);
+form.addEventListener("input", progSave);
+form.addEventListener("click", function(e){ if (e.target && e.target.closest && e.target.closest("[data-next],[data-back]")) setTimeout(progSave, 0); });
+$("estRestart").addEventListener("click", function(){
+  progBusy = true;
+  progClear(); form.reset();
+  $("revenue").value = "";   // form.reset() leaves hidden inputs alone
+  try { $("industry").dispatchEvent(new Event("change", {bubbles:true})); } catch (e) {}
+  Array.prototype.forEach.call(form.querySelectorAll(".err"), function(e){ e.textContent = ""; });
+  Array.prototype.forEach.call(form.querySelectorAll(".invalid"), function(e){ e.classList.remove("invalid"); });
+  Array.prototype.forEach.call(form.querySelectorAll("[aria-invalid]"), function(e){ e.removeAttribute("aria-invalid"); });
+  syncSms(); $("estResume").hidden = true;
+  progBusy = false;
+  show(0);
+});
+(function progRestore(){
+  var linked = ""; try { linked = new URLSearchParams(window.location.search).get("r") || ""; } catch (e) {}
+  if (linked) return;   // a report link restores the submitted lead instead
+  var s = null; try { s = JSON.parse(localStorage.getItem(PROG_KEY) || "null"); } catch (e) {}
+  if (!s) return;
+  if (s.v !== 1 || !(Date.now() - s.t < PROG_DAYS * 864e5)) { progClear(); return; }
+  progBusy = true;
+  try {
+    if (s.industry) { $("industry").value = s.industry; $("industry").dispatchEvent(new Event("change", {bubbles:true})); }
+    if (s.state) $("state").value = s.state;
+    var tr = s.team ? form.querySelector('input[name="team"][value="' + s.team + '"]') : null; if (tr) tr.checked = true;
+    var rb = REV_BANDS[s.revBand] ? form.querySelector('input[name="revband"][value="' + s.revBand + '"]') : null;
+    if (rb) { rb.checked = true; $("revenue").value = String(REV_BANDS[s.revBand].mid); }
+    if (s.net) $("net").value = s.net;
+    $("netLoss").checked = !!s.netLoss;
+    if (s.owner) $("owner").value = s.owner;
+  } catch (e) {}
+  progBusy = false;
+  var a = collect();
+  var ok = [!!(a.industry && a.state), !!(a.team && a.revenue > 0), isFinite(a.net) && isFinite(a.owner) && a.owner >= 0];
+  var to = 0; while (to < 3 && to < s.step && ok[to]) to++;
+  if (to < 1) return;   // nothing past step 1: the fields are filled in, no jump and no note
+  started = true; sizeSeen = sizeSeen || to > 1;   // do not count a second start for a returning owner
+  show(to, false);
+  $("estResume").hidden = false;
+  if (window.gtag) { try { window.gtag("event", "EstimatorResumed", {step:to + 1}); } catch (e) {} }
+})();
 
 })();
 </script>
