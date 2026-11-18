@@ -741,6 +741,9 @@ fbq('track','PageView');
   /* v7 (Nov 3 2026): name + email before the range */
   .est #s4Lead{margin-top:0;padding-top:0;border-top:0}
   .est .tl-field{margin-top:6px}
+  /* v10 (Nov 17 2026): revenue range buttons */
+  .est .rev-chips .est-chip span{white-space:nowrap}
+  @media (max-width:560px){ .est .rev-chips{grid-template-columns:repeat(2,minmax(0,1fr))} }
   /* v9 (Nov 12 2026): call me on the result screen */
   .est .r-call{margin:0 0 18px;padding:16px 18px;border:1.5px solid var(--gold);border-radius:10px;background:var(--paper-2)}
   .est .r-call-h{margin:0 0 4px;font:700 1.05rem/1.35 var(--sans);color:var(--navy)}
@@ -825,9 +828,20 @@ fbq('track','PageView');
               <p class="err" id="team-err"></p>
             </div>
             <div class="est-field">
-              <label class="lbl" for="revenue">Average yearly revenue, last 3 years</label>
-              <p class="hint" id="revenue-hint">Total sales before any expenses. A round number is fine.</p>
-              <div class="money"><span class="cur" aria-hidden="true">$</span><input class="inp" id="revenue" type="text" inputmode="decimal" autocomplete="off" aria-describedby="revenue-hint" placeholder="e.g. 350,000"></div>
+              <p class="lbl" id="rev-label">Average yearly revenue, last 3 years</p>
+              <p class="hint" id="revenue-hint">Total sales before any expenses. Pick the closest range; no exact figure needed.</p>
+              <div class="est-chips rev-chips" id="revChips" role="radiogroup" aria-labelledby="rev-label" aria-describedby="revenue-hint">
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b1" value="b1" aria-label="Under $300K"><span>Under $300K</span></label>
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b2" value="b2" aria-label="$300K to $500K"><span>$300K&ndash;$500K</span></label>
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b3" value="b3" aria-label="$500K to $750K"><span>$500K&ndash;$750K</span></label>
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b4" value="b4" aria-label="$750K to $1M"><span>$750K&ndash;$1M</span></label>
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b5" value="b5" aria-label="$1M to $1.5M"><span>$1M&ndash;$1.5M</span></label>
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b6" value="b6" aria-label="$1.5M to $2.5M"><span>$1.5M&ndash;$2.5M</span></label>
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b7" value="b7" aria-label="$2.5M to $5M"><span>$2.5M&ndash;$5M</span></label>
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b8" value="b8" aria-label="$5M to $10M"><span>$5M&ndash;$10M</span></label>
+                <label class="est-chip"><input type="radio" name="revband" id="rev-b9" value="b9" aria-label="Over $10M"><span>Over $10M</span></label>
+              </div>
+              <input type="hidden" id="revenue" value="">
               <p class="err" id="revenue-err"></p>
             </div>
             <div class="actions"><button type="button" class="est-btn est-back" data-back>Back</button><button type="button" class="est-btn est-primary" data-next>Continue</button></div>
@@ -1278,7 +1292,7 @@ var LIVE = !!FORM_ENDPOINT;
 var PAGE_LOADED = Date.now();
 var form = $("estForm"), calc = $("estimate"), result = $("result");
 var steps = [$("step1"), $("step2"), $("step3"), $("step4")];
-var cur = 0, started = false, tsToken = "", tsRendered = false, tsWidget = null;
+var cur = 0, started = false, sizeSeen = false, tsToken = "", tsRendered = false, tsWidget = null;
 // v19: Turnstile fallback (submit anyway after a grace period) and extra funnel events.
 var tsFallback = false, tsTimer = null, blockedFired = false, detailsSeen = false;
 var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1379,6 +1393,12 @@ function setErr(id, msg){
   return !msg;
 }
 function teamVal(){ var c = form.querySelector('input[name="team"]:checked'); return c ? c.value : ""; }
+// v10 (Nov 17 2026): revenue is a picked range; the estimate uses its midpoint (see build_landing.py).
+var REV_BANDS = {b1:{label:"Under $300K", mid:200000, top:300000}, b2:{label:"$300K to $500K", mid:400000, top:500000}, b3:{label:"$500K to $750K", mid:625000, top:750000}, b4:{label:"$750K to $1M", mid:875000, top:1000000}, b5:{label:"$1M to $1.5M", mid:1250000, top:1500000}, b6:{label:"$1.5M to $2.5M", mid:2000000, top:2500000}, b7:{label:"$2.5M to $5M", mid:3750000, top:5000000}, b8:{label:"$5M to $10M", mid:7500000, top:10000000}, b9:{label:"Over $10M", mid:12500000, top:Infinity}};
+function revBandVal(){ var c = form.querySelector('input[name="revband"]:checked'); return c ? c.value : ""; }
+function revVal(){ var b = REV_BANDS[revBandVal()]; return b ? b.mid : parseMoney($("revenue").value); }
+function revTop(a){ var b = REV_BANDS[a.revBand]; return b ? b.top : a.revenue; }
+function revLabel(a){ var b = REV_BANDS[a.revBand]; return b ? b.label : money(a.revenue); }
 
 function collect(){
   var net = parseMoney($("net").value);
@@ -1387,7 +1407,7 @@ function collect(){
   var name = $("name").value.trim(), parts = name ? name.split(/\s+/) : [];
   return {
     bizName: $("bizName").value.trim(), industry: $("industry").value, state: $("state").value,
-    team: teamVal(), revenue: parseMoney($("revenue").value), gross: isFinite(gross) ? gross : null,
+    team: teamVal(), revBand: revBandVal(), revenue: revVal(), gross: isFinite(gross) ? gross : null,
     net: net, owner: parseMoney($("owner").value),
     name: name, fname: parts.length ? parts[0] : "", lname: parts.slice(1).join(" "), email: $("email").value.trim(), phone: $("phone").value.trim(),
     timeline: $("timeline").value, wantVal: $("wantVal").checked, wantLender: $("wantLender").checked,
@@ -1406,9 +1426,11 @@ function validate(i){
     var tErr = a.team ? "" : "Choose the closest team size.";
     $("team-err").textContent = tErr; $("teamChips").classList.toggle("invalid", !!tErr);
     if (tErr) { ok = false; first = form.querySelector('input[name="team"]'); }
-    chk("revenue", !(a.revenue > 0) ? "Enter your average yearly revenue, for example 350,000." : a.revenue > 5e9 ? "That looks too large. Check the number of zeros." : "");
+    var rErr = a.revenue > 0 ? "" : "Choose the closest revenue range.";
+    $("revenue-err").textContent = rErr; $("revChips").classList.toggle("invalid", !!rErr);
+    if (rErr) { ok = false; if (!first) first = form.querySelector('input[name="revband"]'); }
   } else if (i === 2) {
-    var rev = a.revenue;
+    var rev = revTop(a);   // v10: compare against the top of the picked range
     chk("gross", $("gross").value.trim() === "" ? "" : !(a.gross >= 0) ? "Enter a number, or leave this blank." : a.gross > rev ? "Gross profit can’t be more than revenue (" + money(rev) + ")." : "");
     chk("net", !isFinite(a.net) ? "Enter your average net income. Enter 0 if the business broke even." : a.net > rev ? "Net income can’t be more than revenue (" + money(rev) + ")." : "");
     chk("owner", !isFinite(a.owner) || a.owner < 0 ? "Enter your salary and benefits the business deducts. Enter 0 if you only take draws." : a.owner > rev ? "This can’t be more than revenue (" + money(rev) + ")." : "");
@@ -1425,6 +1447,7 @@ function validate(i){
 function next(){
   if (!validate(cur)) return;
   if (cur === 0 && !started) { started = true; px("trackCustom", "EstimatorStart"); }
+  if (cur === 1 && !sizeSeen) { sizeSeen = true; px("trackCustom", "EstimatorSize"); }   // v10: step 2 passed
   if (cur === 2) px("trackCustom", "EstimatorFinancials");
   if (cur < 3) show(cur + 1);
 }
@@ -1442,6 +1465,9 @@ Array.prototype.forEach.call(form.querySelectorAll("[data-back]"), function(b){ 
 });
 ["industry","state","revenue","gross","net","owner","name","email","phone"].forEach(function(id){
   $(id).addEventListener("input", function(){ setErr(id, ""); });
+});
+Array.prototype.forEach.call(form.querySelectorAll('input[name="revband"]'), function(r){
+  r.addEventListener("change", function(){ var b = REV_BANDS[r.value]; $("revenue").value = b ? String(b.mid) : ""; $("revenue-err").textContent = ""; $("revChips").classList.remove("invalid"); });
 });
 Array.prototype.forEach.call(form.querySelectorAll('input[name="team"]'), function(r){
   r.addEventListener("change", function(){ $("team-err").textContent = ""; $("teamChips").classList.remove("invalid"); });
@@ -1463,7 +1489,7 @@ function buildPayload(a, r, leadId){
     "[" + SOURCE_LABEL + "] Lead priority: " + (hot ? "HIGH" : "Normal"),
     "Business: " + (a.bizName || "(not given)") + " | " + (STATE_NAME[a.state] || a.state),
     "Industry: " + r.ind.label + " | Team: " + TEAM[a.team].label,
-    "Avg revenue: " + money(a.revenue) + (a.gross != null ? " | Gross profit: " + money(a.gross) + " (" + Math.round(a.gross / a.revenue * 100) + "%)" : ""),
+    "Avg revenue: " + (REV_BANDS[a.revBand] ? revLabel(a) + " (range picked; " + money(a.revenue) + " used in the estimate)" : money(a.revenue)) + (a.gross != null ? " | Gross profit: " + money(a.gross) + " (" + Math.round(a.gross / a.revenue * 100) + "%)" : ""),
     "Net income: " + money(a.net) + " | Owner pay: " + money(a.owner) + " | SDE: " + money(r.sde),
     r.ok ? "Estimate shown: " + money(r.lo) + " – " + money(r.hi) + " (mid " + money(r.mid) + "; " + fx(r.lo / r.sde) + "–" + fx(r.hi / r.sde) + " SDE)"
          : "Estimate shown: none (net income + owner pay is not positive)",
@@ -1479,7 +1505,7 @@ function buildPayload(a, r, leadId){
     revenue:revBucket(a.revenue), timeline:a.timeline, notes:lines.join("\n"),
     source:(window.icusaSource ? window.icusaSource() : "Website"), sms_consent:a.sms && a.phone ? "yes" : "", company:a.company,
     report:$("reportMode").value, lead_id:leadId, page:PAGE_PATH,
-    est:{ok:r.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, gross:a.gross, net:a.net, owner:a.owner, sde:r.sde,
+    est:{ok:r.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, sde:r.sde,
          lo:r.lo, mid:r.mid, hi:r.hi, baseLo:r.ok ? roundNice(r.baseLo) : 0, baseHi:r.ok ? roundNice(r.baseHi) : 0,
          methods:(r.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
          adj:(r.adj || []).map(function(x){ return {label:x.label, pct:Math.round((x.f - 1) * 100)}; }),
@@ -1546,7 +1572,7 @@ function renderResult(a, r, sendFailed){
     r.notes.forEach(function(n){ notes.appendChild(el("li", null, n.text)); });
 
     var dl = $("rEarnings"); dl.innerHTML = "";
-    row(dl, "Average yearly revenue", money(a.revenue));
+    row(dl, "Average yearly revenue", revLabel(a));
     if (a.gross != null) row(dl, "Gross profit", money(a.gross) + " (" + Math.round(a.gross / a.revenue * 100) + "%)");
     row(dl, "Net income before taxes", money(a.net));
     row(dl, "Plus your salary and benefits the business deducts", money(a.owner));
@@ -1642,7 +1668,7 @@ function refineCompute(){
     items.push({k:k, q:REFINE[k].q, a:o.label, adj:o.adj, f:o.f, t:o.t, tip:o.tip});
   });
   var raw = $("rfAdd").value.trim(), add = raw === "" ? 0 : parseMoney(raw);
-  var addErr = !isFinite(add) || add < 0 ? "Enter a number, or 0 if none." : add > a.revenue ? "This can’t be more than revenue (" + money(a.revenue) + ")." : "";
+  var addErr = !isFinite(add) || add < 0 ? "Enter a number, or 0 if none." : add > revTop(a) ? "This can’t be more than revenue (" + money(revTop(a)) + ")." : "";
   $("rfAdd-err").textContent = addErr;
   if (missing.length || addErr) {
     var err = $("rfErr"); err.textContent = missing.length ? "Answer every question. Your best guess is fine." : addErr; err.hidden = false;
@@ -1723,7 +1749,7 @@ function refinePayload(o){
     refine:1, lead_id:LAST.leadId, email:a.email, fname:a.fname, page:PAGE_PATH,
     source:(window.icusaSource ? window.icusaSource() : "Website"), notes:lines.join("\n"),
     answers:o.items.map(function(x){ return {q:x.q, a:x.a, pct:Math.round((x.f - 1) * 100)}; }), addbacks:o.add, factor:Math.round(o.fac * 1000) / 1000,
-    est:{ok:o.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, gross:a.gross, net:a.net, owner:a.owner, addbacks:o.add, sde:r2.sde,
+    est:{ok:o.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, addbacks:o.add, sde:r2.sde,
          lo:o.ok ? o.lo : 0, mid:o.ok ? o.mid : 0, hi:o.ok ? o.hi : 0, baseLo:r2.ok ? roundNice(r2.baseLo) : 0, baseHi:r2.ok ? roundNice(r2.baseHi) : 0,
          prevLo:r.ok ? r.lo : 0, prevHi:r.ok ? r.hi : 0, prevMid:r.ok ? r.mid : 0,
          methods:(r2.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
@@ -1764,7 +1790,8 @@ $("refineGo").addEventListener("click", function(){
   try {
     $("industry").value = a.industry; $("state").value = a.state;
     var tr = form.querySelector('input[name="team"][value="' + a.team + '"]'); if (tr) tr.checked = true;
-    $("revenue").value = Math.round(a.revenue).toLocaleString("en-US");
+    $("revenue").value = String(Math.round(a.revenue));
+    var rb = a.revBand ? form.querySelector('input[name="revband"][value="' + a.revBand + '"]') : null; if (rb) rb.checked = true;   // pre-v10 links keep the typed figure
     $("net").value = Math.round(Math.abs(a.net)).toLocaleString("en-US"); $("netLoss").checked = a.net < 0;
     $("owner").value = Math.round(a.owner).toLocaleString("en-US");
     $("name").value = a.name || ""; $("email").value = a.email || ""; $("phone").value = a.phone || "";
