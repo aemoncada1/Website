@@ -1050,6 +1050,16 @@ fbq('track','PageView');
   /* v7 (Nov 3 2026): name + email before the range */
   .est #s4Lead{margin-top:0;padding-top:0;border-top:0}
   .est .tl-field{margin-top:6px}
+  /* v12 (Nov 19 2026): profit and owner pay as range buttons */
+  .est .why2{margin:12px 0 20px;padding:11px 14px;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;background:var(--paper-2);font:400 .92rem/1.5 var(--sans);color:var(--ink)}
+  .est .why2 b{color:var(--navy)}
+  .est .band-chips .est-chip span{font-size:1rem;line-height:1.2}
+  .est .net-chips .est-chip span,.est .loss-chips .est-chip span{white-space:nowrap}
+  @media (max-width:560px){ .est .band-chips{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  .est .loss-row{margin-top:12px;padding:12px 12px 14px;border:1.5px solid var(--line-2);border-radius:8px;background:var(--paper-2)}
+  .est .loss-row[hidden],.est .sde-live[hidden]{display:none}
+  .est .loss-row .lbl.more{margin:0 0 8px}
+  .est .sde-live{margin:12px 0 0;padding:10px 14px;border:1px solid rgba(201,168,76,.55);border-radius:8px;background:rgba(201,168,76,.12);font:600 .95rem/1.5 var(--sans);color:var(--navy)}
   /* v11 (Nov 17 2026): welcome-back line for saved progress */
   .est .est-resume{margin:0 0 16px;padding:10px 14px;border-radius:8px;background:var(--paper-2);font:400 .92rem/1.5 var(--sans);color:var(--ink-soft)}
   .est .est-resume .linkish{margin:0 0 0 4px;padding:0;font-size:.92rem}
@@ -1169,20 +1179,51 @@ fbq('track','PageView');
 
           <div class="est-step" id="step3" role="group" aria-labelledby="s3h" data-name="Profit" hidden>
             <h2 id="s3h" tabindex="-1">How profitable is it?</h2>
-            <p class="step-sub">Yearly averages for the last three years. Round numbers are fine.</p>
+            <p class="step-sub">Two quick questions. Think of a typical year out of the last three and pick the closest range.</p>
+            <p class="why2"><b>Why two numbers?</b> A buyer adds them: the profit the business kept, plus what it paid you. Example: $150,000 of profit after a $90,000 owner salary counts as $240,000.</p>
             <div class="est-field" hidden><input class="inp" id="gross" type="text" value=""><p class="err" id="gross-err"></p></div>
             <div class="est-field">
-              <label class="lbl" for="net">Average net income before taxes</label>
-              <p class="hint" id="net-hint">The profit line on your P&amp;L or tax return.</p>
-              <div class="money"><span class="cur" aria-hidden="true">$</span><input class="inp" id="net" type="text" inputmode="decimal" autocomplete="off" aria-describedby="net-hint"></div>
-              <label class="check small" for="netLoss"><input type="checkbox" id="netLoss"> The business lost money</label>
+              <p class="lbl" id="net-label">1. Business profit before taxes</p>
+              <p class="hint" id="net-hint">What the company had left after every expense, including any salary it paid you. Not your take-home pay. Look for &ldquo;net income&rdquo; on your P&amp;L, or &ldquo;net profit&rdquo; or &ldquo;ordinary business income&rdquo; on the business tax return.</p>
+              <div class="est-chips band-chips net-chips" id="netChips" role="radiogroup" aria-labelledby="net-label" aria-describedby="net-hint">
+                <label class="est-chip"><input type="radio" name="netband" id="net-n1" value="n1" aria-label="$0 to $50K"><span>$0&ndash;$50K</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-n2" value="n2" aria-label="$50K to $100K"><span>$50K&ndash;$100K</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-n3" value="n3" aria-label="$100K to $150K"><span>$100K&ndash;$150K</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-n4" value="n4" aria-label="$150K to $250K"><span>$150K&ndash;$250K</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-n5" value="n5" aria-label="$250K to $400K"><span>$250K&ndash;$400K</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-n6" value="n6" aria-label="$400K to $600K"><span>$400K&ndash;$600K</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-n7" value="n7" aria-label="$600K to $1M"><span>$600K&ndash;$1M</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-n8" value="n8" aria-label="$1M to $2M"><span>$1M&ndash;$2M</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-n9" value="n9" aria-label="Over $2M"><span>Over $2M</span></label>
+                <label class="est-chip"><input type="radio" name="netband" id="net-loss" value="loss" aria-label="It lost money"><span>It lost money</span></label>
+              </div>
+              <div class="loss-row" id="lossRow" hidden>
+                <p class="lbl more" id="loss-label">About how much did it lose in a typical year?</p>
+                <div class="est-chips band-chips loss-chips" id="lossChips" role="radiogroup" aria-labelledby="loss-label">
+                <label class="est-chip"><input type="radio" name="lossband" id="loss-l1" value="l1" aria-label="Loss under $50K"><span>Under $50K</span></label>
+                <label class="est-chip"><input type="radio" name="lossband" id="loss-l2" value="l2" aria-label="Loss of $50K to $150K"><span>$50K&ndash;$150K</span></label>
+                <label class="est-chip"><input type="radio" name="lossband" id="loss-l3" value="l3" aria-label="Loss over $150K"><span>Over $150K</span></label>
+                </div>
+              </div>
+              <input type="hidden" id="net" value=""><input type="checkbox" id="netLoss" style="display:none" tabindex="-1" aria-hidden="true">
               <p class="err" id="net-err"></p>
             </div>
             <div class="est-field">
-              <label class="lbl" for="owner">Your salary and benefits the business deducts</label>
-              <p class="hint" id="owner-hint">Count only pay taken out before your profit line: a salary paid to you through payroll, plus personal costs the business covers, like your health insurance or a vehicle. Don&rsquo;t include owner draws, they&rsquo;re already in your profit. Only take draws? Enter 0, or just those personal costs.</p>
-              <div class="money"><span class="cur" aria-hidden="true">$</span><input class="inp" id="owner" type="text" inputmode="decimal" autocomplete="off" aria-describedby="owner-hint"></div>
+              <p class="lbl" id="owner-label">2. Your pay the business counted as an expense</p>
+              <p class="hint" id="owner-hint">Your W-2 salary from the business, plus personal costs it pays for you, like health insurance or a vehicle. Leave out draws and distributions: they come out of the profit above. Only take draws? Pick None.</p>
+              <div class="est-chips band-chips own-chips" id="ownChips" role="radiogroup" aria-labelledby="owner-label" aria-describedby="owner-hint">
+                <label class="est-chip"><input type="radio" name="ownband" id="own-o0" value="o0" aria-label="None (draws only)"><span>None (draws only)</span></label>
+                <label class="est-chip"><input type="radio" name="ownband" id="own-o1" value="o1" aria-label="Under $50K"><span>Under $50K</span></label>
+                <label class="est-chip"><input type="radio" name="ownband" id="own-o2" value="o2" aria-label="$50K to $100K"><span>$50K&ndash;$100K</span></label>
+                <label class="est-chip"><input type="radio" name="ownband" id="own-o3" value="o3" aria-label="$100K to $150K"><span>$100K&ndash;$150K</span></label>
+                <label class="est-chip"><input type="radio" name="ownband" id="own-o4" value="o4" aria-label="$150K to $250K"><span>$150K&ndash;$250K</span></label>
+                <label class="est-chip"><input type="radio" name="ownband" id="own-o5" value="o5" aria-label="$250K to $400K"><span>$250K&ndash;$400K</span></label>
+                <label class="est-chip"><input type="radio" name="ownband" id="own-o6" value="o6" aria-label="Over $400K"><span>Over $400K</span></label>
+                <label class="est-chip"><input type="radio" name="ownband" id="own-o7" value="o7" aria-label="Not sure (not counted)"><span>Not sure</span></label>
+              </div>
+              <input type="hidden" id="owner" value="">
               <p class="err" id="owner-err"></p>
+              <p class="sde-live" id="sdeLive" aria-live="polite" hidden></p>
             </div>
             <div class="actions"><button type="button" class="est-btn est-back" data-back>Back</button><button type="button" class="est-btn est-primary" data-next>Continue</button></div>
           </div>
@@ -1846,6 +1887,7 @@ function estimate(a){
   r.ok = true;
 
   if (a.net < 0) r.notes.push({text:"The business shows a loss on paper, but what it pays you counts as earnings to a buyer. That is why there is still a value here."});
+  if (a.ownBand && OWN_BANDS[a.ownBand] && OWN_BANDS[a.ownBand].unsure) r.notes.push({text:"You were not sure what the business pays you, so your own pay is not counted yet. If the business pays you a salary or covers personal costs, your range is likely higher. An advisor can add it on a call."});
   if (sde < 60000) r.notes.push({text:"At this level of earnings, buyers also look closely at equipment, customer lists and location. We are glad to go over those with you."});
   if (margin > 0.6) r.notes.push({text:"Your earnings are a large share of revenue. That can happen, but it is worth double-checking the figures you entered."});
   return r;
@@ -1963,6 +2005,43 @@ function revBandVal(){ var c = form.querySelector('input[name="revband"]:checked
 function revVal(){ var b = REV_BANDS[revBandVal()]; return b ? b.mid : parseMoney($("revenue").value); }
 function revTop(a){ var b = REV_BANDS[a.revBand]; return b ? b.top : a.revenue; }
 function revLabel(a){ var b = REV_BANDS[a.revBand]; return b ? b.label : money(a.revenue); }
+// v12 (Nov 19 2026): profit and owner pay are picked ranges; the estimate uses their midpoints (see build_landing.py).
+var NET_BANDS = {n1:{label:"$0 to $50K", mid:25000, lo:0}, n2:{label:"$50K to $100K", mid:75000, lo:50000}, n3:{label:"$100K to $150K", mid:125000, lo:100000}, n4:{label:"$150K to $250K", mid:200000, lo:150000}, n5:{label:"$250K to $400K", mid:325000, lo:250000}, n6:{label:"$400K to $600K", mid:500000, lo:400000}, n7:{label:"$600K to $1M", mid:800000, lo:600000}, n8:{label:"$1M to $2M", mid:1500000, lo:1000000}, n9:{label:"Over $2M", mid:2500000, lo:2000000}, l1:{label:"Loss under $50K", mid:-25000, lo:-25000}, l2:{label:"Loss of $50K to $150K", mid:-100000, lo:-100000}, l3:{label:"Loss over $150K", mid:-200000, lo:-200000}};
+var OWN_BANDS = {o0:{label:"None (draws only)", mid:0, lo:0, fixed:true, unsure:false}, o1:{label:"Under $50K", mid:25000, lo:0, fixed:false, unsure:false}, o2:{label:"$50K to $100K", mid:75000, lo:50000, fixed:false, unsure:false}, o3:{label:"$100K to $150K", mid:125000, lo:100000, fixed:false, unsure:false}, o4:{label:"$150K to $250K", mid:200000, lo:150000, fixed:false, unsure:false}, o5:{label:"$250K to $400K", mid:325000, lo:250000, fixed:false, unsure:false}, o6:{label:"Over $400K", mid:500000, lo:400000, fixed:false, unsure:false}, o7:{label:"Not sure (not counted)", mid:0, lo:0, fixed:true, unsure:true}};
+var LOW_SDE_SHARE = 0.05;
+function netBandVal(){
+  var c = form.querySelector('input[name="netband"]:checked'); if (!c) return "";
+  if (c.value !== "loss") return c.value;
+  var l = form.querySelector('input[name="lossband"]:checked'); return l ? l.value : "loss";   // "loss" = no loss range picked yet
+}
+function ownBandVal(){ var c = form.querySelector('input[name="ownband"]:checked'); return c ? c.value : ""; }
+function netLabel(a){ var b = NET_BANDS[a.netBand]; return b ? b.label : money(a.net); }
+function ownLabel(a){ var b = OWN_BANDS[a.ownBand]; return b ? b.label : money(a.owner); }
+function bandApprox(a){ return !!(NET_BANDS[a.netBand] || OWN_BANDS[a.ownBand]); }
+// Copies the picked ranges into the hidden #net / #netLoss / #owner inputs that collect() reads, opens the loss row,
+// and writes the live "Together" line. With no button picked the hidden inputs are left alone (pre-v12 report links).
+function bandSync(){
+  var n = form.querySelector('input[name="netband"]:checked'), isLoss = !!n && n.value === "loss";
+  $("lossRow").hidden = !isLoss;
+  if (!isLoss) Array.prototype.forEach.call(form.querySelectorAll('input[name="lossband"]'), function(r){ r.checked = false; });
+  var nb = NET_BANDS[netBandVal()], ob = OWN_BANDS[ownBandVal()];
+  if (n) { $("net").value = nb ? String(Math.abs(nb.mid)) : ""; $("netLoss").checked = !!nb && nb.mid < 0; }
+  if (form.querySelector('input[name="ownband"]:checked')) $("owner").value = ob ? String(ob.mid) : "";
+  var live = $("sdeLive"), sum = nb && ob ? nb.mid + ob.mid : NaN;
+  if (sum > 0) {
+    var rv = revVal(), t = ob.unsure ? "Counting the profit only for now: about " + money(sum) + " a year. An advisor can add your pay later."
+                                     : "Together: about " + money(sum) + " a year. That is the earnings figure buyers price a business on.";
+    if (rv > 0 && sum < LOW_SDE_SHARE * rv) t += " It is a small share of the revenue you picked. If it looks low, check both answers" + (nb.mid < 0 ? "." : ": question 1 is the company’s profit, not your take-home pay.");
+    live.textContent = t; live.hidden = false;
+  } else live.hidden = true;
+}
+function bandRestore(nb, ob){
+  function pick(name, v){ var r = v ? form.querySelector('input[name="' + name + '"][value="' + v + '"]') : null; if (r) r.checked = true; }
+  if (nb === "loss" || (NET_BANDS[nb] && NET_BANDS[nb].mid < 0)) { pick("netband", "loss"); if (nb !== "loss") pick("lossband", nb); }
+  else if (NET_BANDS[nb]) pick("netband", nb);
+  if (OWN_BANDS[ob]) pick("ownband", ob);
+  bandSync();
+}
 
 function collect(){
   var net = parseMoney($("net").value);
@@ -1972,7 +2051,7 @@ function collect(){
   return {
     bizName: $("bizName").value.trim(), industry: $("industry").value, state: $("state").value,
     team: teamVal(), revBand: revBandVal(), revenue: revVal(), gross: isFinite(gross) ? gross : null,
-    net: net, owner: parseMoney($("owner").value),
+    net: net, owner: parseMoney($("owner").value), netBand: netBandVal(), ownBand: ownBandVal(),
     name: name, fname: parts.length ? parts[0] : "", lname: parts.slice(1).join(" "), email: $("email").value.trim(), phone: $("phone").value.trim(),
     timeline: $("timeline").value, wantVal: $("wantVal").checked, wantLender: $("wantLender").checked,
     sms: $("smsConsent").checked, company: $("estCompany").value
@@ -1996,8 +2075,14 @@ function validate(i){
   } else if (i === 2) {
     var rev = revTop(a);   // v10: compare against the top of the picked range
     chk("gross", $("gross").value.trim() === "" ? "" : !(a.gross >= 0) ? "Enter a number, or leave this blank." : a.gross > rev ? "Gross profit can’t be more than revenue (" + money(rev) + ")." : "");
-    chk("net", !isFinite(a.net) ? "Enter your average net income. Enter 0 if the business broke even." : a.net > rev ? "Net income can’t be more than revenue (" + money(rev) + ")." : "");
-    chk("owner", !isFinite(a.owner) || a.owner < 0 ? "Enter your salary and benefits the business deducts. Enter 0 if you only take draws." : a.owner > rev ? "This can’t be more than revenue (" + money(rev) + ")." : "");
+    var nb = NET_BANDS[a.netBand], ob = OWN_BANDS[a.ownBand];   // v12: ranges; compare each range's low edge with the top of the revenue range
+    var over = "That is more than the revenue range you picked (" + revLabel(a) + "). Check both answers.";
+    var nErr = a.netBand === "loss" ? "Choose about how much it lost." : !isFinite(a.net) ? "Choose the closest range for the business’s profit." : (nb ? nb.lo : a.net) > rev ? over : "";
+    $("net-err").textContent = nErr; $("netChips").classList.toggle("invalid", !!nErr && a.netBand !== "loss"); $("lossChips").classList.toggle("invalid", a.netBand === "loss");
+    if (nErr) { ok = false; if (!first) first = form.querySelector(a.netBand === "loss" ? 'input[name="lossband"]' : 'input[name="netband"]'); }
+    var oErr = !isFinite(a.owner) || a.owner < 0 ? "Choose the closest range. Pick None if you only take draws." : (ob ? ob.lo : a.owner) > rev ? over : "";
+    $("owner-err").textContent = oErr; $("ownChips").classList.toggle("invalid", !!oErr);
+    if (oErr) { ok = false; if (!first) first = form.querySelector('input[name="ownband"]'); }
   } else if (i === 3) {
     chk("name", a.name ? "" : "Enter your name.");
     chk("email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.email) ? "" : "Enter a valid email address so we can reach you.");
@@ -2033,6 +2118,18 @@ Array.prototype.forEach.call(form.querySelectorAll("[data-back]"), function(b){ 
 Array.prototype.forEach.call(form.querySelectorAll('input[name="revband"]'), function(r){
   r.addEventListener("change", function(){ var b = REV_BANDS[r.value]; $("revenue").value = b ? String(b.mid) : ""; $("revenue-err").textContent = ""; $("revChips").classList.remove("invalid"); });
 });
+Array.prototype.forEach.call(form.querySelectorAll('input[name="netband"],input[name="lossband"],input[name="ownband"],input[name="revband"]'), function(r){
+  r.addEventListener("change", function(){   // v12 (revband too: the live line compares the total with revenue)
+    if (r.name === "ownband") { $("owner-err").textContent = ""; $("ownChips").classList.remove("invalid"); }
+    else if (r.name !== "revband") { $("net-err").textContent = ""; $("netChips").classList.remove("invalid"); $("lossChips").classList.remove("invalid"); }
+    bandSync();
+    // once question 1 is answered, bring question 2 up (step 3 is taller than a phone screen)
+    if ((r.name === "netband" && r.value !== "loss") || r.name === "lossband") {
+      if (!ownBandVal() && $("ownChips").getBoundingClientRect().bottom > window.innerHeight)
+        window.scrollTo({top:window.pageYOffset + $("owner-label").getBoundingClientRect().top - 90, behavior:reduceMotion ? "auto" : "smooth"});
+    }
+  });
+});
 Array.prototype.forEach.call(form.querySelectorAll('input[name="team"]'), function(r){
   r.addEventListener("change", function(){ $("team-err").textContent = ""; $("teamChips").classList.remove("invalid"); });
 });
@@ -2054,7 +2151,7 @@ function buildPayload(a, r, leadId){
     "Business: " + (a.bizName || "(not given)") + " | " + (STATE_NAME[a.state] || a.state),
     "Industry: " + r.ind.label + " | Team: " + TEAM[a.team].label,
     "Avg revenue: " + (REV_BANDS[a.revBand] ? revLabel(a) + " (range picked; " + money(a.revenue) + " used in the estimate)" : money(a.revenue)) + (a.gross != null ? " | Gross profit: " + money(a.gross) + " (" + Math.round(a.gross / a.revenue * 100) + "%)" : ""),
-    "Net income: " + money(a.net) + " | Owner pay: " + money(a.owner) + " | SDE: " + money(r.sde),
+    "Net income: " + (NET_BANDS[a.netBand] ? netLabel(a) + " (range picked; " + money(a.net) + " used)" : money(a.net)) + " | Owner pay: " + (OWN_BANDS[a.ownBand] ? ownLabel(a) + (OWN_BANDS[a.ownBand].fixed ? "" : " (range picked; " + money(a.owner) + " used)") : money(a.owner)) + " | SDE: " + (bandApprox(a) ? "about " : "") + money(r.sde),
     r.ok ? "Estimate shown: " + money(r.lo) + " – " + money(r.hi) + " (mid " + money(r.mid) + "; " + fx(r.lo / r.sde) + "–" + fx(r.hi / r.sde) + " SDE)"
          : "Estimate shown: none (net income + owner pay is not positive)",
     "Asked for: " + ($("reportMode").value === "email" ? "Preliminary Value Report by email (sent automatically by the bridge)" : "Book a call; complimentary Broker's Opinion of Value after the call"),
@@ -2069,7 +2166,7 @@ function buildPayload(a, r, leadId){
     revenue:revBucket(a.revenue), timeline:a.timeline, notes:lines.join("\n"),
     source:(window.icusaSource ? window.icusaSource() : "Website"), sms_consent:a.sms && a.phone ? "yes" : "", company:a.company,
     report:$("reportMode").value, lead_id:leadId, page:PAGE_PATH,
-    est:{ok:r.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, sde:r.sde,
+    est:{ok:r.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, netLabel:netLabel(a), ownerLabel:ownLabel(a), approx:bandApprox(a), sde:r.sde,
          lo:r.lo, mid:r.mid, hi:r.hi, baseLo:r.ok ? roundNice(r.baseLo) : 0, baseHi:r.ok ? roundNice(r.baseHi) : 0,
          methods:(r.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
          adj:(r.adj || []).map(function(x){ return {label:x.label, pct:Math.round((x.f - 1) * 100)}; }),
@@ -2138,9 +2235,9 @@ function renderResult(a, r, sendFailed){
     var dl = $("rEarnings"); dl.innerHTML = "";
     row(dl, "Average yearly revenue", revLabel(a));
     if (a.gross != null) row(dl, "Gross profit", money(a.gross) + " (" + Math.round(a.gross / a.revenue * 100) + "%)");
-    row(dl, "Net income before taxes", money(a.net));
-    row(dl, "Plus your salary and benefits the business deducts", money(a.owner));
-    row(dl, "Seller’s discretionary earnings (SDE)", money(r.sde), "total");
+    row(dl, "Net income before taxes", netLabel(a));
+    row(dl, "Plus your salary and benefits the business deducts", ownLabel(a));
+    row(dl, "Seller’s discretionary earnings (SDE)", (bandApprox(a) ? "About " : "") + money(r.sde), "total");
 
     var ul = $("rMethods"); ul.innerHTML = "";
     r.methods.forEach(function(x){
@@ -2334,7 +2431,7 @@ function refinePayload(o){
     refine:1, lead_id:LAST.leadId, email:a.email, fname:a.fname, page:PAGE_PATH,
     source:(window.icusaSource ? window.icusaSource() : "Website"), notes:lines.join("\n"),
     answers:o.items.map(function(x){ return {q:x.q, a:x.a, pct:Math.round((x.f - 1) * 100)}; }), addbacks:o.add, factor:Math.round(o.fac * 1000) / 1000,
-    est:{ok:o.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, addbacks:o.add, sde:r2.sde,
+    est:{ok:o.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, netLabel:netLabel(a), ownerLabel:ownLabel(a), approx:bandApprox(a), addbacks:o.add, sde:r2.sde,
          lo:o.ok ? o.lo : 0, mid:o.ok ? o.mid : 0, hi:o.ok ? o.hi : 0, baseLo:r2.ok ? roundNice(r2.baseLo) : 0, baseHi:r2.ok ? roundNice(r2.baseHi) : 0,
          prevLo:r.ok ? r.lo : 0, prevHi:r.ok ? r.hi : 0, prevMid:r.ok ? r.mid : 0,
          methods:(r2.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
@@ -2379,6 +2476,7 @@ $("refineGo").addEventListener("click", function(){
     var rb = a.revBand ? form.querySelector('input[name="revband"][value="' + a.revBand + '"]') : null; if (rb) rb.checked = true;   // pre-v10 links keep the typed figure
     $("net").value = Math.round(Math.abs(a.net)).toLocaleString("en-US"); $("netLoss").checked = a.net < 0;
     $("owner").value = Math.round(a.owner).toLocaleString("en-US");
+    bandRestore(a.netBand, a.ownBand);
     $("name").value = a.name || ""; $("email").value = a.email || ""; $("phone").value = a.phone || "";
     if (a.timeline) { var ts = $("timeline"); ts.value = a.timeline; if (ts.value !== a.timeline) { var op = document.createElement("option"); op.textContent = a.timeline; ts.appendChild(op); ts.value = a.timeline; } }
     $("reportMode").value = s.mode || "email";
@@ -2437,8 +2535,8 @@ function progSave(){
   if (progBusy || progOff) return;
   try {
     var s = {v:1, t:Date.now(), step:cur, industry:$("industry").value, state:$("state").value, team:teamVal(), revBand:revBandVal(),
-             net:$("net").value, netLoss:$("netLoss").checked, owner:$("owner").value};
-    if (!s.industry && !s.state && !s.team && !s.revBand && !s.net && !s.owner) { progClear(); return; }
+             netBand:netBandVal(), ownBand:ownBandVal()};
+    if (!s.industry && !s.state && !s.team && !s.revBand && !s.netBand && !s.ownBand) { progClear(); return; }
     localStorage.setItem(PROG_KEY, JSON.stringify(s));
   } catch (e) {}
 }
@@ -2448,7 +2546,8 @@ form.addEventListener("click", function(e){ if (e.target && e.target.closest && 
 $("estRestart").addEventListener("click", function(){
   progBusy = true;
   progClear(); form.reset();
-  $("revenue").value = "";   // form.reset() leaves hidden inputs alone
+  $("revenue").value = ""; $("net").value = ""; $("owner").value = "";   // form.reset() leaves hidden inputs alone
+  bandSync();
   try { $("industry").dispatchEvent(new Event("change", {bubbles:true})); } catch (e) {}
   Array.prototype.forEach.call(form.querySelectorAll(".err"), function(e){ e.textContent = ""; });
   Array.prototype.forEach.call(form.querySelectorAll(".invalid"), function(e){ e.classList.remove("invalid"); });
@@ -2470,9 +2569,7 @@ $("estRestart").addEventListener("click", function(){
     var tr = s.team ? form.querySelector('input[name="team"][value="' + s.team + '"]') : null; if (tr) tr.checked = true;
     var rb = REV_BANDS[s.revBand] ? form.querySelector('input[name="revband"][value="' + s.revBand + '"]') : null;
     if (rb) { rb.checked = true; $("revenue").value = String(REV_BANDS[s.revBand].mid); }
-    if (s.net) $("net").value = s.net;
-    $("netLoss").checked = !!s.netLoss;
-    if (s.owner) $("owner").value = s.owner;
+    bandRestore(s.netBand, s.ownBand);   // v12: typed profit figures saved before v12 are dropped; the owner picks ranges
   } catch (e) {}
   progBusy = false;
   var a = collect();
