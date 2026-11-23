@@ -1058,6 +1058,24 @@ fbq('track','PageView');
   /* v7 (Nov 3 2026): name + email before the range */
   .est #s4Lead{margin-top:0;padding-top:0;border-top:0}
   .est .tl-field{margin-top:6px}
+  /* v14 (Nov 23 2026): "I also own the property" */
+  .est .prop-field{margin-top:0}
+  .est .prop-check{display:flex;gap:12px;align-items:flex-start;padding:11px 14px;border:1.5px solid var(--line-2);border-radius:8px;background:var(--paper);cursor:pointer}
+  .est .prop-check input{flex:0 0 auto;width:22px;height:22px;margin:1px 0 0;accent-color:var(--navy)}
+  .est .prop-check b{display:block;font:700 1rem/1.35 var(--sans);color:var(--navy)}
+  .est .prop-check small{display:block;margin-top:3px;font:400 .88rem/1.45 var(--sans);color:var(--ink-soft)}
+  .est .prop-row{margin-top:12px;padding:14px 12px;border:1.5px solid var(--line-2);border-radius:8px;background:var(--paper-2)}
+  .est .prop-row[hidden],.est #propSrcWrap[hidden],.est .r-prop[hidden],.est .rf-q[hidden]{display:none}
+  .est .prop-row .lbl.more{margin:0 0 6px}
+  .est #propSrcWrap{margin-top:14px}
+  .est .prop-chips .est-chip span{white-space:nowrap}
+  .est .propsrc-chips .est-chip span{font-size:.95rem}
+  .est .propsrc-chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .est .r-prop{margin:14px 0 6px;padding:13px 16px;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;background:var(--paper-2);text-align:left}
+  .est .r-prop-k{margin:0 0 2px;font:700 .78rem/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#7A5E14}
+  .est .r-prop-v{margin:0;font:700 1.45rem/1.25 var(--sans);color:var(--navy)}
+  .est .r-prop-s{font:600 .92rem/1.4 var(--sans);color:var(--ink-soft);white-space:nowrap}
+  .est .r-prop-p{margin:8px 0 0;font:400 .93rem/1.55 var(--sans);color:var(--ink)}
   /* v13 (Nov 19 2026): BBB Accredited Business seal (250x52, never resized) */
   .lp-bbb{margin:18px 0 0;text-align:center;line-height:0;min-height:52px}
   footer.site .foot-min .bbb-seal{flex-basis:100%;line-height:0;min-height:52px}
@@ -1186,6 +1204,33 @@ fbq('track','PageView');
               <input type="hidden" id="revenue" value="">
               <p class="err" id="revenue-err"></p>
             </div>
+            <div class="est-field prop-field">
+              <label class="prop-check" for="propOwn"><input type="checkbox" id="propOwn"><span><b>I also own the building or land the business runs from</b></span></label>
+              <div class="prop-row" id="propRow" hidden>
+                <p class="lbl more" id="prop-label">About what is the property worth today?</p>
+                <p class="hint" id="prop-hint">The building and land only, not the business. It counts whether you hold it yourself or through a company of yours.</p>
+                <div class="est-chips band-chips prop-chips" id="propChips" role="radiogroup" aria-labelledby="prop-label" aria-describedby="prop-hint">
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p1" value="p1" aria-label="Under $250K"><span>Under $250K</span></label>
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p2" value="p2" aria-label="$250K to $500K"><span>$250K&ndash;$500K</span></label>
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p3" value="p3" aria-label="$500K to $750K"><span>$500K&ndash;$750K</span></label>
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p4" value="p4" aria-label="$750K to $1M"><span>$750K&ndash;$1M</span></label>
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p5" value="p5" aria-label="$1M to $1.5M"><span>$1M&ndash;$1.5M</span></label>
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p6" value="p6" aria-label="$1.5M to $2.5M"><span>$1.5M&ndash;$2.5M</span></label>
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p7" value="p7" aria-label="$2.5M to $5M"><span>$2.5M&ndash;$5M</span></label>
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p8" value="p8" aria-label="Over $5M"><span>Over $5M</span></label>
+                  <label class="est-chip"><input type="radio" name="propband" id="prop-p9" value="p9" aria-label="Not sure"><span>Not sure</span></label>
+                </div>
+                <p class="err" id="prop-err"></p>
+                <div id="propSrcWrap">
+                  <p class="lbl more" id="propsrc-label">Where does that number come from?</p>
+                  <div class="est-chips band-chips propsrc-chips" id="propSrcChips" role="radiogroup" aria-labelledby="propsrc-label">
+                  <label class="est-chip"><input type="radio" name="propsrc" id="propsrc-est" value="est" aria-label="My own estimate"><span>My own estimate</span></label>
+                  <label class="est-chip"><input type="radio" name="propsrc" id="propsrc-appr" value="appr" aria-label="A recent appraisal"><span>A recent appraisal</span></label>
+                  </div>
+                  <p class="err" id="propsrc-err"></p>
+                </div>
+              </div>
+            </div>
             <div class="actions"><button type="button" class="est-btn est-back" data-back>Back</button><button type="button" class="est-btn est-primary" data-next>Continue</button></div>
           </div>
 
@@ -1293,6 +1338,11 @@ fbq('track','PageView');
           <p class="r-eyebrow" id="rEyebrow">Estimated value</p>
           <h2 class="r-range" id="rRange" tabindex="-1"></h2>
           <p class="r-mid" id="rMid"></p>
+          <div class="r-prop" id="rProp" hidden>
+            <p class="r-prop-k">Plus the real estate</p>
+            <p class="r-prop-v"><span id="rPropV"></span> <span class="r-prop-s" id="rPropS"></span></p>
+            <p class="r-prop-p" id="rPropP">Valued on its own, so it is not in the range above. You can sell it with the business, or keep it and lease it to the buyer. If the business pays you little or no rent today, a buyer will subtract a fair rent, which lowers the range above. Your advisor will go over both numbers with you.</p>
+          </div>
           <ul class="r-notes" id="rNotes"></ul>
 
           <p class="r-ok" id="rRequested" hidden></p>
@@ -1875,6 +1925,7 @@ function estimate(a){
   var tier = a.revenue < 1e6 ? 0 : (a.revenue <= 5e6 ? 1 : 2);
   var sde = a.net + a.owner + (a.addbacks > 0 ? a.addbacks : 0);   // v6: refine add-backs
   var r = {ind:ind, tier:tier, sde:sde, methods:[], adj:[], notes:[], ok:false};
+  r.prop = propInfo(a);   // v14: shown beside the range, never multiplied
   if (!(sde > 0)) return r;
 
   var t = clamp((sde - EBITDA_FROM) / (EBITDA_FULL - EBITDA_FROM), 0, 1);
@@ -1929,6 +1980,7 @@ function estimate(a){
   if (a.ownBand && OWN_BANDS[a.ownBand] && OWN_BANDS[a.ownBand].unsure) r.notes.push({text:"You were not sure what the business pays you, so your own pay is not counted yet. If the business pays you a salary or covers personal costs, your range is likely higher. An advisor can add it on a call."});
   if (sde < 60000) r.notes.push({text:"At this level of earnings, buyers also look closely at equipment, customer lists and location. We are glad to go over those with you."});
   if (margin > 0.6) r.notes.push({text:"Your earnings are a large share of revenue. That can happen, but it is worth double-checking the figures you entered."});
+  if (r.prop) r.notes.push({prop:true, text:propNote(r.prop)});   // v14: printed in the report; the result screen shows its own block
   return r;
 }
 
@@ -2001,7 +2053,8 @@ function resetTs(){ tsToken = ""; if (window.turnstile && tsWidget !== null) { t
 
 /* ================= STEPS ================= */
 // v3 landing: qualify, then book. callFit() decides whether step 4 offers the call and the calendar.
-function callFit(a){ return !(isFinite(a.revenue) && a.revenue < CALL_MIN_REVENUE); }
+function revFit(a){ return !(isFinite(a.revenue) && a.revenue < CALL_MIN_REVENUE); }
+function callFit(a){ return revFit(a) || propFit(a); }   // v14
 var qualifiedSeen = false;
 function applyFit(){
   // v7 (Nov 3 2026): one path for everyone (report by email); fit owners also get the calendar on the result screen.
@@ -2048,6 +2101,58 @@ function revLabel(a){ var b = REV_BANDS[a.revBand]; return b ? b.label : money(a
 var NET_BANDS = {n1:{label:"$0 to $50K", mid:25000, lo:0}, n2:{label:"$50K to $100K", mid:75000, lo:50000}, n3:{label:"$100K to $150K", mid:125000, lo:100000}, n4:{label:"$150K to $250K", mid:200000, lo:150000}, n5:{label:"$250K to $400K", mid:325000, lo:250000}, n6:{label:"$400K to $600K", mid:500000, lo:400000}, n7:{label:"$600K to $1M", mid:800000, lo:600000}, n8:{label:"$1M to $2M", mid:1500000, lo:1000000}, n9:{label:"Over $2M", mid:2500000, lo:2000000}, l1:{label:"Loss under $50K", mid:-25000, lo:-25000}, l2:{label:"Loss of $50K to $150K", mid:-100000, lo:-100000}, l3:{label:"Loss over $150K", mid:-200000, lo:-200000}};
 var OWN_BANDS = {o0:{label:"None (draws only)", mid:0, lo:0, fixed:true, unsure:false}, o1:{label:"Under $50K", mid:25000, lo:0, fixed:false, unsure:false}, o2:{label:"$50K to $100K", mid:75000, lo:50000, fixed:false, unsure:false}, o3:{label:"$100K to $150K", mid:125000, lo:100000, fixed:false, unsure:false}, o4:{label:"$150K to $250K", mid:200000, lo:150000, fixed:false, unsure:false}, o5:{label:"$250K to $400K", mid:325000, lo:250000, fixed:false, unsure:false}, o6:{label:"Over $400K", mid:500000, lo:400000, fixed:false, unsure:false}, o7:{label:"Not sure (not counted)", mid:0, lo:0, fixed:true, unsure:true}};
 var LOW_SDE_SHARE = 0.05;
+// v14 (Nov 23 2026): the owner also owns the property (see build_landing.py). It is valued on its own and never
+// enters the earnings multiple; it only adds a line to the result, the Notes and the report, and can earn the call offer.
+var PROP_BANDS = {p1:{label:"Under $250K", mid:150000, lo:0, unsure:false}, p2:{label:"$250K to $500K", mid:375000, lo:250000, unsure:false}, p3:{label:"$500K to $750K", mid:625000, lo:500000, unsure:false}, p4:{label:"$750K to $1M", mid:875000, lo:750000, unsure:false}, p5:{label:"$1M to $1.5M", mid:1250000, lo:1000000, unsure:false}, p6:{label:"$1.5M to $2.5M", mid:2000000, lo:1500000, unsure:false}, p7:{label:"$2.5M to $5M", mid:3750000, lo:2500000, unsure:false}, p8:{label:"Over $5M", mid:6000000, lo:5000000, unsure:false}, p9:{label:"Not sure", mid:0, lo:0, unsure:true}};
+var PROP_SRC = {est:{label:"owner's estimate", you:"your own estimate", shown:"Your own estimate"}, appr:{label:"recent appraisal", you:"a recent appraisal", shown:"From a recent appraisal"}};
+var PROP_CALL_MIN = 250000;
+var PROP_TEXT = "Valued on its own, so it is not in the range above. You can sell it with the business, or keep it and lease it to the buyer. If the business pays you little or no rent today, a buyer will subtract a fair rent, which lowers the range above. Your advisor will go over both numbers with you.", PROP_TEXT_NORANGE = "Valued on its own, apart from the business. You can sell it with the business, or keep it and lease it to the buyer. Your advisor will go over it with you.";
+function propOwned(){ return !!($("propOwn") && $("propOwn").checked); }
+function propBandVal(){ var c = form.querySelector('input[name="propband"]:checked'); return c ? c.value : ""; }
+function propSrcVal(){ var c = form.querySelector('input[name="propsrc"]:checked'); return c ? c.value : ""; }
+function propInfo(a){   // null when the owner leases or left the box blank
+  if (!a || !a.prop) return null;
+  var b = PROP_BANDS[a.propBand] || null, known = !!b && !b.unsure, s = known ? (PROP_SRC[a.propSrc] || null) : null;
+  return {known:known, label:known ? b.label : "not sure", mid:known ? b.mid : 0, lo:known ? b.lo : 0, src:s};
+}
+function propFit(a){ var p = propInfo(a); return !!p && p.known && p.lo >= PROP_CALL_MIN; }
+function propNote(p){
+  return "Real estate: you also own the building or land" + (p.known ? " and put it at " + p.label + (p.src ? " (" + p.src.you + ")" : "") : "")
+    + ". Real estate is valued on its own, by appraisal, and is not included in the range above. If the business pays you little or no rent, a buyer will count a fair rent as an expense, which would lower the business range. "
+    + (p.known ? "An advisor will go over both numbers with you." : "An advisor can help you get a read on what the property is worth.");
+}
+function propSync(){
+  var on = propOwned(); $("propRow").hidden = !on;
+  if (!on) {
+    Array.prototype.forEach.call(form.querySelectorAll('input[name="propband"],input[name="propsrc"]'), function(r){ r.checked = false; });
+    $("prop-err").textContent = ""; $("propsrc-err").textContent = ""; $("propChips").classList.remove("invalid"); $("propSrcChips").classList.remove("invalid");
+  }
+  var b = PROP_BANDS[propBandVal()], unsure = !!b && b.unsure;
+  $("propSrcWrap").hidden = unsure;
+  if (unsure) Array.prototype.forEach.call(form.querySelectorAll('input[name="propsrc"]'), function(r){ r.checked = false; });
+}
+function propRestore(on, band, src){
+  function pick(name, v){ var r = v ? form.querySelector('input[name="' + name + '"][value="' + v + '"]') : null; if (r) r.checked = true; }
+  $("propOwn").checked = !!on;
+  if (on) { if (PROP_BANDS[band]) pick("propband", band); if (PROP_SRC[src]) pick("propsrc", src); }
+  propSync();
+}
+function propRender(p, ok){
+  var box = $("rProp"); if (!box) return;
+  box.hidden = !p; if (!p) return;
+  $("rPropV").textContent = p.known ? p.label.replace(" to ", " – ") : "Value to be confirmed";
+  $("rPropS").textContent = p.known && p.src ? p.src.shown : "";
+  $("rPropP").textContent = ok ? PROP_TEXT : PROP_TEXT_NORANGE;
+}
+function propRefine(){   // an owner who ticked the box is not asked "Your location" again in the refine step
+  var fs = $("rfq-premises"); if (!fs) return;
+  var own = !!(LAST.a && LAST.a.prop), r = fs.querySelector('input[value="own"]');
+  fs.hidden = own; if (own && r) r.checked = true;
+  var sub = $("rRefine").querySelector(".step-sub"), fn = document.querySelector("#rCant .finish-note");
+  if (sub) sub.textContent = sub.textContent.replace(/^(Nine|Eight) quick questions\./, (own ? "Eight" : "Nine") + " quick questions.");
+  if (fn) fn.textContent = fn.textContent.replace(/^[89] quick questions,/, (own ? "8" : "9") + " quick questions,");
+}
+var propSeen = false;
 function netBandVal(){
   var c = form.querySelector('input[name="netband"]:checked'); if (!c) return "";
   if (c.value !== "loss") return c.value;
@@ -2090,7 +2195,7 @@ function collect(){
   return {
     bizName: $("bizName").value.trim(), industry: $("industry").value, state: $("state").value,
     team: teamVal(), revBand: revBandVal(), revenue: revVal(), gross: isFinite(gross) ? gross : null,
-    net: net, owner: parseMoney($("owner").value), netBand: netBandVal(), ownBand: ownBandVal(),
+    net: net, owner: parseMoney($("owner").value), netBand: netBandVal(), ownBand: ownBandVal(), prop: propOwned(), propBand: propBandVal(), propSrc: propSrcVal(),
     name: name, fname: parts.length ? parts[0] : "", lname: parts.slice(1).join(" "), email: $("email").value.trim(), phone: $("phone").value.trim(),
     timeline: $("timeline").value, wantVal: $("wantVal").checked, wantLender: $("wantLender").checked,
     sms: $("smsConsent").checked, company: $("estCompany").value
@@ -2111,6 +2216,14 @@ function validate(i){
     var rErr = a.revenue > 0 ? "" : "Choose the closest revenue range.";
     $("revenue-err").textContent = rErr; $("revChips").classList.toggle("invalid", !!rErr);
     if (rErr) { ok = false; if (!first) first = form.querySelector('input[name="revband"]'); }
+    if (a.prop) {   // v14
+      var pb = PROP_BANDS[a.propBand], pErr = pb ? "" : "Choose the closest range, or Not sure.";
+      $("prop-err").textContent = pErr; $("propChips").classList.toggle("invalid", !!pErr);
+      if (pErr) { ok = false; if (!first) first = form.querySelector('input[name="propband"]'); }
+      var sErr = pb && !pb.unsure && !PROP_SRC[a.propSrc] ? "Choose one of the two." : "";
+      $("propsrc-err").textContent = sErr; $("propSrcChips").classList.toggle("invalid", !!sErr);
+      if (sErr) { ok = false; if (!first) first = form.querySelector('input[name="propsrc"]'); }
+    }
   } else if (i === 2) {
     var rev = revTop(a);   // v10: compare against the top of the picked range
     chk("gross", $("gross").value.trim() === "" ? "" : !(a.gross >= 0) ? "Enter a number, or leave this blank." : a.gross > rev ? "Gross profit can’t be more than revenue (" + money(rev) + ")." : "");
@@ -2169,6 +2282,20 @@ Array.prototype.forEach.call(form.querySelectorAll('input[name="netband"],input[
     }
   });
 });
+$("propOwn").addEventListener("change", function(){   // v14
+  propSync();
+  if (!propOwned()) return;
+  if (!propSeen) { propSeen = true; if (window.gtag) { try { window.gtag("event", "EstimatorProperty", {}); } catch (e) {} } }
+  if ($("propRow").getBoundingClientRect().bottom > window.innerHeight)
+    window.scrollTo({top:window.pageYOffset + $("propOwn").getBoundingClientRect().top - 90, behavior:reduceMotion ? "auto" : "smooth"});
+});
+Array.prototype.forEach.call(form.querySelectorAll('input[name="propband"],input[name="propsrc"]'), function(r){
+  r.addEventListener("change", function(){
+    if (r.name === "propband") { $("prop-err").textContent = ""; $("propChips").classList.remove("invalid"); }
+    else { $("propsrc-err").textContent = ""; $("propSrcChips").classList.remove("invalid"); }
+    propSync();
+  });
+});
 Array.prototype.forEach.call(form.querySelectorAll('input[name="team"]'), function(r){
   r.addEventListener("change", function(){ $("team-err").textContent = ""; $("teamChips").classList.remove("invalid"); });
 });
@@ -2194,9 +2321,14 @@ function buildPayload(a, r, leadId){
     r.ok ? "Estimate shown: " + money(r.lo) + " – " + money(r.hi) + " (mid " + money(r.mid) + "; " + fx(r.lo / r.sde) + "–" + fx(r.hi / r.sde) + " SDE)"
          : "Estimate shown: none (net income + owner pay is not positive)",
     "Asked for: " + ($("reportMode").value === "email" ? "Preliminary Value Report by email (sent automatically by the bridge)" : "Book a call; complimentary Broker's Opinion of Value after the call"),
-    "Call offer: " + (fit ? "shown (revenue " + money(CALL_MIN_REVENUE) + " or more)" : "hidden (revenue under " + money(CALL_MIN_REVENUE) + "); report only"),
+    "Call offer: " + (fit ? (revFit(a) ? "shown (revenue " + money(CALL_MIN_REVENUE) + " or more)" : "shown (owns the property, put at " + r.prop.label + "; revenue under " + money(CALL_MIN_REVENUE) + ")") : "hidden (revenue under " + money(CALL_MIN_REVENUE) + "); report only"),
     "Lead ID: " + leadId
   ];
+  var pp = r.prop;   // v14: after the "Estimate shown" line
+  if (pp) lines.splice(6, 0,
+    "Property: owner also owns the building or land | Value: " + (pp.known ? pp.label + " (" + (pp.src ? pp.src.label : "source not given") + "; " + money(pp.mid) + " midpoint)" : "not sure")
+      + (pp.known && r.ok ? " | Business mid + property: about " + money(r.mid + pp.mid) + ", before any rent adjustment" : ""),
+    "Rent check: real estate is NOT in the estimate shown. If the business pays the owner little or no rent, SDE above is overstated; ask on the first call.");
   var tr = Object.keys(TRACK).map(function(k){ return k + "=" + TRACK[k]; }).join(" ");
   if (tr) lines.push("Tracking: " + tr);
   return {
@@ -2205,7 +2337,7 @@ function buildPayload(a, r, leadId){
     revenue:revBucket(a.revenue), timeline:a.timeline, notes:lines.join("\n"),
     source:(window.icusaSource ? window.icusaSource() : "Website"), sms_consent:a.sms && a.phone ? "yes" : "", company:a.company,
     report:$("reportMode").value, lead_id:leadId, page:PAGE_PATH,
-    est:{ok:r.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, netLabel:netLabel(a), ownerLabel:ownLabel(a), approx:bandApprox(a), sde:r.sde,
+    est:{ok:r.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, netLabel:netLabel(a), ownerLabel:ownLabel(a), approx:bandApprox(a), prop:(r.prop ? {known:r.prop.known, label:r.prop.label, mid:r.prop.mid, source:r.prop.src ? r.prop.src.label : ""} : null), sde:r.sde,
          lo:r.lo, mid:r.mid, hi:r.hi, baseLo:r.ok ? roundNice(r.baseLo) : 0, baseHi:r.ok ? roundNice(r.baseHi) : 0,
          methods:(r.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
          adj:(r.adj || []).map(function(x){ return {label:x.label, pct:Math.round((x.f - 1) * 100)}; }),
@@ -2260,7 +2392,7 @@ function row(dl, label, value, cls){
   var d = el("div", cls); d.appendChild(el("dt", null, label)); d.appendChild(el("dd", null, value)); dl.appendChild(d);
 }
 function renderResult(a, r, sendFailed){
-  LAST.a = a; LAST.r = r; LAST.failed = !!sendFailed; refineReset(); callReset(a);
+  LAST.a = a; LAST.r = r; LAST.failed = !!sendFailed; refineReset(); callReset(a); propRender(r.prop, r.ok);
   $("rEyebrow").textContent = a.bizName ? "Estimated value · " + a.bizName : "Estimated value";
   var notes = $("rNotes"); notes.innerHTML = "";
   if (sendFailed) notes.appendChild(el("li", "alert", "We couldn’t save your details just now. To talk with an advisor, call (561) 765-2303."));
@@ -2269,7 +2401,7 @@ function renderResult(a, r, sendFailed){
     $("rRange").textContent = short(r.lo) + " – " + short(r.hi);
     $("rMid").textContent = "Midpoint about " + short(r.mid) + ", or roughly " + fx(r.lo / r.sde) + " to " + fx(r.hi / r.sde) + " your yearly earnings.";
     $("rHow").hidden = false;
-    r.notes.forEach(function(n){ notes.appendChild(el("li", null, n.text)); });
+    r.notes.forEach(function(n){ if (!n.prop) notes.appendChild(el("li", null, n.text)); });
 
     var dl = $("rEarnings"); dl.innerHTML = "";
     row(dl, "Average yearly revenue", revLabel(a));
@@ -2362,6 +2494,7 @@ function refineReset(){
   $("rRefine").hidden = true; $("rRefined").hidden = true; $("rCant").hidden = false; $("rTeaser").hidden = false;
   Array.prototype.forEach.call(document.querySelectorAll("#rRefine input[type=radio]"), function(r){ r.checked = false; });
   $("rfAdd").value = ""; $("rfErr").hidden = true; LAST.refined = null;
+  propRefine();
 }
 var refineStarted = false;
 function refineOpen(){
@@ -2470,7 +2603,7 @@ function refinePayload(o){
     refine:1, lead_id:LAST.leadId, email:a.email, fname:a.fname, page:PAGE_PATH,
     source:(window.icusaSource ? window.icusaSource() : "Website"), notes:lines.join("\n"),
     answers:o.items.map(function(x){ return {q:x.q, a:x.a, pct:Math.round((x.f - 1) * 100)}; }), addbacks:o.add, factor:Math.round(o.fac * 1000) / 1000,
-    est:{ok:o.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, netLabel:netLabel(a), ownerLabel:ownLabel(a), approx:bandApprox(a), addbacks:o.add, sde:r2.sde,
+    est:{ok:o.ok, industry:r.ind.label, state:STATE_NAME[a.state] || a.state, team:TEAM[a.team].label, revenue:a.revenue, revLabel:revLabel(a), gross:a.gross, net:a.net, owner:a.owner, netLabel:netLabel(a), ownerLabel:ownLabel(a), approx:bandApprox(a), prop:(r.prop ? {known:r.prop.known, label:r.prop.label, mid:r.prop.mid, source:r.prop.src ? r.prop.src.label : ""} : null), addbacks:o.add, sde:r2.sde,
          lo:o.ok ? o.lo : 0, mid:o.ok ? o.mid : 0, hi:o.ok ? o.hi : 0, baseLo:r2.ok ? roundNice(r2.baseLo) : 0, baseHi:r2.ok ? roundNice(r2.baseHi) : 0,
          prevLo:r.ok ? r.lo : 0, prevHi:r.ok ? r.hi : 0, prevMid:r.ok ? r.mid : 0,
          methods:(r2.methods || []).map(function(x){ return {name:x.name, value:roundNice(x.value), how:x.how}; }),
@@ -2516,6 +2649,7 @@ $("refineGo").addEventListener("click", function(){
     $("net").value = Math.round(Math.abs(a.net)).toLocaleString("en-US"); $("netLoss").checked = a.net < 0;
     $("owner").value = Math.round(a.owner).toLocaleString("en-US");
     bandRestore(a.netBand, a.ownBand);
+    propRestore(a.prop, a.propBand, a.propSrc);   // v14: a lead from before v14 has none of these, so the box stays blank
     $("name").value = a.name || ""; $("email").value = a.email || ""; $("phone").value = a.phone || "";
     if (a.timeline) { var ts = $("timeline"); ts.value = a.timeline; if (ts.value !== a.timeline) { var op = document.createElement("option"); op.textContent = a.timeline; ts.appendChild(op); ts.value = a.timeline; } }
     $("reportMode").value = s.mode || "email";
@@ -2574,7 +2708,7 @@ function progSave(){
   if (progBusy || progOff) return;
   try {
     var s = {v:1, t:Date.now(), step:cur, industry:$("industry").value, state:$("state").value, team:teamVal(), revBand:revBandVal(),
-             netBand:netBandVal(), ownBand:ownBandVal()};
+             netBand:netBandVal(), ownBand:ownBandVal(), prop:propOwned(), propBand:propBandVal(), propSrc:propSrcVal()};
     if (!s.industry && !s.state && !s.team && !s.revBand && !s.netBand && !s.ownBand) { progClear(); return; }
     localStorage.setItem(PROG_KEY, JSON.stringify(s));
   } catch (e) {}
@@ -2586,7 +2720,7 @@ $("estRestart").addEventListener("click", function(){
   progBusy = true;
   progClear(); form.reset();
   $("revenue").value = ""; $("net").value = ""; $("owner").value = "";   // form.reset() leaves hidden inputs alone
-  bandSync();
+  bandSync(); propSync();
   try { $("industry").dispatchEvent(new Event("change", {bubbles:true})); } catch (e) {}
   Array.prototype.forEach.call(form.querySelectorAll(".err"), function(e){ e.textContent = ""; });
   Array.prototype.forEach.call(form.querySelectorAll(".invalid"), function(e){ e.classList.remove("invalid"); });
@@ -2608,6 +2742,7 @@ $("estRestart").addEventListener("click", function(){
     var tr = s.team ? form.querySelector('input[name="team"][value="' + s.team + '"]') : null; if (tr) tr.checked = true;
     var rb = REV_BANDS[s.revBand] ? form.querySelector('input[name="revband"][value="' + s.revBand + '"]') : null;
     if (rb) { rb.checked = true; $("revenue").value = String(REV_BANDS[s.revBand].mid); }
+    propRestore(s.prop, s.propBand, s.propSrc);   // v14
     bandRestore(s.netBand, s.ownBand);   // v12: typed profit figures saved before v12 are dropped; the owner picks ranges
   } catch (e) {}
   progBusy = false;
